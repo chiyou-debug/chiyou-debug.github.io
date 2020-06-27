@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>微服务技术 | 蚩尤的秘密</title>
+    <meta name="description" content="蚩尤的秘密">
+    <link rel="icon" href="/img/timg.jpg">
+    
+    <link rel="preload" href="/assets/css/0.styles.6e3b32c4.css" as="style"><link rel="preload" href="/assets/js/app.37bf62ab.js" as="script"><link rel="preload" href="/assets/js/2.c467d517.js" as="script"><link rel="preload" href="/assets/js/8.5ba8b06f.js" as="script"><link rel="prefetch" href="/assets/js/10.b74e8693.js"><link rel="prefetch" href="/assets/js/11.9b1c315f.js"><link rel="prefetch" href="/assets/js/12.37377020.js"><link rel="prefetch" href="/assets/js/13.88919054.js"><link rel="prefetch" href="/assets/js/14.faf99f7a.js"><link rel="prefetch" href="/assets/js/15.72f587e0.js"><link rel="prefetch" href="/assets/js/16.7c046042.js"><link rel="prefetch" href="/assets/js/17.2b1bf4f9.js"><link rel="prefetch" href="/assets/js/18.2c53cbe5.js"><link rel="prefetch" href="/assets/js/19.18f5b8d3.js"><link rel="prefetch" href="/assets/js/20.def44f94.js"><link rel="prefetch" href="/assets/js/21.e460780c.js"><link rel="prefetch" href="/assets/js/22.1ac3e320.js"><link rel="prefetch" href="/assets/js/23.32b72d29.js"><link rel="prefetch" href="/assets/js/24.9ea65887.js"><link rel="prefetch" href="/assets/js/25.b236199a.js"><link rel="prefetch" href="/assets/js/26.19297566.js"><link rel="prefetch" href="/assets/js/27.63288b0d.js"><link rel="prefetch" href="/assets/js/28.9a686763.js"><link rel="prefetch" href="/assets/js/29.65e0b407.js"><link rel="prefetch" href="/assets/js/3.463ebeda.js"><link rel="prefetch" href="/assets/js/30.3c772968.js"><link rel="prefetch" href="/assets/js/31.b4b20bd6.js"><link rel="prefetch" href="/assets/js/32.94f27a89.js"><link rel="prefetch" href="/assets/js/33.8dc48efe.js"><link rel="prefetch" href="/assets/js/34.cbe369fa.js"><link rel="prefetch" href="/assets/js/35.30e2308f.js"><link rel="prefetch" href="/assets/js/36.950f9c58.js"><link rel="prefetch" href="/assets/js/37.f04e533c.js"><link rel="prefetch" href="/assets/js/38.e8b9ccee.js"><link rel="prefetch" href="/assets/js/39.055b4b00.js"><link rel="prefetch" href="/assets/js/4.dd472362.js"><link rel="prefetch" href="/assets/js/40.ca7edf6f.js"><link rel="prefetch" href="/assets/js/41.664e5b23.js"><link rel="prefetch" href="/assets/js/42.654878a2.js"><link rel="prefetch" href="/assets/js/43.9903edc6.js"><link rel="prefetch" href="/assets/js/44.fef042f6.js"><link rel="prefetch" href="/assets/js/45.f5e54dd5.js"><link rel="prefetch" href="/assets/js/46.39c53fbd.js"><link rel="prefetch" href="/assets/js/47.da2a4b4e.js"><link rel="prefetch" href="/assets/js/48.146c9c50.js"><link rel="prefetch" href="/assets/js/49.3ed30ae8.js"><link rel="prefetch" href="/assets/js/5.e9c9e5ea.js"><link rel="prefetch" href="/assets/js/50.625d6708.js"><link rel="prefetch" href="/assets/js/51.b9c85a13.js"><link rel="prefetch" href="/assets/js/52.a33b6442.js"><link rel="prefetch" href="/assets/js/53.3548d1f6.js"><link rel="prefetch" href="/assets/js/54.10ffb9ff.js"><link rel="prefetch" href="/assets/js/55.70b4492e.js"><link rel="prefetch" href="/assets/js/56.c93f8df2.js"><link rel="prefetch" href="/assets/js/57.ea4cdf31.js"><link rel="prefetch" href="/assets/js/58.07f04bb5.js"><link rel="prefetch" href="/assets/js/59.f18e22ae.js"><link rel="prefetch" href="/assets/js/6.9c7511e9.js"><link rel="prefetch" href="/assets/js/60.5f638311.js"><link rel="prefetch" href="/assets/js/61.f0f3f49b.js"><link rel="prefetch" href="/assets/js/62.81606653.js"><link rel="prefetch" href="/assets/js/63.2e306ee4.js"><link rel="prefetch" href="/assets/js/64.82ffab5d.js"><link rel="prefetch" href="/assets/js/65.1615cb2a.js"><link rel="prefetch" href="/assets/js/7.827ede19.js"><link rel="prefetch" href="/assets/js/9.79654ee8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6e3b32c4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/hacker.png" alt="蚩尤的秘密" class="logo"> <span class="site-name can-hide">蚩尤的秘密</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>微服务技术</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_1-微服务（micro-services）" class="sidebar-link">1. 微服务（micro services）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_1-1-什么是微服务？" class="sidebar-link">1.1 什么是微服务？</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_1-2-微服务这个概念的由来" class="sidebar-link">1.2 微服务这个概念的由来</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_1-3-微服务和单体式架构区别" class="sidebar-link">1.3 微服务和单体式架构区别</a></li></ul></li><li><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_2-rpc协议" class="sidebar-link">2. RPC协议</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_2-1-rpc的概念" class="sidebar-link">2.1 RPC的概念</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_2-2-为什么微服务需要rpc" class="sidebar-link">2.2 为什么微服务需要RPC</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_2-3-rpc入门" class="sidebar-link">2.3 RPC入门</a></li></ul></li><li><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_3-protobuf认识与使用" class="sidebar-link">3. ProtoBuf认识与使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_3-1-protobuf简介" class="sidebar-link">3.1 protobuf简介</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_3-2-protobuf的安装" class="sidebar-link">3.2 protobuf的安装</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_3-3-protobuf-简单语法" class="sidebar-link">3.3 protobuf 简单语法</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_3-4-protobuf基本编译" class="sidebar-link">3.4 protobuf基本编译</a></li></ul></li><li><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_4-grpc框架" class="sidebar-link">4. GRPC框架</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_4-1-grpc环境安装" class="sidebar-link">4.1 grpc环境安装</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_4-2-grpc使用" class="sidebar-link">4.2 GRPC使用</a></li></ul></li><li><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_5-go-micro框架" class="sidebar-link">5. go-micro框架</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_5-1-服务发现" class="sidebar-link">5.1 服务发现</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_5-2-了解consul并使用" class="sidebar-link">5.2 了解consul并使用</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_5-3-go-micro安装" class="sidebar-link">5.3 go-micro安装</a></li><li class="sidebar-sub-header"><a href="/micro-services/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF.html#_5-4-go-micro使用" class="sidebar-link">5.4 go-micro使用</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="微服务技术"><a href="#微服务技术" class="header-anchor">#</a> 微服务技术</h1> <h2 id="_1-微服务（micro-services）"><a href="#_1-微服务（micro-services）" class="header-anchor">#</a> 1. 微服务（micro services）</h2> <p><img src="/assets/img/1563802988667.a4426f7b.png" alt="1563802988667"></p> <p>​	近几年,微服这个词闯入了我们的视线范围。在百度与谷歌中随便搜一搜也有几千万条的结果。那么，什么是微服务呢？微服务的概念是怎么产生的呢？
+​	我们首先来了解一下Go语言与微服务的千丝万缕与来龙去脉。</p> <h3 id="_1-1-什么是微服务？"><a href="#_1-1-什么是微服务？" class="header-anchor">#</a> 1.1 什么是微服务？</h3> <blockquote><p>服务拆分原则：高内聚低耦合</p></blockquote> <p>​       在介绍微服务时，首先得先理解什么是微服务，顾名思义，微服务得从两个方面去理解，什么是&quot;微&quot;、什么是&quot;服务&quot;？</p> <p>​       微（micro）狭义来讲就是体积小，著名的&quot;2 pizza 团队&quot;很好的诠释了这一解释（2 pizza 团队最早是亚马逊 CEO Bezos提出来的，意思是说单个服务的设计，所有参与人从设计、开发、测试、运维所有人加起来 只需要2个披萨就够了 ）。</p> <p>​       服务（service）一定要区别于系统，服务一个或者一组相对较小且独立的功能单元，是用户可以感知最小功能集。</p> <p>那么广义上来讲，微服务是一种分布式系统解决方案，推动细粒度服务的使用，这些服务协同工作。</p> <h3 id="_1-2-微服务这个概念的由来"><a href="#_1-2-微服务这个概念的由来" class="header-anchor">#</a> 1.2 微服务这个概念的由来</h3> <p>​       据说，早在19xx,非IT行业提出的概念，在威尼斯附近的软件架构师讨论会上，就有人提出了微服务架构设计的概念，用它来描述与会者所见的一种通用的架构设计风格。时隔一年之后，在同一个讨论会上，大家决定将这种架构设计风格用微服务架构来表示。</p> <p>​       起初，对微服务的概念，没有一个明确的定义，大家只能从各自的角度说出了微服务的理解和看法。</p> <p>​       在2014年3月，詹姆斯·刘易斯（James Lewis）与马丁·福勒（Martin Fowler）所发表的一篇博客中，总结了微服务架构设计的一些共同特点，这应该是一个对微服务比较全面的描述。</p> <p>​       原文链接       https://martinfowler.com/articles/microservices.html</p> <p>​       这篇文章中认为：<strong>“简而言之，微服务架构风格是将单个应用程序作为一组小型服务开发的方法，每个服务程序都在自己的进程中运行，并与轻量级机制（通常是HTTP资源API）进行通信。这些服务是围绕业务功能构建的。可以通过全自动部署机器独立部署。这些服务器可以用不同的编程语言编写，使用不同的数据存储技术，并尽量不用集中式方式进行管理”</strong></p> <p>​    在这里我们可能会混淆一个点，那就是微服务和微服务架构，这是两个不同的概念，而我们平时说到的微服务已经包含了这两个概念了，我们需要把它们说清楚以免学习中纠结。微服务架构是一种设计方法，而微服务这是指使用这种方法而设计的一个应用。所以我们必要对微服务的概念做出一个比较明确的定义。</p> <p>​       <strong>微服务架构</strong>是将复杂的系统使用组件化的方式进行拆分，并使用轻量级通讯方式进行整合的一种设计方法。</p> <p>​       <strong>微服务</strong>是通过这种架构设计方法拆分出来的一个独立的组件化的小应用。</p> <p>​       微服务架构定义的精髓，可以用一句话来描述，那就是“<strong>分而治之，合而用之</strong>”。将复杂的系统进行拆分的方法，就是“分而治之”。分而治之，可以让复杂的事情变的简单，这很符合我们平时处理问题的方法。 使用轻量级通讯等方式进行整合的设计，就是“合而用之”的方法，合而用之可以让微小的力量变动强大。</p> <h3 id="_1-3-微服务和单体式架构区别"><a href="#_1-3-微服务和单体式架构区别" class="header-anchor">#</a> 1.3 微服务和单体式架构区别</h3> <p>​		和微服务架构相反的就是单体式架构，我们来看看单体式架构设计的缺点，就更能体会微服务的好处了。单体架构在规模比较小的情况下工作情况良好，但是随着系统规模的扩大，它暴露出来的问题也越来越多，主要有以下几点：</p> <p><strong>复杂性逐渐变高</strong></p> <blockquote><p>中软国际   boss计费系统   十几年了     移动联通缴费平台   几个亿</p> <p>自己封装函数    代码冗余度特别大</p></blockquote> <p>比如有几十万行代码的大项目，代码越多复杂性越高，越难解决遇到的问题。</p> <p><strong>技术债务逐渐上升</strong></p> <blockquote><p>离职证明  留下了64个bug未解决就离职了</p></blockquote> <p>​		公司的人员流动是再正常不过的事情，有的员工在离职之前，疏于代码质量的自我管束，导致留下来很多坑，由于单体项目代码量庞大的惊人，留下的坑很难被发觉，这就给新来的员工带来很大的烦恼，人员流动越大所留下的坑越多，也就是所谓的技术债务越来越多。</p> <p><strong>耦合度太高，维护成本大</strong></p> <p>​		当应用程序的功能越来越多、团队越来越大时，沟通成本、管理成本显著增加。当出现 bug 时，可能引起 bug 的原因组合越来越多，导致分析、定位和修复的成本增加；并且在对全局功能缺乏深度理解的情况下，容易在修复 bug 时引入新的 bug。</p> <p><strong>持续交付周期长</strong></p> <p>​       构建和部署时间会随着功能的增多而增加，任何细微的修改都会触发部署流水线。新人培养周期长：新成员了解背景、熟悉业务和配置环境的时间越来越长。</p> <p><strong>技术选型成本高</strong></p> <p>​		单块架构倾向于采用统一的技术平台或方案来解决所有问题，如果后续想引入新的技术或框架，成本和风险都很大。</p> <p><strong>可扩展性差</strong></p> <p>​		 随着功能的增加，垂直扩展的成本将会越来越大；而对于水平扩展而言，因为所有代码都运行在同一个进程，没办法做到针对应用程序的部分功能做独立的扩展。</p> <p>了解了单体式结构的缺点之后，我们来看看<strong>微服务架构的解决方案：</strong></p> <ol><li><p><strong>单一职责</strong></p> <p>微服务架构中的每个服务，都是具有业务逻辑的，符合高内聚、低耦合原则以及单一职责原则的单元，不同的服务通过“管道”的方式灵活组合，从而构建出庞大的系统。</p></li> <li><p><strong>轻量级通信</strong></p> <p>服务之间通过轻量级的通信机制实现互通互联，而所谓的轻量级，通常指语言无关、平台无关的交互方式。</p> <p><img src="/assets/img/1564056754698.96fa37b3.png" alt="1564056754698"></p> <p>对于轻量级通信的格式而言，我们熟悉的 XML 和 JSON，它们是语言无关、平台无关的；对于通信的协议而言，通常基于 HTTP，能让服务间的通信变得标准化、无状态化。使用轻量级通信机制，可以让团队选择更适合的语言、工具或者平台来开发服务本身。</p></li> <li><p><strong>独立性</strong></p> <p>每个服务在应用交付过程中，独立地开发、测试和部署。</p> <p>在单体式架构中所有功能都在同一个代码库，功能的开发不具有独立性；当不同小组完成多个功能后，需要经过集成和回归测试，测试过程也不具有独立性；当测试完成后，应用被构建成一个包，如果某个功能存在 bug，将导致整个部署失败或者回滚。</p> <p><img src="/assets/img/1564058423216.0c61100a.png" alt="1564058423216"></p> <p>在微服务架构中，每个服务都是独立的业务单元，与其他服务高度解耦，只需要改变当前服务本身，就可以完成独立的开发、测试和部署。</p> <p><img src="/assets/img/1564061722380.aca9ddcc.png" alt="1564061722380"></p></li> <li><p><strong>进程隔离</strong></p> <p>单块架构中，整个系统运行在同一个进程中，当应用进行部署时，必须停掉当前正在运行的应用，部署完成后再重启进程，无法做到独立部署。</p> <p>在微服务架构中，应用程序由多个服务组成，每个服务都是高度自治的独立业务实体，可以运行在独立的进程中，不同的服务能非常容易地部署到不同的主机上。</p></li></ol> <p>微服务这么多好处，就没有缺点吗？当然不是这样的，事务都有两面性，我们来看看微服务的不足之处。</p> <ol><li><p><strong>运维要求比较高</strong></p> <p>对于单体架构来讲，我们只需要维护好这一个项目就可以了，但是对于微服务架构来讲，由于项目是由多个微服务构成的，每个模块出现问题都会造成整个项目运行出现异常，想要知道是哪个模块造成的问题往往是不容易的，因为我们无法一步一步通过debug的方式来跟踪，这就对运维人员提出了很高的要求。</p></li> <li><p><strong>分布式的复杂性</strong></p> <p>对于单体架构来说，分布式是用来优化项目的，可有可无，但是对于微服务来说，分布式几乎是必会用的技术，由于分布式本身的复杂性，导致微服务架构也变得复杂起来。</p> <blockquote><p>bug不好调试</p></blockquote></li> <li><p><strong>接口成本高</strong></p> <p>比如我们的前面的电商项目每个模块做成微服务的话，用户微服务是要被订单微服务和购物车微服务所调用的，一旦用户微服务的接口发生大的变动，那么所有依赖它的微服务都要做相应的调整，由于微服务可能非常多，那么调整接口所造成的成本将会明显提高。</p></li> <li><p><strong>重复劳动</strong></p> <p>对于单体架构来讲，如果某段业务被多个模块所共同使用，我们便可以抽象成一个工具类，被所有模块直接调用，但是微服务却无法这样做，因为这个微服务的工具类是不能被其它微服务所直接调用的，从而我们便不得不在每个微服务上都建这么一个工具类，从而导致代码的重复。</p></li> <li><p><strong>业务不好分离</strong></p> <p>程序员的业务理解程度</p></li></ol> <p><strong>既然微服务也有这么多的缺点，那为什么还要用微服务架构呢？</strong></p> <ol><li><p><strong>开发简单</strong></p> <p>微服务架构将复杂系统进行拆分之后，让每个微服务应用都开发变得非常简单，没有太多的累赘。对于每一个开发者来说，这无疑是一种解脱，因为再也不用进行繁重的劳动了，每天都在一种轻松愉快的氛围中工作，其效率也会整备地提高</p></li> <li><p><strong>能够快速相应需求变化</strong></p> <p>一般的需求变化都来自于局部功能的改变，这种变化将落实到每个微服务上，二每个微服务的功能相对来说都非常简单，更改起来非常容易，所以微服务非常适合敏捷开发方法，能够快速的影响业务的需求变化。</p></li> <li><p><strong>随时随地更新</strong></p></li> <li><p>不停服更新</p> <p>一方面，微服务的部署和更新并不会影响全局系统的正常运行；另一方面，使用多实例的部署方法，可以做到一个服务的重启和更新在不易察觉的情况下进行。所以每个服务任何时候都可以进行更新部署。</p></li> <li><p><strong>系统更加稳定可靠</strong></p> <p>微服务运行在一个高可用的分布式环境之中，有配套的监控和调度管理机制，并且还可以提供自由伸缩的管理，充分保障了系统的稳定可靠性</p></li></ol> <p><strong>单体式和微服务对比</strong></p> <table><thead><tr><th></th> <th>传统单体架构</th> <th>分布式微服务架构</th></tr></thead> <tbody><tr><td>新功能开发</td> <td>需要时间</td> <td>容易开发和实现</td></tr> <tr><td>部署</td> <td>不经常而且容易部署</td> <td>经常发布，部署复杂</td></tr> <tr><td>隔离性</td> <td>故障影响范围大</td> <td>故障影响范围小</td></tr> <tr><td>架构设计</td> <td>初期技术选型难度大</td> <td>设计逻辑难度大</td></tr> <tr><td>系统性能</td> <td>相对时间快，吞吐量小</td> <td>相对时间慢，吞吐量大</td></tr> <tr><td>系统运维</td> <td>运维难度简单</td> <td>运维难度复杂</td></tr> <tr><td>新人上手</td> <td>学习曲线大（应用逻辑）</td> <td>学习曲线大（架构逻辑）</td></tr> <tr><td>技术</td> <td>技术单一而且封闭</td> <td>技术多样而且容易开发</td></tr> <tr><td>测试和差错</td> <td>简单</td> <td>复杂（每个服务都要进行单独测试，还需要集群测试）</td></tr> <tr><td>系统扩展性</td> <td>扩展性差</td> <td>扩展性好</td></tr> <tr><td>系统管理</td> <td>重点在于开发成本</td> <td>重点在于服务治理和调度</td></tr></tbody></table> <h2 id="_2-rpc协议"><a href="#_2-rpc协议" class="header-anchor">#</a> 2. RPC协议</h2> <p>​		简单了解了微服务定义和优缺点之后，在我们正式学习微服务框架之前，需要首先了解一下RPC协议。为什么要了解RPC协议？RPC协议具体是什么呢？</p> <h3 id="_2-1-rpc的概念"><a href="#_2-1-rpc的概念" class="header-anchor">#</a> 2.1 RPC的概念</h3> <p>​		<strong>RPC(Remote Procedure Call Protocol)</strong>，是远程过程调用的缩写，通俗的说就是调用远处的一个函数。与之相对应的是本地函数调用，我们先来看一下本地函数调用。当我们写下如下代码的时候：</p> <p>规则</p> <div class="language-go extra-class"><pre class="language-go"><code>result <span class="token operator">:=</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+</code></pre></div><p>我们知道，我们传入了1，2两个参数，调用了本地代码中的一个Add函数，得到result这个返回值。这时参数，返回值，代码段都在一个进程空间内，这是本地函数调用。</p> <p><strong>那有没有办法，我们能够调用一个跨进程（所以叫&quot;远程&quot;，典型的事例，这个进程部署在另一台服务器上）的函数呢?</strong></p> <p><img src="/assets/img/1564372623923.70c6bf8b.png" alt="1564372623923"></p> <p>这也是RPC主要实现的功能。</p> <h3 id="_2-2-为什么微服务需要rpc"><a href="#_2-2-为什么微服务需要rpc" class="header-anchor">#</a> 2.2 为什么微服务需要RPC</h3> <p>我们使用微服务化的一个好处就是，不限定服务的提供方使用什么技术选型，能够实现公司跨团队的技术解耦，如下图：</p> <p><img src="/assets/img/1564373553013.da8619fa.png" alt="1564373553013"></p> <p>这样的话，<strong>如果没有统一的服务框架，RPC框架</strong>，各个团队的服务提供方就需要各自实现一套序列化、反序列化、网络框架、连接池、收发线程、超时处理、状态机等“业务之外”的重复技术劳动，造成整体的低效。所以，<strong>统一RPC框架</strong>把上述“业务之外”的技术劳动统一处理，是服务化首要解决的问题。</p> <h3 id="_2-3-rpc入门"><a href="#_2-3-rpc入门" class="header-anchor">#</a> 2.3 RPC入门</h3> <blockquote><p>protobuf</p></blockquote> <p>在互联网时代，RPC已经和IPC(进程间通信)一样成为一个不可或缺的基础构件。因此Go语言的标准库也提供了一个简单的RPC实现，我们将以此为入口学习RPC的常见用法。</p> <h4 id="_2-3-1-rpc版的-hello-world"><a href="#_2-3-1-rpc版的-hello-world" class="header-anchor">#</a> 2.3.1 RPC版的&quot;hello world&quot;</h4> <p>Go语言的RPC包的路径为net/rpc，也就是放在了net包目录下面。因此我们可以猜测该RPC包是建立在net包基础之上的。接着我们尝试基于rpc实现一个类似的例子。我们先构造一个HelloService类型，其中的Hello方法用于实现打印功能：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> HelloService <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">func</span><span class="token punctuation">(</span>p <span class="token operator">*</span>HelloService<span class="token punctuation">)</span><span class="token function">Hello</span><span class="token punctuation">(</span>request <span class="token builtin">string</span><span class="token punctuation">,</span>reply	<span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span><span class="token builtin">error</span><span class="token punctuation">{</span>
+<span class="token operator">*</span>reply <span class="token operator">=</span> <span class="token string">&quot;hello:&quot;</span> <span class="token operator">+</span> request
+<span class="token keyword">return</span>	<span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>Hello方法方法必须满足Go语言的RPC规则：方法只能有两个可序列化的参数，其中第二个参数是指针类型，并且返回一个error类型，同时必须是公开的方法。</p> <p>golang 中的类型比如：channel（通道）、complex（复数类型）、func（函数）均不能进行 序列化</p></blockquote> <p>然后就可以将HelloService类型的对象注册为一个RPC服务：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token comment">//rpc注册服务  </span>
+    <span class="token comment">//注册rpc服务，维护一个hash表，key值是服务名称，value值是服务的地址</span>
+	rpc<span class="token punctuation">.</span><span class="token function">RegisterName</span><span class="token punctuation">(</span><span class="token string">&quot;HelloService&quot;</span><span class="token punctuation">,</span><span class="token function">new</span><span class="token punctuation">(</span>HelloService<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//设置服务监听</span>
+	listener<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">//接受传输的数据</span>
+	conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> listener<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">//rpc调用,并返回执行后的数据</span>
+    <span class="token comment">//1.read，获取服务名称和方法名，获取请求数据</span>
+    <span class="token comment">//2.调用对应服务里面的方法，获取传出数据</span>
+    <span class="token comment">//3.write，把数据返回给client</span>
+	rpc<span class="token punctuation">.</span><span class="token function">ServeConn</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>其中rpc.Register函数调用会将对象类型中所有满足RPC规则的对象方法注册为RPC函数，所有注册的方法会放在“HelloService”服务空间之下。然后我们建立一个唯一的TCP链接，并且通过rpc.ServeConn函数在该TCP链接上为对方提供RPC服务。</p></blockquote> <p>下面是客户端请求HelloService服务的代码：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//用rpc连接</span>
+	client<span class="token punctuation">,</span>err <span class="token operator">:=</span> rpc<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;localhost:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">var</span> reply <span class="token builtin">string</span>
+    <span class="token comment">//调用服务中的函数</span>
+	err <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">Call</span><span class="token punctuation">(</span><span class="token string">&quot;HelloService.Hello&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;world&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>reply<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;收到的数据为,&quot;</span><span class="token punctuation">,</span>reply<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>首选是通过rpc.Dial拨号RPC服务，然后通过client.Call调用具体的RPC方法。在调用client.Call时，第一个参数是用点号链接的RPC服务名字和方法名字，第二和第三个参数分别我们定义RPC方法的两个参数。</p></blockquote> <h4 id="_2-3-2-跨语言的rpc"><a href="#_2-3-2-跨语言的rpc" class="header-anchor">#</a> 2.3.2 跨语言的RPC</h4> <p>​		标准库的RPC默认采用Go语言特有的gob编码。因此，其它语言调用Go语言实现的RPC服务将比较困难。跨语言是互联网时代RPC的一个首要条件，这里我们再来实现一个跨语言的RPC。得益于RPC的框架设计，Go语言的RPC其实也是很容易实现跨语言支持的。</p> <p>​		这里我们将尝试通过官方自带的net/rpc/jsonrpc扩展实现一个跨语言RPC。</p> <p>​		首先是基于json编码重新实现RPC服务：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//注册rpc服务</span>
+	rpc<span class="token punctuation">.</span><span class="token function">RegisterName</span><span class="token punctuation">(</span><span class="token string">&quot;HelloService&quot;</span><span class="token punctuation">,</span><span class="token function">new</span><span class="token punctuation">(</span>HelloService<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token comment">//设置监听</span>
+	listener<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span><span class="token punctuation">{</span>
+        <span class="token comment">//接收连接</span>
+		conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> listener<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">//给当前连接提供针对json格式的rpc服务</span>
+		<span class="token keyword">go</span> rpc<span class="token punctuation">.</span><span class="token function">ServeCodec</span><span class="token punctuation">(</span>jsonrpc<span class="token punctuation">.</span><span class="token function">NewServerCodec</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>代码中最大的变化是用rpc.ServeCodec函数替代了rpc.ServeConn函数，传入的参数是针对服务端的json编解码器。</p></blockquote> <p>然后是实现json版本的客户端：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//简历tcp连接</span>
+	conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;localhost:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//简历基于json编解码的rpc服务</span>
+	client <span class="token operator">:=</span> rpc<span class="token punctuation">.</span><span class="token function">NewClientWithCodec</span><span class="token punctuation">(</span>jsonrpc<span class="token punctuation">.</span><span class="token function">NewClientCodec</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">var</span> reply <span class="token builtin">string</span>
+	<span class="token comment">//调用rpc服务方法</span>
+	err <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">Call</span><span class="token punctuation">(</span><span class="token string">&quot;HelloService.Hello&quot;</span><span class="token punctuation">,</span><span class="token string">&quot; world&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>reply<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;收到的数据为:&quot;</span><span class="token punctuation">,</span>reply<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>先手工调用net.Dial函数建立TCP链接，然后基于该链接建立针对客户端的json编解码器。</p></blockquote> <p>在确保客户端可以正常调用RPC服务的方法之后，我们可以用命令来查看一下客户端发给服务端的到底是什么数据。这里我们使用 ==nc -l 1234==  这条命令 模拟服务器监听1234端口接收的数据，然后重新运行客户端，将会发现nc输出了以下的信息：</p> <div class="language-shell extra-class"><pre class="language-text"><code>{&quot;method&quot;:&quot;HelloService.Hello&quot;,&quot;params&quot;:[&quot;hello&quot;],&quot;id&quot;:0}
+</code></pre></div><blockquote><p>nc常用有两种一种是连接到指定ip和端口</p> <p>nc hostname port</p> <p>另外一种是监听端口，等待连接</p> <p>nc  -l   port</p></blockquote> <p>这是一个json编码的数据，其中method部分对应要调用的rpc服务和方法组合成的名字，params部分的第一个元素为参数，id是由调用端维护的一个唯一的调用编号。</p> <p>请求的json数据对象在内部对应两个结构体：客户端是clientRequest，服务端是serverRequest。clientRequest和serverRequest结构体的内容基本是一致的：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> clientRequest <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Method <span class="token builtin">string</span>         <span class="token string">`json:&quot;method&quot;`</span>
+	Params <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  <span class="token string">`json:&quot;params&quot;`</span>
+	Id     <span class="token builtin">uint64</span>         <span class="token string">`json:&quot;id&quot;`</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> serverRequest <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Method <span class="token builtin">string</span>           <span class="token string">`json:&quot;method&quot;`</span>
+	Params <span class="token operator">*</span>json<span class="token punctuation">.</span>RawMessage <span class="token string">`json:&quot;params&quot;`</span>
+	Id     <span class="token operator">*</span>json<span class="token punctuation">.</span>RawMessage <span class="token string">`json:&quot;id&quot;`</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>了解了客户端需要发送哪些数据之后，我们可以再来看看服务器接收到客户端传输的数据之后会返回哪些数据，还是用我们的nc命令。操作如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code>echo -e '{&quot;method&quot;:&quot;HelloService.Hello&quot;,&quot;params&quot;:[&quot;hello&quot;],&quot;id&quot;:1}'| nc localhost 1234
+</code></pre></div><p>返回的数据如下：</p> <p><img src="/assets/img/1564396573015.4f091d7f.png" alt="1564396573015"></p> <blockquote><p>其中id对应输入的id参数，result为返回的结果，error部分在出问题时表示错误信息。对于顺序调用来说，id不是必须的。但是Go语言的RPC框架支持异步调用，当返回结果的顺序和调用的顺序不一致时，可以通过id来识别对应的调用。</p></blockquote> <p>返回的json数据也是对应内部的两个结构体：客户端是clientResponse，服务端是serverResponse。两个结构体的内容同样也是类似的：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> clientResponse <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Id     <span class="token builtin">uint64</span>           <span class="token string">`json:&quot;id&quot;`</span>
+	Result <span class="token operator">*</span>json<span class="token punctuation">.</span>RawMessage <span class="token string">`json:&quot;result&quot;`</span>
+	Error  <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>      <span class="token string">`json:&quot;error&quot;`</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> serverResponse <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Id     <span class="token operator">*</span>json<span class="token punctuation">.</span>RawMessage <span class="token string">`json:&quot;id&quot;`</span>
+	Result <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>      <span class="token string">`json:&quot;result&quot;`</span>
+	Error  <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>      <span class="token string">`json:&quot;error&quot;`</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>因此无论采用何种语言，只要遵循同样的json结构，以同样的流程就可以和Go语言编写的RPC服务进行通信。这样我们就解用json简单实现了跨语言的RPC。</p> <p>但是一般在开发的时候除了用json做跨语言的RPC服务之外，现在很多公司还会选用<strong>protobuf</strong>做跨语言的RPC服务。那什么是<strong>ProtoBuf</strong>呢?接下来我们详细了解一下。</p> <h4 id="_2-3-4-rpc协议封装"><a href="#_2-3-4-rpc协议封装" class="header-anchor">#</a> 2.3.4 RPC协议封装</h4> <p>上面的代码服务名都是写死的，不够灵活（容易写错），这里我们对RPC的服务端和客户端再次进行一次封装，来屏蔽掉服务名，具体代码如下</p> <h5 id="服务端封装"><a href="#服务端封装" class="header-anchor">#</a> 服务端封装</h5> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">//抽离服务名称</span>
+<span class="token keyword">var</span> serverName <span class="token operator">=</span> <span class="token string">&quot;LoginService&quot;</span>
+
+<span class="token comment">//定义一个父类</span>
+<span class="token keyword">type</span> RPCDesign <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+	<span class="token function">Hello</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span><span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span><span class="token builtin">error</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//实现工厂函数</span>
+<span class="token keyword">func</span> <span class="token function">RegisterRPCServer</span><span class="token punctuation">(</span>srv RPCDesign<span class="token punctuation">)</span><span class="token builtin">error</span><span class="token punctuation">{</span>
+	<span class="token keyword">return</span> rpc<span class="token punctuation">.</span><span class="token function">RegisterName</span><span class="token punctuation">(</span>serverName<span class="token punctuation">,</span>srv<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>封装之后的服务端实现如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> RpcServer <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">//5 + 3i    chan   func    complex</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>this <span class="token operator">*</span>RpcServer<span class="token punctuation">)</span> <span class="token function">Hello</span><span class="token punctuation">(</span>req <span class="token builtin">string</span><span class="token punctuation">,</span> resp <span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+	<span class="token operator">*</span>resp <span class="token operator">+=</span> req <span class="token operator">+</span> <span class="token string">&quot;你好&quot;</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">//设置监听</span>
+	listener<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;:8899&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;设置监听错误&quot;</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">defer</span> listener<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;开始监听....&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		<span class="token comment">//接收链接</span>
+		conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> listener<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;获取连接失败&quot;</span><span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>conn<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;连接成功&quot;</span><span class="token punctuation">)</span>
+
+		<span class="token comment">//rpc表  注册rpc服务</span>
+
+		<span class="token keyword">if</span> err <span class="token operator">=</span> <span class="token function">RegisterRPCServer</span><span class="token punctuation">(</span><span class="token function">new</span><span class="token punctuation">(</span>RpcServer<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;注册rpc服务失败&quot;</span><span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token comment">//把rpc服务和套接字绑定</span>
+		<span class="token comment">//rpc.ServeConn(conn)</span>
+		rpc<span class="token punctuation">.</span><span class="token function">ServeCodec</span><span class="token punctuation">(</span>jsonrpc<span class="token punctuation">.</span><span class="token function">NewServerCodec</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="客户端封装"><a href="#客户端封装" class="header-anchor">#</a> 客户端封装</h5> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> RPCClient <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	rpcClient <span class="token operator">*</span>rpc<span class="token punctuation">.</span>Client
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">NewRpcClient</span><span class="token punctuation">(</span>addr <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">(</span>RPCClient<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span>addr<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;链接服务器失败&quot;</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> RPCClient<span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//套接字和rpc服务绑定</span>
+	client <span class="token operator">:=</span> rpc<span class="token punctuation">.</span><span class="token function">NewClientWithCodec</span><span class="token punctuation">(</span>jsonrpc<span class="token punctuation">.</span><span class="token function">NewClientCodec</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> RPCClient<span class="token punctuation">{</span>rpcClient<span class="token punctuation">:</span>client<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>this<span class="token operator">*</span>RPCClient<span class="token punctuation">)</span><span class="token function">CallFunc</span><span class="token punctuation">(</span>req <span class="token builtin">string</span><span class="token punctuation">,</span>resp<span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span><span class="token builtin">error</span><span class="token punctuation">{</span>
+	<span class="token keyword">return</span> this<span class="token punctuation">.</span>rpcClient<span class="token punctuation">.</span><span class="token function">Call</span><span class="token punctuation">(</span>serverName<span class="token operator">+</span><span class="token string">&quot;.Hello&quot;</span><span class="token punctuation">,</span>req<span class="token punctuation">,</span>resp<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>封装之后客户端实现</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+	<span class="token comment">//初始化对象  与服务名有关的内容完全封装起来了</span>
+	client <span class="token operator">:=</span> <span class="token function">NewRpcClient</span><span class="token punctuation">(</span><span class="token string">&quot;127.0.0.1:8899&quot;</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//调用成员函数</span>
+	<span class="token keyword">var</span> temp <span class="token builtin">string</span>
+	client<span class="token punctuation">.</span><span class="token function">CallFunc</span><span class="token punctuation">(</span><span class="token string">&quot;xiaoming&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>temp<span class="token punctuation">)</span>
+
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_3-protobuf认识与使用"><a href="#_3-protobuf认识与使用" class="header-anchor">#</a> 3. ProtoBuf认识与使用</h2> <h3 id="_3-1-protobuf简介"><a href="#_3-1-protobuf简介" class="header-anchor">#</a> 3.1 protobuf简介</h3> <p>Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据描述语言，是一种轻便高效的结构化数据存储格式，可以用于结构化数据串行化，或者说序列化。它很适合做<strong>数据存储</strong>或 <strong>RPC 数据交换格式</strong>。可用于通讯协议、数据存储等领域的语言无关、平台无关、可扩展的序列化结构数据格式。目前提供了 C++、Java、Python 三种语言的 API。</p> <p>Protobuf刚开源时的定位类似于XML、JSON等数据描述语言，通过附带工具生成代码并实现将结构化数据序列化的功能。这里我们更关注的是Protobuf作为接口规范的描述语言，可以作为设计安全的跨语言RPC接口的基础
+工具。</p> <blockquote><p>需要了解两点</p> <ol><li>protobuf是类似与json一样的数据描述语言（数据格式）</li> <li>protobuf非常适合于RPC数据交换格式</li></ol></blockquote> <p>接着我们来看一下protobuf的优势和劣势：</p> <p>**优势： **</p> <p>1：序列化后体积相比Json和XML很小，适合网络传输</p> <p>2：支持跨平台多语言</p> <p>3：消息格式升级和兼容性还不错</p> <p>4：序列化反序列化速度很快，快于Json的处理速度</p> <p><strong>劣势：</strong></p> <p>1：应用不够广(相比xml和json)</p> <p>2：二进制格式导致可读性差</p> <p>3：缺乏自描述</p> <p>我们先安装一下protobuf，然后通过例子来看一下protobuf的具体作用。</p> <h3 id="_3-2-protobuf的安装"><a href="#_3-2-protobuf的安装" class="header-anchor">#</a> 3.2 protobuf的安装</h3> <ol><li><p>下载 protobuf</p> <div class="language-shell extra-class"><pre class="language-text"><code>方法一:===&gt; git clone https://github.com/protocolbuffers/protobuf.git
+
+方法二:===&gt; 或者将准备好的压缩包进行拖入
+	解压到$GOPATH/src/github.com/protocolbuffers/下面
+	Unzip protobuf.zip
+</code></pre></div></li> <li><p>安装（ubuntu）</p> <div class="language-shell extra-class"><pre class="language-text"><code>(1)安装依赖工具（联网）
+$ sudo apt-get install autoconf automake libtool curl make g++ unzip libffi-dev -y
+
+(2)进入protobuf文件
+cd protobuf/
+
+(3)进行安装检测 并生成自动安装脚本
+./autogen.sh
+./configure
+
+(4)进行编译C代码
+make
+
+(5)进行安装
+sudo make install
+
+(6)刷新linux共享库关系
+sudo ldconfig
+</code></pre></div></li> <li><p>测试protobuf编译工具</p> <div class="language-shell extra-class"><pre class="language-text"><code>protoc -h
+</code></pre></div><blockquote><p>如果正常输出 相关指令 没有报任何error，为安装成功</p></blockquote></li> <li><p>安装protobuf的go语言插件</p> <blockquote><p>由于protobuf并没直接支持go语言需要我们手动安装相关插件</p></blockquote> <div class="language-shell extra-class"><pre class="language-text"><code>(1)下载
+方法一:===&gt; go get -v -u github.com/golang/protobuf/proto
+方法二:===&gt;或者将 github.com-golang-protobuf.zip拖入 进行解压到 $GOPATH/src/github.com/golang
+
+(2)进入到文件夹内进行编译
+$ cd $GOPATH/src/github.com/golang/protobuf/protoc-gen-go
+$ go build
+
+(3)将生成的 protoc-gen-go可执行文件，放在/bin目录下
+$ sudo cp protoc-gen-go /bin/
+
+(4)尝试补齐protoc-gen-go 如果可以补齐代表成功，如果执行不报错 代表工具成功
+</code></pre></div></li></ol> <h3 id="_3-3-protobuf-简单语法"><a href="#_3-3-protobuf-简单语法" class="header-anchor">#</a> 3.3 protobuf 简单语法</h3> <p>参考文档（需翻墙）：https://developers.google.com/protocol-buffers/docs/proto3</p> <p>首先让我们看一个非常简单的例子。</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 						<span class="token comment">//指定版本信息，不指定会报错</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+<span class="token comment">//message为关键字，作用为定义一种消息类型</span>
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+	<span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">enum</span> <span class="token class-name">test</span><span class="token punctuation">{</span>
+	<span class="token builtin">int32</span> age <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><ul><li>protobuf消息的定义（或者称为描述）通常都写在一个以 .proto 结尾的文件中。</li> <li>该文件的第一行指定正在使用<code>proto3</code>语法：如果不这样做，协议缓冲区编译器将假定正在使用proto2。这也必须是文件的第一个非空的非注释行。</li> <li>第二行package指明当前是pb包（生成go文件之后和Go的包名保持一致）</li> <li>最后message关键字定义一个Person消息体，类似于go语言中的结构体，是包含一系列类型数据的集合。许多标准的简单数据类型都可以作为字段类型，包括<code>bool</code>，<code>int32</code>， <code>float</code>，<code>double</code>，和<code>string</code>。也可以使用其他message类型作为字段类型。</li> <li>在message中有一个字符串类型的value成员，该成员编码时用1代替名字。我们知道，在json中是通过成员的名字来绑定对应的数据，但是Protobuf编码却是通过成员的唯一编号来绑定对应的数据，因此Protobuf编码后数据的体积会比较小，能够快速传输，缺点是不利于阅读。</li></ul></blockquote> <p><strong>message的格式说明</strong></p> <p>消息由至少一个字段组合而成，类似于Go语言中的结构体，每个字段都有一定的格式：</p> <div class="language-message格式说明 extra-class"><pre class="language-text"><code>//注释格式 注释尽量也写在内容上方
+（字段修饰符）数据类型 字段名称 = 唯一的编号标签值;
+</code></pre></div><blockquote><ul><li>唯一的编号标签：代表每个字段的一个唯一的编号标签，在同一个消息里不可以重复。这些编号标签用与在消息二进制格式中标识你的字段，并且消息一旦定义就不能更改。需要说明的是标签在1到15范围的采用一个字节进行编码，所以通常将标签1到15用于频繁发生的消息字段。编号标签大小的范围是1到2的29次。19000-19999是官方预留的值，不能使用。</li> <li>注释格式：向.proto文件添加注释，可以使用C/C++/java/Go风格的双斜杠（//） 语法格式或者<code>/*.....*/</code></li></ul></blockquote> <p>**message常见的数据类型与go中类型对比 **</p> <table><thead><tr><th>.proto类型</th> <th>Go类型</th> <th>介绍</th></tr></thead> <tbody><tr><td>double</td> <td>float64</td> <td>64位浮点数</td></tr> <tr><td>float</td> <td>float32</td> <td>32位浮点数</td></tr> <tr><td>int32</td> <td>int32</td> <td>使用可变长度编码。编码负数效率低下——如果你的字段可能有负值，请改用sint32。</td></tr> <tr><td>int64</td> <td>int64</td> <td>使用可变长度编码。编码负数效率低下——如果你的字段可能有负值，请改用sint64。</td></tr> <tr><td>uint32</td> <td>uint32</td> <td>使用可变长度编码。</td></tr> <tr><td>uint64</td> <td>uint64</td> <td>使用可变长度编码。</td></tr> <tr><td>sint32</td> <td>int32</td> <td>使用可变长度编码。符号整型值。这些比常规int32s编码负数更有效。</td></tr> <tr><td>sint64</td> <td>int64</td> <td>使用可变长度编码。符号整型值。这些比常规int64s编码负数更有效。</td></tr> <tr><td>fixed32</td> <td>uint32</td> <td>总是四字节。如果值通常大于228，则比uint 32更有效</td></tr> <tr><td>fixed64</td> <td>uint64</td> <td>总是八字节。如果值通常大于256，则比uint64更有效</td></tr> <tr><td>sfixed32</td> <td>int32</td> <td>总是四字节。</td></tr> <tr><td>sfixed64</td> <td>int64</td> <td>总是八字节。</td></tr> <tr><td>bool</td> <td>bool</td> <td>布尔类型</td></tr> <tr><td>string</td> <td>string</td> <td>字符串必须始终包含UTF - 8编码或7位ASCII文本</td></tr> <tr><td>bytes</td> <td>[]byte</td> <td>可以包含任意字节序列</td></tr></tbody></table> <h4 id="_3-3-1protobuf高级用法"><a href="#_3-3-1protobuf高级用法" class="header-anchor">#</a> 3.3.1protobuf高级用法</h4> <p>protobuf除了上面的简单类型还有一些复杂的用法，如下：</p> <p><strong>message嵌套</strong></p> <p>messsage除了能放简单数据类型外，还能存放另外的message类型，如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 						<span class="token comment">//指定版本信息，不指定会报错</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+<span class="token comment">//message为关键字，作用为定义一种消息类型</span>
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+	<span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+    <span class="token comment">//定义一个message</span>
+    <span class="token keyword">message</span> <span class="token class-name">PhoneNumber</span> <span class="token punctuation">{</span>
+    <span class="token builtin">string</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token builtin">int64</span> type <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token positional-class-name class-name">PhoneNumber</span> phone <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>repeated关键字</strong></p> <p>repeadted关键字类似与go中的切片，编译之后对应的也是go的切片，用法如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 						<span class="token comment">//指定版本信息，不指定会报错</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+<span class="token comment">//message为关键字，作用为定义一种消息类型</span>
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+	<span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+    <span class="token comment">//定义一个message</span>
+    <span class="token keyword">message</span> <span class="token class-name">PhoneNumber</span> <span class="token punctuation">{</span>
+    <span class="token builtin">string</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token builtin">int64</span> type <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token keyword">repeated</span> <span class="token positional-class-name class-name">PhoneNumber</span> phone <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>默认值</strong></p> <p>解析数据时，如果编码的消息不包含特定的单数元素，则解析对象对象中的相应字段将设置为该字段的默认值。不同类型的默认值不同，具体如下：</p> <ul><li>对于字符串，默认值为空字符串。</li> <li>对于字节，默认值为空字节。</li> <li>对于bools，默认值为false。</li> <li>对于数字类型，默认值为零。</li> <li>对于枚举，默认值是第<strong>一个定义的枚举值</strong>，该<strong>值</strong>必须为0。</li> <li>repeated字段默认值是空列表</li> <li>message字段的默认值为空对象</li></ul> <p><strong>enum关键字</strong></p> <p>在定义消息类型时，可能会希望其中一个字段有一个预定义的值列表。比如说，电话号码字段有个类型，这个类型可以是，home,work,mobile。我们可以通过enum在消息定义中添加每个可能值的常量来非常简单的执行此操作。实例如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 						<span class="token comment">//指定版本信息，不指定会报错</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+<span class="token comment">//message为关键字，作用为定义一种消息类型</span>
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+	<span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+    <span class="token comment">//定义一个message</span>
+    <span class="token keyword">message</span> <span class="token class-name">PhoneNumber</span> <span class="token punctuation">{</span>
+    <span class="token builtin">string</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token positional-class-name class-name">PhoneType</span> type <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	
+	<span class="token keyword">repeated</span> <span class="token positional-class-name class-name">PhoneNumber</span> phone <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//enum为关键字，作用为定义一种枚举类型</span>
+<span class="token keyword">enum</span> <span class="token class-name">PhoneType</span> <span class="token punctuation">{</span>
+	MOBILE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    HOME <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    WORK <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>如上，enum的第一个常量映射为0，每个枚举定义<strong>必须</strong>包含一个映射到零的常量作为其第一个元素。这是因为：</p> <ul><li>必须有一个零值，以便我们可以使用0作为数字默认值。</li> <li>零值必须是第一个元素，以便与proto2语义兼容，其中第一个枚举值始终是默认值。</li></ul></blockquote> <p>enum还可以为不同的枚举常量指定相同的值来定义别名。如果想要使用这个功能必须讲<code>allow_alias</code>选项设置为true，负责编译器将报错。示例如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 						<span class="token comment">//指定版本信息，不指定会报错</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+<span class="token comment">//message为关键字，作用为定义一种消息类型</span>
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+    <span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+    <span class="token comment">//定义一个message</span>
+    <span class="token keyword">message</span> <span class="token class-name">PhoneNumber</span> <span class="token punctuation">{</span>
+        <span class="token builtin">string</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token positional-class-name class-name">PhoneType</span> type <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">repeated</span> <span class="token positional-class-name class-name">PhoneNumber</span> phone <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//enum为关键字，作用为定义一种枚举类型</span>
+<span class="token keyword">enum</span> <span class="token class-name">PhoneType</span> <span class="token punctuation">{</span>
+	<span class="token comment">//如果不设置将报错</span>
+    <span class="token keyword">option</span> allow_alias <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    MOBILE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    HOME <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    WORK <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    Personal <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>oneof关键字</strong></p> <p>如果有一个包含许多字段的消息，并且最多只能同时设置其中的一个字段，则可以使用oneof功能，示例如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+    <span class="token comment">//    名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">//    年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+    <span class="token comment">//定义一个message</span>
+    <span class="token keyword">message</span> <span class="token class-name">PhoneNumber</span> <span class="token punctuation">{</span>
+        <span class="token builtin">string</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token positional-class-name class-name">PhoneType</span> type <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">repeated</span> <span class="token positional-class-name class-name">PhoneNumber</span> phone <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">oneof</span> data<span class="token punctuation">{</span>
+        <span class="token builtin">string</span> school <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token builtin">int32</span> score <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>定义RPC服务</strong></p> <p>如果需要将message与RPC一起使用，则可以在<code>.proto</code>文件中定义RPC服务接口，protobuf编译器将根据你选择的语言生成RPC接口代码。示例如下：</p> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token comment">//定义RPC服务</span>
+<span class="token keyword">service</span> <span class="token class-name">HelloService</span> <span class="token punctuation">{</span>
+    rpc Hello <span class="token punctuation">(</span>Person<span class="token punctuation">)</span>returns <span class="token punctuation">(</span>Person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>大部分protobuf的语法就是这样，其他想学习的可以参考官方文档，语法写完之后，让我们编译一下，然后通过代码试用一下。</p> <h3 id="_3-4-protobuf基本编译"><a href="#_3-4-protobuf基本编译" class="header-anchor">#</a> 3.4 protobuf基本编译</h3> <p>protobuf编译是通过编译器protoc进行的，通过这个编译器，我们可以把.proto文件生成<strong>go</strong>,Java,Python,C++, Ruby, JavaNano, Objective-C,或者C## 代码，生成命令如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code> protoc --proto_path=IMPORT_PATH --go_out=DST_DIR  path/to/file.proto
+</code></pre></div><blockquote><ol><li>--proto_path=IMPORT_PATH，IMPORT_PATH是 .proto 文件所在的路径，如果忽略则默认当前目录。如果有多个目录则可以多次调用--proto_path，它们将会顺序的被访问并执行导入。</li> <li>--go_out=DST_DIR， 指定了生成的go语言代码文件放入的文件夹</li> <li>允许使用 <code>protoc --go_out=./ *.proto</code> 的方式一次性编译多个 .proto 文件</li> <li>go语言编译时，protobuf 编译器会把 .proto 文件编译成 .pd.go 文件</li></ol></blockquote> <p>一般在使用的时候我们都是使用下面这种简单的命令：</p> <div class="language-shell extra-class"><pre class="language-text"><code>protoc --go_out=./ *.proto
+</code></pre></div><blockquote><p>编译当前文件夹下的所有.proto文件，并把生成的go文件放置在当前文件夹下。</p></blockquote> <p>我们先来编译一个最简单的的proto文件，编译之后会得到一个如下一个go文件，如下：</p> <p><img src="/assets/img/1564628074411.8fb90856.png" alt="1564628074411"></p> <blockquote><p>message被对应的编译成go语言中的结构体，同时还为String类型自动生成了一组方法，其中ProtoMessage方法表示这是一个实现了proto.Message接口的方法。此外Protobuf还为每个成员生成了一个Get方法，Get方法不仅可以处理空指针类型，而且可以和Proto2的方法保持一致.</p></blockquote> <p>然后我们给这个<code>.proto</code>文件中添加一个RPC服务，再次进行编译，发现生成的go文件没有发生变化。这是因为世界上的RPC实现有很多种，protoc编译器并不知道该如何为HelloService服务生成代码。不过在protoc-gen-go内部已经集成了一个叫grpc的插件，可以针对grpc生成代码：</p> <div class="language-shell extra-class"><pre class="language-text"><code>protoc --go_out=plugins=grpc:. *.proto
+</code></pre></div><p>在生成的代码中多了一些类似HelloServiceServer、HelloServiceClient的新类型。如下：</p> <p><img src="/assets/img/1564652925915.7e01341c.png" alt="1564652925915"></p> <p>和我们优化之后的RPC服务有点相似，但是又不太一样，接下来就让我们来学习一下grpc框架吧。</p> <h2 id="_4-grpc框架"><a href="#_4-grpc框架" class="header-anchor">#</a> 4. GRPC框架</h2> <p>GRPC是Google公司基于<strong>Protobuf</strong>开发的跨语言的<strong>开源RPC框架</strong>。GRPC基于<strong>HTTP/2</strong>协议设计，可以基于一个HTTP/2链接提供多个服务，对于移动设备更加友好。目前提供 C、Java 和 Go 语言版本，分别是：grpc, grpc-java, grpc-go. 其中 C 版本支持 C, C++, Node.js, Python, Ruby, Objective-C, PHP 和 C## 支持.</p> <p>在 gRPC里客户端应用可以像调用本地对象一样直接调用另一台不同的机器上服务端应用的方法，使得您能够更容易地创建分布式应用和服务。与许多 RPC系统类似， gRPC也是基于以下理念：</p> <ul><li><p>定义一个服务，指定其能够被远程调用的方法（包含参数和返回类型）。</p></li> <li><p>在服务端实现这个接口，并运行一个 gRPC服务器来处理客户端调用。</p></li></ul> <p>在客户端拥有一个存根能够像服务端一样的方法。 gRPC客户端和服务端可以在多种环境中运行和交互 -从 google内部的服务器到你自己的笔记本，并且可以用任何 gRPC支持的语言 来编写。</p> <p>所以，你可以很容易地用 Java创建一个 gRPC服务端，用 Go、 Python、Ruby来创建客户端。此外， Google最新 API将有 gRPC版本的接口，使你很容易地将 Google的功能集成到你的应用里。</p> <p><strong>参考资料</strong></p> <p>gRPC 官方文档中文版:http://doc.oschina.net/grpc?t=60133</p> <p>gRPC官网：<a href="https://grpc.io/" target="_blank" rel="noopener noreferrer">https://grpc.io<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>再详细了解使用GRPC之前先来了解一下上面定义中的一些关键词。</p> <p>首先我们来看一下<strong>HTTP/2</strong>是什么内容？</p> <p>其实本质上就是http2.0版本，http目前为止主要有四个版本，分别为http1.0、http1.1、http2.0、https。</p> <p>http1.0是最原始的版本，不支持持久连接，效率也比较低</p> <p>http1.1针对http1.0版本做了优化，可以连接一次，多次使用，效率比http1.0高</p> <p>http2.0实现了多路复用，对http1.1再次进行了优化。http2.0也被称为下一代http协议，是在2013年8月进行首次测试，所以现在用的不是很广。</p> <p>https其实是在http协议上多加了一层SSL协议，具体如下图：</p> <p><img src="/assets/img/1564539159120.0d7c1bee.png" alt="1564539159120"></p> <blockquote><p>所以本质上，http1.0、http1.1、http2.0都可以添加SSL协议。</p></blockquote> <h3 id="_4-1-grpc环境安装"><a href="#_4-1-grpc环境安装" class="header-anchor">#</a> 4.1 grpc环境安装</h3> <ol><li><p>官方推荐安装方法：</p> <div class="language-shell extra-class"><pre class="language-text"><code>go get -u -v google.golang.org/grpc
+</code></pre></div><blockquote><p>但是由于一些原因，大部分同学不能直接访问google官网，所以只能曲线救国了</p></blockquote></li> <li><p>通过github下载各种依赖库，然后配置。</p> <div class="language-shell extra-class"><pre class="language-text"><code>git clone https://github.com/grpc/grpc-go.git      $GOPATH/src/google.golang.org/grpc
+git clone https://github.com/golang/net.git        $GOPATH/src/golang.org/x/net
+git clone https://github.com/golang/text.git       $GOPATH/src/golang.org/x/text
+git clone https://github.com/google/go-genproto.git  $GOPATH/src/google.golang.org/genproto
+
+cd $GOPATH/src/
+go install google.golang.org/grpc
+</code></pre></div><blockquote><p>网络畅通可以用上述方法，但如果网速较慢，我们也可以选择离线安装方法。</p></blockquote></li> <li><p>用<code>x.zip</code>和<code>google.golang.org.zip</code>两个离线包来安装。</p> <div class="language-shell extra-class"><pre class="language-text"><code>#将x.zip 解压到 $GOPATH/src/golang.org/x 目录下
+$ unzip x.zip -d $GOPATH/src/golang.org/x
+#将google.golang.org.zip 解压到 $GOPATH/src/google.golang.org 目录下
+$ unzip google.golang.org.zip -d $GOPATH/src/google.golang.org
+#然后进入到$GOPATH/src/google.golang.org/grpc下面执行go install
+$ go install
+</code></pre></div></li></ol> <h3 id="_4-2-grpc使用"><a href="#_4-2-grpc使用" class="header-anchor">#</a> 4.2 GRPC使用</h3> <pre><code>如果从Protobuf的角度看，GRPC只不过是一个针对service接口生成代码的生成器。接着我们来学习一下GRPC的用法。这里我们创建一个简单的proto文件，定义一个HelloService接口：
+</code></pre> <div class="language-protobuf extra-class"><pre class="language-protobuf"><code><span class="token keyword">syntax</span> <span class="token operator">=</span> <span class="token string">&quot;proto3&quot;</span><span class="token punctuation">;</span> 				<span class="token comment">//指定版本信息</span>
+<span class="token keyword">package</span> pb<span class="token punctuation">;</span>						<span class="token comment">//后期生成go文件的包名</span>
+
+<span class="token keyword">message</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+    <span class="token comment">//   名字</span>
+    <span class="token builtin">string</span> name <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">//   年龄</span>
+    <span class="token builtin">int32</span>  age <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//定义RPC服务</span>
+<span class="token keyword">service</span> <span class="token class-name">HelloService</span> <span class="token punctuation">{</span>
+    rpc Hello <span class="token punctuation">(</span>Person<span class="token punctuation">)</span>returns <span class="token punctuation">(</span>Person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>对proto文件进行编译：</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ protoc --go_out=plugins=grpc:. *.proto
+</code></pre></div><p>GRPC插件会为服务端和客户端生成不同的接口：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">//客户端接口</span>
+<span class="token keyword">type</span> HelloServiceClient <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+	<span class="token function">Hello</span><span class="token punctuation">(</span>ctx context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> in <span class="token operator">*</span>Person<span class="token punctuation">,</span> opts <span class="token operator">...</span>grpc<span class="token punctuation">.</span>CallOption<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>Person<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//服务器接口</span>
+<span class="token keyword">type</span> HelloServiceServer <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+	<span class="token function">Hello</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> <span class="token operator">*</span>Person<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>Person<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们接着可以基于他们给的服务端接口重新实现HelloService服务：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> HelloService <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>this<span class="token operator">*</span>HelloService<span class="token punctuation">)</span><span class="token function">Hello</span><span class="token punctuation">(</span>ctx context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> person <span class="token operator">*</span>pb<span class="token punctuation">.</span>Person<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>pb<span class="token punctuation">.</span>Person<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	reply <span class="token operator">:=</span> <span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>Person<span class="token punctuation">{</span>
+		Name<span class="token punctuation">:</span><span class="token string">&quot;zhangsan&quot;</span> <span class="token operator">+</span> person<span class="token punctuation">.</span>Name<span class="token punctuation">,</span>
+		Age<span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> reply<span class="token punctuation">,</span><span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>GRPC的启动流程和RPC的启动流程类似，代码如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//获取grpc服务端对象</span>
+	grpcServer <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">//注册grpc服务</span>
+	pb<span class="token punctuation">.</span><span class="token function">RegisterHelloServiceServer</span><span class="token punctuation">(</span>grpcServer<span class="token punctuation">,</span><span class="token function">new</span><span class="token punctuation">(</span>HelloService<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//设置服务端监听</span>
+	lis<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+    <span class="token comment">//在指定端口上提供grpc服务</span>
+	grpcServer<span class="token punctuation">.</span><span class="token function">Serve</span><span class="token punctuation">(</span>lis<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>然后我们就可以通过客户端来连接GRPC服务了：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//和grpc服务建立连接</span>
+	conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">&quot;localhost:1234&quot;</span><span class="token punctuation">,</span>grpc<span class="token punctuation">.</span><span class="token function">WithInsecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	client <span class="token operator">:=</span> pb<span class="token punctuation">.</span><span class="token function">NewHelloServiceClient</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+	reply<span class="token punctuation">,</span>err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Hello</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>Person<span class="token punctuation">{</span>Name<span class="token punctuation">:</span><span class="token string">&quot;lisi&quot;</span><span class="token punctuation">,</span>Age<span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;reply,&quot;</span><span class="token punctuation">,</span>reply<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_5-go-micro框架"><a href="#_5-go-micro框架" class="header-anchor">#</a> 5. go-micro框架</h2> <p>在了解go-micro之前，我们先来了解一下什么是micro。</p> <p>Micro是一个专注于简化分布式系统开发的微服务生态系统。由开源库和工具组成。主要包含以下几种库：</p> <ul><li><p>**go-micro：**用于编写微服务的可插入Go-RPC框架;	<strong>服务发现</strong>，客户端/服务器rpc，pub/sub等，是整个Micro的核心。</p> <blockquote><p>默认使用mdns做服务发现，可以在插件中替换成consul,etcd,k8s等</p> <p>组播   广播</p></blockquote></li> <li><p>**go-plugins：**go-micro的插件，包括etcd，kubernetes(k8s)，nats，rabbitmq，grpc等</p></li> <li><p>**micro：**一个包含传统入口点的微服务工具包;	API网关，CLI，Slack	Bot，Sidecar和Web	UI。</p></li></ul> <p>其他各种库和服务可以在<strong>github.com/micro</strong>找到。</p> <p>我们主要使用的框架也是go-micro，在使用之前我们先来了解一下<strong>服务发现</strong>是个什么东西？有什么作用？</p> <h3 id="_5-1-服务发现"><a href="#_5-1-服务发现" class="header-anchor">#</a> 5.1 服务发现</h3> <p>我们在做微服务开发的时候，客户端的一个接口可能需要调用N个服务，客户端必须知道所有服务的网络位置（ip+port），如下图所示</p> <p><img src="/assets/img/1538379054131.087574ee.png" alt=""></p> <p>以往的做法是把服务的地址放在配置文件活数据库中，这样就有以下几个问题：</p> <ul><li>需要配置N个服务的网络位置，加大配置的复杂性</li> <li>服务的网络位置变化，需要改变每个调用者的配置</li> <li>集群的情况下，难以做负载（反向代理的方式除外）</li></ul> <p>总结起来一句话：<strong>服务多了，配置很麻烦，问题一大堆</strong></p> <p>所以现在就选择<strong>服务发现</strong>来解决这些问题。我们来看一下，服务发现如何解决这个问题，具体设计如下：</p> <p><img src="/assets/img/1538379597103.1a6e2d6a.png" alt=""></p> <p>与之前解决方法不同的是，加了个服务发现模块。服务端把当前自己的网络位置注册到服务发现模块（这里注册的意思就是告诉），服务发现就以K-V的方式记录下，K一般是服务名，V就是IP:PORT。服务发现模块定时的轮询查看这些服务能不能访问的了（这就是健康检查）。客户端在调用服务A-N的时候，就跑去服务发现模块问下它们的网络位置，然后再调用它们的服务。这样的方式是不是就可以解决上面的问题了呢？客户端完全不需要记录这些服务的网络位置，客户端和服务端完全解耦！</p> <p>常见的服务发现框架有：Etcd、Eureka、<strong>Consul</strong>、Zookeeper</p> <p>这里我们选择go-micro默认的服务发现框架consul来做一个详细介绍。</p> <h3 id="_5-2-了解consul并使用"><a href="#_5-2-了解consul并使用" class="header-anchor">#</a> 5.2 了解consul并使用</h3> <p>Consul是HashiCorp公司推出的开源工具，用于实现分布式系统的服务发现与配置。包含多个组件,但是作为一个整体,为你的基础设施提供服务发现和服务配置的工具.他提供以下关键特性:</p> <p><strong>服务发现</strong>：consul通过DNS或者HTTP接口使服务注册和服务发现变的很容易，一些外部服务，例如saas提供的也可以一样注册。</p> <p><strong>健康检查</strong>：健康检测使consul可以快速的告警在集群中的操作。和服务发现的集成，可以防止服务转发到故障的服务上面。(心跳机制)</p> <p><strong>键/值存储</strong>：一个用来存储动态配置的系统。提供简单的HTTP接口，可以在任何地方操作。</p> <p><strong>多数据中心</strong>：无需复杂的配置，即可支持任意数量的区域。</p> <blockquote><p>官方建议：最好是三台或者三台以上的consul在运行，同名服务最好是三台或三台以上，默认可以搭建集群</p></blockquote> <h4 id="_5-2-1-consul安装"><a href="#_5-2-1-consul安装" class="header-anchor">#</a> 5.2.1 consul安装</h4> <p>​	Consul用Golang实现，因此具有天然可移植性 (支持 Linux、windows和macOS)。安装包仅包含一个可执行文件。 Consul安装非常简单，只需要下载对应系统的软件包并解压后就可使用。</p> <p>安装步骤如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code>## 这里以 ubuntu系统为例：
+$ wget https://releases.hashicorp.com/consul/1.5.2/consul_1.5.2_linux_amd64.zip
+$ unzip consul_1.5.2_linux_amd64.zip
+$ sudo mv consul /usr/local/bin/
+</code></pre></div><blockquote><p>教室网速原因，用老师给的离线包解压即可</p> <p>其他系统版本可以在这里下载：https://www.consul.io/downloads.html</p></blockquote> <p>安装验证：</p> <p>安装 Consul后，通过执行 consul命令，你可以看到命令列表的输出</p> <p><img src="/assets/img/1538380442745.e797b05b.png" alt=""></p> <blockquote><p>没有报错就成功了</p></blockquote> <h4 id="_5-2-2-consul的命令行"><a href="#_5-2-2-consul的命令行" class="header-anchor">#</a> 5.2.2 consul的命令行</h4> <p>consul安装好之后，我们来使用一下吧。首先我们来看一下consul都有哪些命令。使用命令<code>consul -h</code>可以查看consul支持的所有参数，而且每个参数里面还支持其他参数，下面我们来具体看看。</p> <p>**agent：**指令是consul的核心，它运行agent来维护成员的重要信息、运行检查、服务宣布、查询处理等等。</p> <div class="language-shell extra-class"><pre class="language-text"><code>==&gt; Usage: consul agent [options]
+  Starts the Consul agent and runs until an interrupt is received. The
+  agent represents a single node in a cluster.
+Options:
+  -advertise=addr                  Sets the advertise address to use
+  -advertise-wan=addr              Sets address to advertise on wan instead of
+                                   advertise addr
+  -bootstrap                       Sets server to bootstrap mode
+  -bind=0.0.0.0                    Sets the bind address for cluster
+                                   communication
+  -http-port=8500                  Sets the HTTP API port to listen on
+  -bootstrap-expect=0              Sets server to expect bootstrap mode.
+  -client=127.0.0.1                Sets the address to bind for client access.
+                                   This includes RPC, DNS, HTTP and HTTPS (if
+                                   configured)
+  -config-file=foo                 Path to a JSON file to read configuration
+                                   from. This can be specified multiple times.
+  -config-dir=foo                  Path to a directory to read configuration
+                                   files from. This will read every file ending
+                                   in &quot;.json&quot; as configuration in this
+                                   directory in alphabetical order. This can be
+                                   specified multiple times.
+  -data-dir=path                   Path to a data directory to store agent
+                                   state
+  -dev                             Starts the agent in development mode.
+  -recursor=1.2.3.4                Address of an upstream DNS server.
+                                   Can be specified multiple times.
+  -dc=east-aws                     Datacenter of the agent (deprecated: use
+                                   'datacenter' instead).
+  -datacenter=east-aws             Datacenter of the agent.
+  -encrypt=key                     Provides the gossip encryption key
+  -join=1.2.3.4                    Address of an agent to join at start time.
+                                   Can be specified multiple times.
+  -join-wan=1.2.3.4                Address of an agent to join -wan at start
+                                   time. Can be specified multiple times.
+  -retry-join=1.2.3.4              Address of an agent to join at start time
+                                   with retries enabled. Can be specified
+                                   multiple times.
+  -retry-interval=30s              Time to wait between join attempts.
+  -retry-max=0                     Maximum number of join attempts. Defaults to
+                                   0, which will retry indefinitely.
+  -retry-join-ec2-region           EC2 Region to use for discovering servers to
+                                   join.
+  -retry-join-ec2-tag-key          EC2 tag key to filter on for server
+                                   discovery
+  -retry-join-ec2-tag-value        EC2 tag value to filter on for server
+                                   discovery
+  -retry-join-gce-project-name     Google Compute Engine project to discover
+                                   servers in
+  -retry-join-gce-zone-pattern     Google Compute Engine region or zone to
+                                   discover servers in (regex pattern)
+  -retry-join-gce-tag-value        Google Compute Engine tag value to filter
+                                   for server discovery
+  -retry-join-gce-credentials-file Path to credentials JSON file to use with
+                                   Google Compute Engine
+  -retry-join-wan=1.2.3.4          Address of an agent to join -wan at start
+                                   time with retries enabled. Can be specified
+                                   multiple times.
+  -retry-interval-wan=30s          Time to wait between join -wan attempts.
+  -retry-max-wan=0                 Maximum number of join -wan attempts.
+                                   Defaults to 0, which will retry
+                                   indefinitely.
+  -log-level=info                  Log level of the agent.
+  -node=hostname                   Name of this node. Must be unique in the
+                                   cluster
+  -node-meta=key:value             An arbitrary metadata key/value pair for
+                                   this node.
+                                   This can be specified multiple times.
+  -protocol=N                      Sets the protocol version. Defaults to
+                                   latest.
+  -rejoin                          Ignores a previous leave and attempts to
+                                   rejoin the cluster.
+  -server                          Switches agent to server mode.
+  -syslog                          Enables logging to syslog
+  -ui                              Enables the built-in static web UI server
+  -ui-dir=path                     Path to directory containing the Web UI
+                                   resources
+  -pid-file=path                   Path to file to store agent PID
+</code></pre></div><p>**info：**指令提供了各种操作时可以用到的debug信息，对于client和server，info有返回不同的子系统信息，目前有以下几个KV信息：agent(提供agent信息)，consul(提供consul库的信息)，raft(提供raft库的信息)，serf_lan(提供LAN gossip pool),serf_wan(提供WAN gossip pool)</p> <p>**leave：**指令触发一个优雅的离开动作并关闭agent，节点离开后不会尝试重新加入集群中。运行在server状态的节点，节点会被优雅的删除，这是很严重的，在某些情况下一个不优雅的离开会影响到集群的可用性。</p> <p>**members：**指令输出consul agent目前所知道的所有的成员以及它们的状态，节点的状态只有alive、left、failed三种状态。</p> <blockquote><p>-detailed：输出每个节点更详细的信息。
+-rpc-addr：一个rpc地址，agent可以链接上来发送命令，如果没有指定，默认是127.0.0.1:8400。
+-status：过滤出符合正则规则的节点</p></blockquote> <p>**reload：**指令可以重新加载agent的配置文件。SIGHUP指令在重新加载配置文件时使用，任何重新加载的错误都会写在agent的log文件中，并不会打印到屏幕。</p> <h4 id="_5-2-3-consul简单使用"><a href="#_5-2-3-consul简单使用" class="header-anchor">#</a> 5.2.3 consul简单使用</h4> <p>首先我们要运行consul，运行有两种模式，分别是==server==和==client==，通过下面的命令开启：</p> <div class="language-shell extra-class"><pre class="language-text"><code>consul agent -server
+
+consul agent 
+
+</code></pre></div><p>每个数据中心至少必须拥有一个server。一个client是一个非常轻量级的进程.用于注册服务,运行健康检查和转发对server的查询.agent必须在集群中的每个主机上运行.</p> <p>接着我们以server的模式启动一个consul：</p> <h5 id="server模式启动"><a href="#server模式启动" class="header-anchor">#</a> server模式启动</h5> <div class="language-shell extra-class"><pre class="language-text"><code>$ consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul -node=n1 -bind=192.168.6.108 -ui -rejoin -config-dir=/etc/consul.d/ -client 0.0.0.0
+</code></pre></div><p><img src="/assets/img/1561950926758.8adb59ac.png" alt=""></p> <blockquote><p>需要先在/etc/下面创建consul.d目录</p> <ul><li><code>-server</code> ： 定义agent运行在server模式</li> <li><code>-bootstrap-expect</code> ：在一个datacenter中期望提供的server节点数目，当该值提供的时候，consul一直等到达到指定sever数目的时候才会引导整个集群，该标记不能和bootstrap共用</li> <li><code>-bind</code>：该地址用来在集群内部的通讯，集群内的所有节点到地址都必须是可达的，默认是0.0.0.0</li> <li><code>-node</code>：节点在集群中的名称，在一个集群中必须是唯一的，默认是该节点的主机名</li> <li><code>-ui</code>： 启动web界面  :8500</li> <li><code>-rejoin</code>：使consul忽略先前的离开，在再次启动后仍旧尝试加入集群中。</li> <li><code>-config-dir</code>：配置文件目录，里面所有以.json结尾的文件都会被加载</li> <li><code>-client</code>：consul服务侦听地址，这个地址提供HTTP、DNS、RPC等服务，默认是127.0.0.1所以不对外提供服务，如果你要对外提供服务改成0.0.0.0</li> <li><code>data-dir</code>：提供一个目录用来存放agent的状态，所有的agent允许都需要该目录，该目录必须是稳定的，系统重启后都继续存在</li></ul></blockquote> <h5 id="client模式启动"><a href="#client模式启动" class="header-anchor">#</a> <strong>client模式启动</strong></h5> <div class="language-shell extra-class"><pre class="language-text"><code>$ consul agent -data-dir /tmp/consul -node=n2 -bind=192.168.137.82 -config-dir /etc/consul.d -rejoin -join 192.168.137.81
+</code></pre></div><blockquote><p>运行cosnul agent以client模式，-join 加入到已有的集群中去。</p></blockquote> <h5 id="查看consul成员"><a href="#查看consul成员" class="header-anchor">#</a> <strong>查看consul成员</strong></h5> <div class="language-shell extra-class"><pre class="language-text"><code>$ consul members
+#节点  网络地址                状态     类型     版本   协议       数据中心  分管部分 
+Node  Address                Status  Type    Build  Protocol  DC   Segment
+
+n1    192.168.137.130:8301   alive   server  1.1.0  2         dc1  &lt;all&gt;
+n3    192.168.137.81:8301    alive   client  1.1.0  2         dc1  &lt;default&gt;
+</code></pre></div><h5 id="停止agent"><a href="#停止agent" class="header-anchor">#</a> <strong>停止agent</strong></h5> <p>你可以使用Ctrl-C 优雅的关闭Agent. 中断Agent之后你可以看到他离开了集群并关闭.</p> <p>​	在退出中,Consul提醒其他集群成员,这个节点离开了.如果你强行杀掉进程.集群的其他成员应该能检测到这个节点失效了.当一个成员离开,他的服务和检测也会从目录中移除.当一个成员失效了,他的健康状况被简单的标记为危险,但是不会从目录中移除.Consul会自动尝试对失效的节点进行重连.允许他从某些网络条件下恢复过来.离开的节点则不会再继续联系.</p> <p>​	此外,如果一个agent作为一个服务器,一个优雅的离开是很重要的,可以避免引起潜在的可用性故障影响达成一致性协议.
+consul优雅的退出：</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ consul leave
+</code></pre></div><h5 id="注册服务"><a href="#注册服务" class="header-anchor">#</a> <strong>注册服务</strong></h5> <p>搭建好conusl集群后，用户或者程序就能到consul中去查询或者注册服务。可以通过提供服务定义文件或者调用HTTP API来注册一个服务.</p> <p>这里我们使用定义服务文件来注册一个服务:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span><span class="token property">&quot;service&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Faceid&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;tags&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;rails&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9000</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>服务定义文件在我们的配置目录下面，<code>/etc/consul.d/</code>，文件都是以.json结尾。</p></blockquote> <p>注册完服务之后，我们重启consul，</p> <p><img src="/assets/img/1565103071456.555d3726.png" alt="1565103071456"></p> <blockquote><p>红圈里面的就是表示agent从配置文件中载入了服务定义,并且成功注册到服务目录.</p> <p>如果需要注册多个服务，就需要创建多个服务定义文件。</p></blockquote> <h5 id="查询服务"><a href="#查询服务" class="header-anchor">#</a> <strong>查询服务</strong></h5> <p>一旦agent启动并且服务同步了.我们可以通过DNS或者HTTP的API来查询服务.这里我们通过HTTP来查询服务：</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ curl -s 127.0.0.1:8500/v1/catalog/service/faceid
+</code></pre></div><p>得到一串json数据，不过格式不够清晰，拷贝到在线json格式解析器中，如下所示：</p> <p><img src="/assets/img/1565106650464.53bbcdd5.png" alt="1565106650464"></p> <p>我们还可以打开web页面，查看注册的服务。默认consul对应的端口是8500，在浏览器输入地址<code>localhost:8500</code></p> <p><img src="/assets/img/1565106804694.71694f62.png" alt="1565106804694"></p> <p>也能看到我们注册的服务。</p> <h5 id="健康检查"><a href="#健康检查" class="header-anchor">#</a> <strong>健康检查</strong></h5> <p>健康检查是服务发现的关键组件.预防使用到不健康的服务.和服务注册类似,一个检查可以通过检查定义或HTTP API请求来注册.我们将使用和检查定义来注册检查.和服务类似,因为这是建立检查最常用的方式.</p> <p>在/etc/consul.d/目录下面创建文件web2.json,内容如下：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span><span class="token property">&quot;service&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;web&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;tags&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;extract&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;verify&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;compare&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;idcard&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;address&quot;</span><span class="token operator">:</span> <span class="token string">&quot;192.168.137.130&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token number">9000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;check&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;api&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;HTTP API on port 9000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;http&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://localhost:9000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10s&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1s&quot;</span>
+        <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>这时候我们没有开启这个服务，所以这个时候健康检查会出错。打开web界面，如下</p></blockquote> <p>consul做健康检查的必须是<strong>Script、HTTP、TCP、TTL</strong>中的一种。</p> <p>**Script类型需要提供Script脚本和interval变量。**具体配置如下：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>  
+  <span class="token property">&quot;check&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>  
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;mem-util&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Memory utilization&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;script&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/usr/local/bin/check_mem.py&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10s&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1s&quot;</span>  
+  <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span> 
+</code></pre></div><blockquote><p>通过执行外部应用进行健康检查：这种外部程序具有退出代码，并可能产生一些输出；脚本按照指预置时间间隔来调用（比如，每30秒调用一次），类似于Nagios插件系统，脚本输出限制在4K以内，输出大于4K将截断。默认情况下，脚本超时时间为30秒——可通过timeout来配置。</p></blockquote> <p>**HTTP类型必须提供http和Interval字段。**具体代码如下：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>  
+  <span class="token property">&quot;check&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>  
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;api&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;HTTP API on port 5000&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;http&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://localhost:5000/health&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10s&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1s&quot;</span>  
+  <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+</code></pre></div><blockquote><p>这种检查将按照预设的时间间隔创建一个HTTP “get”请求。HTTP响应代码来标示服务所处状态：任何2xx代码视为正常，429表示警告——有很多请求；其他值表示失败。</p> <p>这种类型的检查应使用curl或外部程序来处理HTTP操作。默认情况下，HTTP Checks中，请求超时时间等于调用请求的间隔时间，最大10秒。有可能使用客制的HTTP check，可以自由配置timeout时间，输出限制在4K以内，输出大于4K将截断。</p></blockquote> <p>**TCP类型需要提供tcp和Interval字段。**具体代码如下：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>  
+  <span class="token property">&quot;check&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>  
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ssh&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SSH TCP on port 22&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;tcp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;localhost:22&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10s&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1s&quot;</span>  
+  <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+</code></pre></div><blockquote><p>这种检查将按照预设的时间间隔与指定的IP/Hostname和端口创建一个TCP连接。服务的状态依赖于TCP连接是否成功——如果连接成功，则状态是“success”；否则状态是“critical”。如果一个Hostname解析为一个IPv4和一个IPv6，将尝试连接这两个地址，第一次连接成功则服务状态是“success”。默认情况下，TCP checks中，请求超时时间等于调用请求的间隔时间，最大10秒。也是可以自由配置的。</p></blockquote> <p><strong>TTL（<strong>Timeto Live生存时间</strong>）类型只需提供ttl</strong>，具体配置如下：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>  
+  <span class="token property">&quot;check&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>  
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;web-app&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Web App Status&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;notes&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Web app does a curl internally every 10 seconds&quot;</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;ttl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;30s&quot;</span>  
+  <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>  
+</code></pre></div><blockquote><p>这种checks为给定TTL保留了最后一种状态，checks的状态必须通过HTTP接口周期性更新，如果外部接口没有更新状态，那么状态就会被认定为不正常。 TTL checks同时会将其最后已知状态更新至磁盘，这允许Agent通过重启后恢复到已知的状态。通过TTL端上一次check来维持健康状态的有效性。</p></blockquote> <p>我们也可以通过页面来查看,在浏览器输入网址：http://192.68.130.137:8500</p> <p><img src="/assets/img/1565107450324.2521bd45.png" alt="1565107450324"></p> <p>其他更多consul功能，我们可以参考http://www.liangxiansen.cn/2017/04/06/consul/</p> <h4 id="_5-2-4-consul和grpc结合使用"><a href="#_5-2-4-consul和grpc结合使用" class="header-anchor">#</a> 5.2.4 consul和grpc结合使用</h4> <p>学完了consul命令行的使用，接着我们来看一下，在代码中如何通过，这里我们用grpc和consul结合使用。</p> <p>我们操作consul使用的是github.com/hashicorp/consul/包，我们先来下载一下，命令如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ go get -u -v github.com/hashicorp/consul
+</code></pre></div><p>然后我们先注册一个服务到consul上：</p> <h5 id="把grpc服务注册到consul上"><a href="#把grpc服务注册到consul上" class="header-anchor">#</a> <strong>把grpc服务注册到consul上</strong></h5> <p>代码如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//初始化consul配置</span>
+	consulConfig <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">DefaultConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//获取consul操作对象</span>
+	registry<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">NewClient</span><span class="token punctuation">(</span>consulConfig<span class="token punctuation">)</span>
+
+	<span class="token comment">//注册服务,服务的常规配置</span>
+	registerService <span class="token operator">:=</span> api<span class="token punctuation">.</span>AgentServiceRegistration<span class="token punctuation">{</span>
+		ID<span class="token punctuation">:</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+		Tags<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">&quot;testHello&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		Name<span class="token punctuation">:</span><span class="token string">&quot;HelloService&quot;</span><span class="token punctuation">,</span>
+		Port<span class="token punctuation">:</span><span class="token number">8080</span><span class="token punctuation">,</span>
+		Address<span class="token punctuation">:</span><span class="token string">&quot;192.168.137.130&quot;</span><span class="token punctuation">,</span>
+		Check<span class="token punctuation">:</span><span class="token operator">&amp;</span>api<span class="token punctuation">.</span>AgentServiceCheck<span class="token punctuation">{</span>
+			TCP<span class="token punctuation">:</span><span class="token string">&quot;192.168.137.130:8080&quot;</span><span class="token punctuation">,</span>
+			Timeout<span class="token punctuation">:</span><span class="token string">&quot;5s&quot;</span><span class="token punctuation">,</span>
+			Interval<span class="token punctuation">:</span><span class="token string">&quot;5s&quot;</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//注册服务到consul上</span>
+	registry<span class="token punctuation">.</span><span class="token function">Agent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ServiceRegister</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>registerService<span class="token punctuation">)</span>
+    
+    <span class="token comment">//获取grpc服务端对象</span>
+	grpcServer <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">//注册grpc服务</span>
+	pb<span class="token punctuation">.</span><span class="token function">RegisterHelloServiceServer</span><span class="token punctuation">(</span>grpcServer<span class="token punctuation">,</span><span class="token function">new</span><span class="token punctuation">(</span>HelloService<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//设置服务端监听</span>
+	lis<span class="token punctuation">,</span>err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;:1234&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+    <span class="token comment">//在指定端口上提供grpc服务</span>
+	grpcServer<span class="token punctuation">.</span><span class="token function">Serve</span><span class="token punctuation">(</span>lis<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="服务发现"><a href="#服务发现" class="header-anchor">#</a> <strong>服务发现</strong></h5> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//初始化consul配置, 客户端服务器需要一致</span>
+	consulConfig <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">DefaultConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">//获取consul操作对象</span>
+    registerClient<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">NewClient</span><span class="token punctuation">(</span>consulConfig<span class="token punctuation">)</span>
+
+	<span class="token comment">//获取地址</span>
+	serviceEntry<span class="token punctuation">,</span><span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span>registerClient<span class="token punctuation">.</span><span class="token function">Health</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Service</span><span class="token punctuation">(</span><span class="token string">&quot;HelloService&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;testHello&quot;</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>api<span class="token punctuation">.</span>QueryOptions<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//和grpc服务建立连接</span>
+	conn<span class="token punctuation">,</span>err <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span>serviceEntry<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Service<span class="token punctuation">.</span>Address<span class="token operator">+</span><span class="token string">&quot;:&quot;</span><span class="token operator">+</span>strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>serviceEntry<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Service<span class="token punctuation">.</span>Port<span class="token punctuation">)</span><span class="token punctuation">,</span> grpc<span class="token punctuation">.</span><span class="token function">WithInsecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	client <span class="token operator">:=</span> pb<span class="token punctuation">.</span><span class="token function">NewHelloServiceClient</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+	reply<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Hello</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>Person<span class="token punctuation">{</span>Name<span class="token punctuation">:</span><span class="token string">&quot;lisi&quot;</span><span class="token punctuation">,</span>Age<span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;reply,&quot;</span><span class="token punctuation">,</span>reply<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h5 id="注销服务"><a href="#注销服务" class="header-anchor">#</a> <strong>注销服务</strong></h5> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	 <span class="token comment">//初始化consul配置,客户端服务器需要一致</span>
+	consulConfig <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">DefaultConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">//获取consul操作对象</span>
+    registerClient<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">NewClient</span><span class="token punctuation">(</span>consulConfig<span class="token punctuation">)</span>
+
+
+	<span class="token comment">//注销服务</span>
+     client<span class="token punctuation">.</span><span class="token function">Agent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ServiceDeregister</span><span class="token punctuation">(</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>etcd、  zookeeper</p></blockquote> <h3 id="_5-3-go-micro安装"><a href="#_5-3-go-micro安装" class="header-anchor">#</a> 5.3 go-micro安装</h3> <p>做了这么久的铺垫，接着让我们来进入主题，go-micro的学习，首先我们先来安装一下go-micro开发环境。安装步骤如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code>#安装go-micro
+go get -u -v github.com/micro/go-micro
+#安装工具集
+go get -u -v github.com/micro/micro
+#安装protobuf插件
+go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+go get -u github.com/micro/protoc-gen-micro
+</code></pre></div><p>或者通过docker镜像安装：</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ docker pull microhq/micro
+</code></pre></div><p>安装之后输入micro命令，显示如下就证明安装成功</p> <p><img src="/assets/img/1565108115509.d04dd597.png" alt="1565108115509"></p> <p>接着我们来看一下go-micro的使用。</p> <h3 id="_5-4-go-micro使用"><a href="#_5-4-go-micro使用" class="header-anchor">#</a> 5.4 go-micro使用</h3> <p>首先我们先来创建一个go micro框架的项目，我们使用micro命令，可以创建微服务，web项目等，具体用法如下：</p> <div class="language-shell extra-class"><pre class="language-text"><code>new		Create a new Micro service by specifying a directory path relative to your $GOPATH
+#创建	通过指定相对于$GOPATH的目录路径，创建一个新的微服务。
+
+USAGE:
+#用法
+micro new [command options][arguments...]
+#指定服务的命名空间
+--namespace &quot;go.micro&quot;	Namespace for the service e.g com.example
+#服务类型，可以是微服务srv,或者web项目,或者api等						
+--type &quot;srv&quot;			Type of service e.g api, fnc, srv, web
+#服务的正式完整定义						
+--fqdn 					FQDN of service e.g com.example.srv.service (defaults to namespace.type.alias)
+#别名是在指定时作为组合名的一部分使用的短名称  别名						
+--alias 				Alias is the short name used as part of combined name if specified
+
+</code></pre></div><p>我们常用的就是创建微服务和web项目，如下：</p> <p><strong>创建一个web项目</strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>micro new --type &quot;web&quot; micro/rpc/web
+Creating service go.micro.web.web in /home/itcast/go/src/micro/rpc/web
+.
+#主函数
+├── main.go 
+#插件文件
+├── plugin.go
+#被调用处理函数
+├── handler
+│   └── handler.go
+#前端页面
+├── html
+│   └── index.html
+#docker生成文件
+├── Dockerfile
+├── Makefile
+└── README.md
+
+#编译后将web端呼叫srv端的客户端连接内容修改为srv的内容
+#需要进行调通
+</code></pre></div><p>打开我们web项目下的main.go文件，内容如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;github.com/micro/go-log&quot;</span>
+	<span class="token string">&quot;net/http&quot;</span>
+    <span class="token string">&quot;github.com/micro/go-web&quot;</span>
+    <span class="token string">&quot;micro/rpc/web/handler&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// 创建1个web服务</span>
+        service <span class="token operator">:=</span> web<span class="token punctuation">.</span><span class="token function">NewService</span><span class="token punctuation">(</span>
+           <span class="token comment">//注册服务名</span>
+                web<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.web.web&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token comment">//服务的版本号</span>
+                web<span class="token punctuation">.</span><span class="token function">Version</span><span class="token punctuation">(</span><span class="token string">&quot;latest&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token comment">//！添加端口</span>
+                web<span class="token punctuation">.</span><span class="token function">Address</span><span class="token punctuation">(</span><span class="token string">&quot;:8080&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+	<span class="token comment">//服务进行初始化</span>
+        <span class="token keyword">if</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+	<span class="token comment">//处理请求  / 的路由   //当前这个web微服务的 html文件进行映射</span>
+	service<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span><span class="token function">FileServer</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span><span class="token function">Dir</span><span class="token punctuation">(</span><span class="token string">&quot;html&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token comment">//处理请求 /example/call  的路由   这个相应函数 在当前项目下的handler</span>
+	service<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">&quot;/example/call&quot;</span><span class="token punctuation">,</span> handler<span class="token punctuation">.</span>ExampleCall<span class="token punctuation">)</span>
+
+	<span class="token comment">//运行服务</span>
+        <span class="token keyword">if</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>接着我们再来看一下我们重点需要操作的文件，handle.go,内容如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> handler
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;context&quot;</span>
+	<span class="token string">&quot;encoding/json&quot;</span>
+	<span class="token string">&quot;net/http&quot;</span>
+	<span class="token string">&quot;time&quot;</span>
+
+	<span class="token string">&quot;github.com/micro/go-micro/client&quot;</span>
+    <span class="token comment">//将srv中的proto的文件导入进来进行通信的使用</span>
+	example <span class="token string">&quot;micro/rpc/srv/proto/example&quot;</span>
+<span class="token punctuation">)</span>
+<span class="token comment">//相应请求的业务函数</span>
+<span class="token keyword">func</span> <span class="token function">ExampleCall</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// 将传入的请求解码为json</span>
+	<span class="token keyword">var</span> request <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">if</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">NewDecoder</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>Body<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">// 调用服务</span>
+    <span class="token comment">//替换掉原有的服务名</span>
+    <span class="token comment">//通过服务名和</span>
+	exampleClient <span class="token operator">:=</span> example<span class="token punctuation">.</span><span class="token function">NewExampleService</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.srv&quot;</span><span class="token punctuation">,</span> client<span class="token punctuation">.</span>DefaultClient<span class="token punctuation">)</span>
+	rsp<span class="token punctuation">,</span> err <span class="token operator">:=</span> exampleClient<span class="token punctuation">.</span><span class="token function">Call</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">TODO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>example<span class="token punctuation">.</span>Request<span class="token punctuation">{</span>
+		Name<span class="token punctuation">:</span> request<span class="token punctuation">[</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">// we want to augment the response</span>
+	response <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">{</span>
+		<span class="token string">&quot;msg&quot;</span><span class="token punctuation">:</span> rsp<span class="token punctuation">.</span>Msg<span class="token punctuation">,</span>
+		<span class="token string">&quot;ref&quot;</span><span class="token punctuation">:</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">// encode and write the response as json</span>
+	<span class="token keyword">if</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">NewEncoder</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Encode</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p><strong>创建微服务</strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>$micro new --type &quot;srv&quot; t1/t1
+#&quot;srv&quot; 是表示当前创建的微服务类型
+#micro是相对于go/src下的文件夹名称 可以根据项目进行设置 
+#srv是当前创建的微服务的文件名
+Creating service go.micro.srv.srv in /home/itcast/go/src/t1/t1
+
+.
+#主函数存放位置
+├── main.go
+#插件
+├── plugin.go
+#服务提供函数的实现
+├── handler
+│   └── example.go
+#订阅服务
+├── subscriber
+│   └── example.go
+#proto协议
+├── proto/example
+│   └── example.proto
+#docker生成文件
+├── Dockerfile
+#编译文件
+├── Makefile
+└── README.md
+
+#插件提示，已安装，可忽略
+download protobuf for micro:
+
+brew install protobuf
+go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+go get -u github.com/micro/protoc-gen-micro
+
+compile the proto file example.proto:
+
+cd /home/itcast/go/src/micro/rpc/srv
+protoc --proto_path=. --go_out=. --micro_out=. proto/example/example.proto
+</code></pre></div><p>我们来看一下微服务中的main.go文件：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+        <span class="token string">&quot;github.com/micro/go-micro/util/log&quot;</span>
+        <span class="token string">&quot;github.com/micro/go-micro&quot;</span>
+        <span class="token string">&quot;t1/t1/handler&quot;</span>
+        <span class="token string">&quot;t1/t1/subscriber&quot;</span>
+
+        t1 <span class="token string">&quot;t1/t1/proto/t1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 创建一个micro服务</span>
+        service <span class="token operator">:=</span> micro<span class="token punctuation">.</span><span class="token function">NewService</span><span class="token punctuation">(</span>
+                micro<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                micro<span class="token punctuation">.</span><span class="token function">Version</span><span class="token punctuation">(</span><span class="token string">&quot;latest&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+        <span class="token comment">// 初始化服务</span>
+        service<span class="token punctuation">.</span><span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册服务</span>
+        t1<span class="token punctuation">.</span><span class="token function">RegisterT1Handler</span><span class="token punctuation">(</span>service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>handler<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>subscriber<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个函数到发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> subscriber<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span>
+
+        <span class="token comment">// 运行服务</span>
+        <span class="token keyword">if</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>默认情况下，go micro框架使用的是自己封装的rpc通信，这里我们可以替换成grpc，代码如下：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+        <span class="token string">&quot;github.com/micro/go-micro/util/log&quot;</span>
+        <span class="token string">&quot;github.com/micro/go-micro&quot;</span>
+        <span class="token string">&quot;t1/t1/handler&quot;</span>
+        <span class="token string">&quot;t1/t1/subscriber&quot;</span>
+		<span class="token string">&quot;github.com/micro/go-grpc&quot;</span><span class="token comment">//go micro内嵌了grpc框架</span>
+        t1 <span class="token string">&quot;t1/t1/proto/t1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 创建一个micro服务</span>
+        service <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">NewService</span><span class="token punctuation">(</span>
+                micro<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                micro<span class="token punctuation">.</span><span class="token function">Version</span><span class="token punctuation">(</span><span class="token string">&quot;latest&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+        <span class="token comment">// 初始化服务</span>
+        service<span class="token punctuation">.</span><span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册服务</span>
+        t1<span class="token punctuation">.</span><span class="token function">RegisterT1Handler</span><span class="token punctuation">(</span>service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>handler<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>subscriber<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个函数到发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> subscriber<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span>
+
+        <span class="token comment">// 运行服务</span>
+        <span class="token keyword">if</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>服务发现：</strong></p> <p>在go-micro包中，共有4种注册实现consul、gossip、mdns、memory，前两个都是基于hashicorp公司的协议，mdns则是基于组网广播实现，memory则是本地实现。</p> <p>consul 依赖hashicorp的组件，但是功能强大、完整
+gossip 基于SWIM协议广播，零依赖
+mdns 轻量、零依赖，但是对环境有要求，某些环境不支持mdns的无法正常使用
+memory 本地解决方案，不可跨主机访问
+另外在go-plugins中有其它注册实现，比如etcd、eureka、k8s、nats、zk等等</p> <p>大体解释下接口中每个方法的作用</p> <ul><li>Init 初始化</li> <li>Options 获取配置选项</li> <li>Register 注册服务</li> <li>Deregister 卸载服务</li> <li>GetService 获取指定服务</li> <li>ListServices 列出所有服务</li> <li>Watch watcher 负责侦听变动</li> <li>String 注册信息转成字符串描述</li></ul> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+        <span class="token string">&quot;github.com/micro/go-micro/util/log&quot;</span>
+        <span class="token string">&quot;github.com/micro/go-micro&quot;</span>
+        <span class="token string">&quot;t1/t1/handler&quot;</span>
+        <span class="token string">&quot;t1/t1/subscriber&quot;</span>
+		<span class="token string">&quot;github.com/micro/go-grpc&quot;</span>
+        <span class="token string">&quot;github.com/micro/go-micro/registry/consul&quot;</span>
+        <span class="token string">&quot;github.com/micro/go-micro/registry&quot;</span>
+        t1 <span class="token string">&quot;t1/t1/proto/t1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//初始化服务发现</span>
+        reg <span class="token operator">:=</span> consul<span class="token punctuation">.</span><span class="token function">NewRegistry</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>options <span class="token operator">*</span>registry<span class="token punctuation">.</span>Options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                options<span class="token punctuation">.</span>Addrs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span>
+                        <span class="token string">&quot;192.168.137.130:8500&quot;</span><span class="token punctuation">,</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    
+        <span class="token comment">// 创建一个micro服务</span>
+        service <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">NewService</span><span class="token punctuation">(</span>
+                micro<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                micro<span class="token punctuation">.</span><span class="token function">Version</span><span class="token punctuation">(</span><span class="token string">&quot;latest&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            	micro<span class="token punctuation">.</span><span class="token function">Registry</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+        <span class="token comment">// 初始化服务</span>
+        service<span class="token punctuation">.</span><span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册服务</span>
+        t1<span class="token punctuation">.</span><span class="token function">RegisterT1Handler</span><span class="token punctuation">(</span>service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>handler<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>subscriber<span class="token punctuation">.</span>T1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment">// 注册一个函数到发布器</span>
+        micro<span class="token punctuation">.</span><span class="token function">RegisterSubscriber</span><span class="token punctuation">(</span><span class="token string">&quot;go.micro.srv.t1&quot;</span><span class="token punctuation">,</span> service<span class="token punctuation">.</span><span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> subscriber<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span>
+
+        <span class="token comment">// 运行服务</span>
+        <span class="token keyword">if</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+               log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.37bf62ab.js" defer></script><script src="/assets/js/2.c467d517.js" defer></script><script src="/assets/js/8.5ba8b06f.js" defer></script>
+  </body>
+</html>

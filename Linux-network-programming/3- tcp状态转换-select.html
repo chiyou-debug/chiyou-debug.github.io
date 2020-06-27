@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TCP状态转换 &amp;&amp; select | 蚩尤的秘密</title>
+    <meta name="description" content="蚩尤的秘密">
+    <link rel="icon" href="/img/timg.jpg">
+    
+    <link rel="preload" href="/assets/css/0.styles.6e3b32c4.css" as="style"><link rel="preload" href="/assets/js/app.37bf62ab.js" as="script"><link rel="preload" href="/assets/js/2.c467d517.js" as="script"><link rel="preload" href="/assets/js/30.3c772968.js" as="script"><link rel="prefetch" href="/assets/js/10.b74e8693.js"><link rel="prefetch" href="/assets/js/11.9b1c315f.js"><link rel="prefetch" href="/assets/js/12.37377020.js"><link rel="prefetch" href="/assets/js/13.88919054.js"><link rel="prefetch" href="/assets/js/14.faf99f7a.js"><link rel="prefetch" href="/assets/js/15.72f587e0.js"><link rel="prefetch" href="/assets/js/16.7c046042.js"><link rel="prefetch" href="/assets/js/17.2b1bf4f9.js"><link rel="prefetch" href="/assets/js/18.2c53cbe5.js"><link rel="prefetch" href="/assets/js/19.18f5b8d3.js"><link rel="prefetch" href="/assets/js/20.def44f94.js"><link rel="prefetch" href="/assets/js/21.e460780c.js"><link rel="prefetch" href="/assets/js/22.1ac3e320.js"><link rel="prefetch" href="/assets/js/23.32b72d29.js"><link rel="prefetch" href="/assets/js/24.9ea65887.js"><link rel="prefetch" href="/assets/js/25.b236199a.js"><link rel="prefetch" href="/assets/js/26.19297566.js"><link rel="prefetch" href="/assets/js/27.63288b0d.js"><link rel="prefetch" href="/assets/js/28.9a686763.js"><link rel="prefetch" href="/assets/js/29.65e0b407.js"><link rel="prefetch" href="/assets/js/3.463ebeda.js"><link rel="prefetch" href="/assets/js/31.b4b20bd6.js"><link rel="prefetch" href="/assets/js/32.94f27a89.js"><link rel="prefetch" href="/assets/js/33.8dc48efe.js"><link rel="prefetch" href="/assets/js/34.cbe369fa.js"><link rel="prefetch" href="/assets/js/35.30e2308f.js"><link rel="prefetch" href="/assets/js/36.950f9c58.js"><link rel="prefetch" href="/assets/js/37.f04e533c.js"><link rel="prefetch" href="/assets/js/38.e8b9ccee.js"><link rel="prefetch" href="/assets/js/39.055b4b00.js"><link rel="prefetch" href="/assets/js/4.dd472362.js"><link rel="prefetch" href="/assets/js/40.ca7edf6f.js"><link rel="prefetch" href="/assets/js/41.664e5b23.js"><link rel="prefetch" href="/assets/js/42.654878a2.js"><link rel="prefetch" href="/assets/js/43.9903edc6.js"><link rel="prefetch" href="/assets/js/44.fef042f6.js"><link rel="prefetch" href="/assets/js/45.f5e54dd5.js"><link rel="prefetch" href="/assets/js/46.39c53fbd.js"><link rel="prefetch" href="/assets/js/47.da2a4b4e.js"><link rel="prefetch" href="/assets/js/48.146c9c50.js"><link rel="prefetch" href="/assets/js/49.3ed30ae8.js"><link rel="prefetch" href="/assets/js/5.e9c9e5ea.js"><link rel="prefetch" href="/assets/js/50.625d6708.js"><link rel="prefetch" href="/assets/js/51.b9c85a13.js"><link rel="prefetch" href="/assets/js/52.a33b6442.js"><link rel="prefetch" href="/assets/js/53.3548d1f6.js"><link rel="prefetch" href="/assets/js/54.10ffb9ff.js"><link rel="prefetch" href="/assets/js/55.70b4492e.js"><link rel="prefetch" href="/assets/js/56.c93f8df2.js"><link rel="prefetch" href="/assets/js/57.ea4cdf31.js"><link rel="prefetch" href="/assets/js/58.07f04bb5.js"><link rel="prefetch" href="/assets/js/59.f18e22ae.js"><link rel="prefetch" href="/assets/js/6.9c7511e9.js"><link rel="prefetch" href="/assets/js/60.5f638311.js"><link rel="prefetch" href="/assets/js/61.f0f3f49b.js"><link rel="prefetch" href="/assets/js/62.81606653.js"><link rel="prefetch" href="/assets/js/63.2e306ee4.js"><link rel="prefetch" href="/assets/js/64.82ffab5d.js"><link rel="prefetch" href="/assets/js/65.1615cb2a.js"><link rel="prefetch" href="/assets/js/7.827ede19.js"><link rel="prefetch" href="/assets/js/8.5ba8b06f.js"><link rel="prefetch" href="/assets/js/9.79654ee8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6e3b32c4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/hacker.png" alt="蚩尤的秘密" class="logo"> <span class="site-name can-hide">蚩尤的秘密</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>TCP状态转换 &amp;&amp; select</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Linux-network-programming/3-%20tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2-select.html#_1-tcp状态转换" class="sidebar-link">1. TCP状态转换</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/3-%20tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2-select.html#_2-端口复用" class="sidebar-link">2. 端口复用</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/3-%20tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2-select.html#_3-io多路转接" class="sidebar-link">3. IO多路转接</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Linux-network-programming/3-%20tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2-select.html#_3-1-select" class="sidebar-link">3.1 select</a></li><li class="sidebar-sub-header"><a href="/Linux-network-programming/3-%20tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2-select.html#_3-2-poll" class="sidebar-link">3.2 poll</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tcp状态转换-select"><a href="#tcp状态转换-select" class="header-anchor">#</a> TCP状态转换 &amp;&amp; select</h1> <h2 id="_1-tcp状态转换"><a href="#_1-tcp状态转换" class="header-anchor">#</a> 1. TCP状态转换</h2> <blockquote><p>TCP的状态转换只有在三次握手和四次挥手的时候才有，数据传输的时候没有状态变化</p></blockquote> <center><img src="/assets/img/20141015155713390.bc9b11d4.png" style="zoom:75%;"></center> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 客户端通信流程</span>
+<span class="token number">1.</span> 创建通信的套接字
+	<span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">2.</span> 连接服务器
+	<span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">3.</span> 通信
+	<span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">4.</span> 断开连接
+	<span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 服务器通信流程</span>
+<span class="token number">1.</span> 创建监听的套接字
+<span class="token number">2.</span> 监听的fd绑定本地的IP和端口
+<span class="token number">3.</span> 设置监听
+<span class="token number">4.</span> 等待并接受客户端连接
+<span class="token number">5.</span> 通信
+<span class="token number">6.</span> 关闭连接
+</code></pre></div><p>状态变化描述：</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	三次握手:
+	第一次: 
+		客户端:
+            客户端发送连接请求 -&gt; 服务器
+                -&gt; SYN, 发送随机序号
+            客户端的状态: 从没有状态 -&gt; SYN_SENT
+                - 体现在程序中就是在客户端调用了: connect()函数
+        服务器端:
+        	- 在服务器启动之后, 默认的状态就是: LISTEN
+        	- 接收到客户端的连接请求, 状态变化: LISTEN -&gt; SYN_RCVD
+     第二次握手:
+     	- 服务器
+     		给客户端回复: ACK, 同意建立连接, 给客户端发送连接请求 SYN, 状态没有变化
+     	- 客户端:
+     		收到服务器的回复: 状态变化: SYN_SENT -&gt; ESTABLISHED
+     第三次握手:
+     	- 客户端: 
+     		同意服务器的连接请求, 回复: ACK, 状态没有变化
+     	- 服务器端:
+     		接收客户端数据, 状态变化: SYN_RCVD -&gt; ESTABLISHED    	
+*/</span>
+
+<span class="token comment">/*
+	通信过程中:
+		通信的双方的状态: ESTABLISHED, 不会发生变化
+		如果想要进行通信, 进程必须要处于: ESTABLISHED 状态 
+*/</span>
+
+<span class="token comment">/*
+	四次挥手:
+		通信的双方, 谁都可以主动断开连接, 在程序中断开连接就是调用close()函数
+	第一次挥手:
+		主动断开连接的一方调用 close() 函数
+			- 状态发生变化: ESTABLISHED -&gt; FIN_WAIT_1
+		被动断开连接的一方:
+			- 状态变化: ESTABLISHED -&gt; CLOSE_WAIT
+	第二次挥手:
+		被动断开连接的一方: 回复了一个 ACK, 同意断开连接, 状态没有变化, 还是 CLOSE_WAIT
+		主动断开连接的一方: 收到了ACK
+			- 状态变化: FIN_WAIT_1 -&gt; FIN_WAIT_2
+	第三次挥手:
+		被动断开连接的一方: 向对方发送了断开连接的请求 FIN
+			- 在程序中调用了 close() 函数
+			- 状态有变化: CLOSE_WAIT -&gt; LAST_ACK
+		主动断开连接的一方: 收到了FIN
+			- 状态发生变化: FIN_WAIT_2 -&gt; TIME_WAIT
+	第四次挥手:
+		主动断开连接的一方: 回复 ACK
+		主动断开连接的一方: 收到了ACK, 进程就退出了
+*/</span>
+</code></pre></div><center><img src="/assets/img/wKiom1ZLIP2CRdNUAAlNCKgqwI0818.0c21ec53.jpg" style="zoom:67%;"></center> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 绿线是服务器的状态转换</span>
+<span class="token comment">// 红线是客户端的状态转换</span>
+</code></pre></div><ul><li><p>2MSL（Maximum Segment Lifetime）</p> <ul><li>等待的时间, 一个 MSL 时长是 <code>30s</code>左右</li> <li><code>2MSL</code> 约等于 1分钟</li> <li>主动断开连接的一方最后会变成<code>TIME_WAIT</code>状态, 这个状态会持续一分钟, 这个进程才会真正的退出</li> <li>为什么要等这一分钟?
+<ul><li>保证被动断开连接的一方能够收到最后一个<code>ACK</code> <ul><li>当被动断开连接的一方没有收到最后一一个ACK的时候, 会继续给主动断开连接的一方发送FIN</li> <li>主动断开连接的一方收到FIN之后, 继续回复ACK</li></ul></li></ul></li></ul> <blockquote><p>当TCP连接主动关闭方接收到被动关闭方发送的FIN和最终的ACK后，连接的主动关闭方必须处于TIME_WAIT状态并持续2MSL时间。</p> <p>这样就能够让TCP连接的主动关闭方在它发送的ACK丢失的情况下重新发送最终的ACK。</p> <p>主动关闭方重新发送的最终ACK并不是因为被动关闭方重传了ACK（它们并不消耗序列号，被动关闭方也不会重传），而是因为被动关闭方重传了它的FIN。事实上，被动关闭方总是重传FIN直到它收到一个最终的ACK。</p></blockquote></li> <li><p>半关闭</p> <blockquote><p>当TCP链接中A向B发送 FIN 请求关闭，另一端B回应ACK之后，并没有立即发送 FIN 给A, A方处于半连接状态（半开关），此时A可以接收B发送的数据，但是A已经不能再向B发送数据。</p></blockquote> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 通过半关闭可以实现套接字通信过程中数据的单向流动, 默认情况下数据是可以双向流动的</span>
+<span class="token comment">// 在四次挥手的时候, 只进行了两次</span>
+	<span class="token operator">-</span> 主动断开连接的一方 <span class="token operator">-&gt;</span> 客户端 <span class="token operator">-&gt;</span> 在客户端调用了<span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token operator">-</span> 被动断开连接的一方 <span class="token operator">-&gt;</span> 服务器 <span class="token operator">-&gt;</span> 服务器端没有调用<span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 服务器和客户端的连接还有没有?</span>
+	<span class="token operator">-</span> 有
+<span class="token comment">// 客户端和服务器的连接还有没有?</span>
+	<span class="token operator">-</span> 没有
+<span class="token comment">// 以上称之为半关闭, 特点?</span>
+	<span class="token operator">-</span> 客户端因为和服务器断开了连接
+		<span class="token operator">-</span> 客户端不能给服务器发送数据
+		<span class="token operator">-</span> 客户端可以接收服务器的数据
+	<span class="token operator">-</span> 服务器这边<span class="token operator">?</span>
+        <span class="token operator">-</span> 理论上可以接收和发送
+        <span class="token operator">-</span> 实际上<span class="token operator">:</span> 因为客户端不能发送数据了<span class="token punctuation">,</span> 是收不到数据的<span class="token punctuation">,</span> 只能给客户端发送数据
+        
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span></span>
+<span class="token comment">// 设置套接字半关闭</span>
+<span class="token keyword">int</span> <span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">int</span> how<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		sockfd<span class="token operator">:</span> 要操作的文件描述符
+		how<span class="token operator">:</span> 
+			<span class="token operator">-</span> SHUT_RD<span class="token operator">:</span> 关闭读
+			<span class="token operator">-</span> SHUT_WR<span class="token operator">:</span> 关闭写
+			<span class="token operator">-</span> SHUT_RDWR<span class="token operator">:</span> 关闭读写
+</code></pre></div></li> <li><p>查看网络相关信息命令</p> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">netstat</span>
+	○ 参数：
+		-a <span class="token punctuation">(</span>all<span class="token punctuation">)</span>显示所有选项
+		-p 显示建立相关链接的程序名
+		-n 拒绝显示别名，能显示数字的全部转化成数字。
+		-l 仅列出有在 Listen <span class="token punctuation">(</span>监听<span class="token punctuation">)</span> 的服务状态
+		-t <span class="token punctuation">(</span>tcp<span class="token punctuation">)</span>仅显示tcp相关选项
+		-u <span class="token punctuation">(</span>udp<span class="token punctuation">)</span>仅显示udp相关选项
+$ <span class="token function">netstat</span> -apn	
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">netstat</span> -apn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9999</span>
+<span class="token punctuation">(</span>Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.<span class="token punctuation">)</span>
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:9999            <span class="token number">0.0</span>.0.0:*          LISTEN      <span class="token number">9558</span>/server    
+
+$ <span class="token function">netstat</span> -apn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9999</span>
+<span class="token punctuation">(</span>Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.<span class="token punctuation">)</span>
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:9999            <span class="token number">0.0</span>.0.0:*          LISTEN      <span class="token number">9558</span>/server 
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:51824         <span class="token number">127.0</span>.0.1:9999     ESTABLISHED <span class="token number">9586</span>/client 
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:9999          <span class="token number">127.0</span>.0.1:51824    ESTABLISHED <span class="token number">9558</span>/server   
+
+$ <span class="token function">netstat</span> -apn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9999</span>
+<span class="token punctuation">(</span>Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.<span class="token punctuation">)</span>
+tcp    <span class="token number">1</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:51824         <span class="token number">127.0</span>.0.1:9999     CLOSE_WAIT  <span class="token number">9586</span>/client     
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:9999          <span class="token number">127.0</span>.0.1:51824    FIN_WAIT2   -     
+
+$ <span class="token function">netstat</span> -apn <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">9999</span>
+<span class="token punctuation">(</span>Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.<span class="token punctuation">)</span>
+tcp    <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">127.0</span>.0.1:9999          <span class="token number">127.0</span>.0.1:51824    TIME_WAIT   -   
+</code></pre></div></li></ul> <h2 id="_2-端口复用"><a href="#_2-端口复用" class="header-anchor">#</a> 2. 端口复用</h2> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	1. 启动服务器
+	2. 启动客户端
+	3. 关闭服务器
+	4. 关闭客户端
+	5. 再次启动服务器程序
+		./server 
+		bind error: Address already in use
+*/</span>
+绑定失败的原因<span class="token operator">:</span> 服务器先关闭<span class="token punctuation">,</span> 最后进程变成 TIME_WAIT 状态<span class="token punctuation">,</span> 这个状态会持续一分钟左右
+	<span class="token operator">-</span> 在这个期间服务器绑定的端口没有被释放
+	<span class="token operator">-</span> 再次启动这个服务器程序的时候还需要绑定这个没有被释放的端口 <span class="token operator">-&gt;</span> 绑定失败了
+	<span class="token operator">-</span> 等一分钟之后就可以正常启动服务器程序了
+解决方案<span class="token operator">:</span>
+    <span class="token operator">-</span> 等<span class="token number">2</span>MSL的时长过后<span class="token punctuation">,</span>再启动程序
+    <span class="token operator">-</span> 如果就是不想等呢<span class="token operator">?</span>
+    	<span class="token operator">-</span> 设置端口复用<span class="token operator">:</span> 在进程的 TIME_WAIT 期间<span class="token punctuation">,</span> 绑定的没有被释放的端口<span class="token punctuation">,</span>可以被重新使用
+    	<span class="token operator">-</span> 需要通过一个函数<span class="token operator">:</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-c extra-class"><pre class="language-c"><code><span class="token keyword">int</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">int</span> level<span class="token punctuation">,</span> <span class="token keyword">int</span> optname<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>optval<span class="token punctuation">,</span> socklen_t optlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> sockfd<span class="token operator">:</span> 要被设置属性的文件描述符
+		<span class="token operator">-</span> level<span class="token operator">:</span> SOL_SOCKET
+		<span class="token operator">-</span> optname<span class="token operator">:</span> 设置端口复用
+			<span class="token operator">-</span> SO_REUSEPORT
+			<span class="token operator">-</span> SO_REUSEADDR
+		<span class="token operator">-</span> optval<span class="token operator">:</span> 要设置的属性的值
+			<span class="token operator">-</span> 根据查手册 设置端口复用 该指针指向的一个<span class="token keyword">int</span>数据
+			<span class="token operator">-</span> 值<span class="token operator">:</span> <span class="token number">1</span> <span class="token operator">-&gt;</span> 设置端口复用
+			<span class="token operator">-</span> 值<span class="token operator">:</span> <span class="token number">0</span> <span class="token operator">-&gt;</span> 不设置端口复用<span class="token punctuation">,</span> 默认端口不能复用
+		<span class="token operator">-</span> optlen<span class="token operator">:</span> 参数 optval 指针对应的内存大小
+	返回值<span class="token operator">:</span> 
+		设置成功<span class="token operator">:</span> <span class="token number">0</span>
+        设置失败<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span>	
+</code></pre></div><div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 在服务器端代码中设置</span>
+<span class="token comment">// 一定要在绑定之前进行设置</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// lfd -&gt; 监听</span>
+    <span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置端口复用</span>
+    <span class="token keyword">int</span> val <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">setsockopt</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEADDR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>val<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 绑定</span>
+    <span class="token function">bind</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>addr<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 监听</span>
+    <span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 等待接受连接</span>
+    <span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>示例</code></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;ctype.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span></span>
+
+<span class="token comment">// server</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 创建监听的套接字</span>
+    <span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>lfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;socket error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 绑定</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> serv_addr<span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">9999</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">htonl</span><span class="token punctuation">(</span>INADDR_ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 本地多有的ＩＰ</span>
+    <span class="token comment">// 127.0.0.1</span>
+    <span class="token comment">// inet_pton(AF_INET, &quot;127.0.0.1&quot;, &amp;serv_addr.sin_addr.s_addr);</span>
+    
+    <span class="token comment">// 设置端口复用</span>
+    <span class="token keyword">int</span> opt <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">setsockopt</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEADDR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 绑定端口</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;bind error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 监听</span>
+    ret <span class="token operator">=</span> <span class="token function">listen</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;listen error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 阻塞等待连接请求，　并接受连接请求</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> clien_addr<span class="token punctuation">;</span>
+    socklen_t clien_len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>clien_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>clien_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clien_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;accetp error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">char</span> ipbuf<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;client iP: %s, port: %d\n&quot;</span><span class="token punctuation">,</span> <span class="token function">inet_ntop</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span><span class="token operator">&amp;</span>clien_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr<span class="token punctuation">,</span> ipbuf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>ipbuf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ntohs</span><span class="token punctuation">(</span>clien_addr<span class="token punctuation">.</span>sin_port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// read data</span>
+        <span class="token comment">// int len = read(cfd, buf, sizeof(buf));</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>cfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;recv error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;客户端已经断开连接。。。\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;read buf = %s\n&quot;</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 小写转大写</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            buf<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">toupper</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;after buf = %s\n&quot;</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 大写串发给客户端</span>
+        <span class="token comment">// write(cfd, buf, strlen(buf)+1);</span>
+        ret <span class="token operator">=</span> <span class="token function">send</span><span class="token punctuation">(</span>cfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;send error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>cfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>lfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_3-io多路转接"><a href="#_3-io多路转接" class="header-anchor">#</a> 3. IO多路转接</h2> <blockquote><p><strong>不再由应用程序自己监视客户端连接和数据通信，取而代之由内核替应用程序监视文件。</strong></p></blockquote> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	为什么要多进程或多线程处理并发?
+		- 套接字通信过程中有哪些阻塞函数?
+			- accept();
+				- 负责接受客户端的连接, 没有连接就阻塞
+				- 检测的是用于 [监听] 的文件描述符的 -&gt; 读缓冲区
+				
+			- read()/recv();
+				- 接收数据, 如果对方没有给发送数据, 阻塞
+				- 检测的是用于 [通信] 的文件描述符的 -&gt; 读缓冲区
+				
+			- write()/send();
+				- 发送数据, 如果缓冲区满了, 阻塞
+				- 检测的是用于 [通信] 的文件描述符的 -&gt; 写缓冲区
+				
+			- connect();	// 用于客户端
+				- 连接过程, 三次握手的过程中是阻塞的, 连接成功解除阻塞函数返回
+*/</span>
+
+<span class="token comment">// IO多路转接是怎么回事儿?</span>
+	<span class="token operator">-</span> 上述文件描述符对应的读<span class="token operator">/</span>写缓冲区的检测本来是需要在程序中由程序猿创建进程<span class="token operator">/</span>线程进行状态检测
+		<span class="token operator">-</span> 调用了accept
+		<span class="token operator">-</span> read<span class="token operator">/</span>write
+	<span class="token operator">-</span> 通过IO多路转接就可以将这些缓冲区的状态检测交给内核去处理
+		<span class="token operator">-</span> 内核检测到缓冲区的状态有变化<span class="token punctuation">,</span> 会通知我们的程序
+		<span class="token operator">-</span> 在程序中得到通知之后就可以进行处理了
+		<span class="token operator">-</span> 如何交给内核检测<span class="token operator">?</span>
+        	<span class="token operator">-</span> 体现在程序中就是使用了一些IO转接函数<span class="token punctuation">,</span> 这些函数的状态默认是阻塞的
+        		<span class="token operator">-</span> select
+        		<span class="token operator">-</span> poll
+        		<span class="token operator">-</span> epoll
+        	<span class="token operator">-</span> 阻塞是因为检测这些缓冲区需要时间
+        	<span class="token operator">-</span> 如果检测到缓冲区有状态变化<span class="token punctuation">,</span> 函数会解除阻塞
+</code></pre></div><h3 id="_3-1-select"><a href="#_3-1-select" class="header-anchor">#</a> 3.1 select</h3> <blockquote><p>主旨思想:</p> <ul><li><p>先构造一张有关文件描述符的列表, 将要监听的文件描述符添加到该表中</p></li> <li><p>调用一个函数,监听该表中的文件描述符,直到这些描述符表中的一个进行I/O操作时，该函数才返回。</p> <ul><li><p>该函数为阻塞函数</p></li> <li><p>函数对文件描述符的检测操作是由内核完成的</p></li></ul></li> <li><p>在返回时，它告诉进程有多少(哪些)描述符要进行I/O操作。</p></li></ul></blockquote> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	select的使用步骤:
+	1. 是需要完成服务器端程序
+	2. 需要有监听的文件描述符   ---&gt;  第一个文件描述符
+	3. 建立连接, 得到了通信的文件描述符  -----&gt; 第2-n个文件描述符
+	4. 在服务器程序运行之前, 将现有的文件描述符初始化到一个表中
+		- 读操作的表: 检测文件描述符的读缓冲区  -&gt; 读集合
+		- 写操作的表: 检测文件描述符的写缓冲区  -&gt; 写集合
+		- 异常表:     文件描述符在读写过程中出现了错误 -&gt; 异常集合
+	5. 将这三个集合传递给select函数, select函数是系统调用, 将数据传递到内核中
+		- 内核就知道要检测哪些文件描述符的状态, 开始检测
+		- 内核当检测到文件描述符的状态发生了变化, 会将信息写回到对应的三张表中
+	6. 我们程序中会得到新的三个集合, 通过这三个集合就可以判断哪些文件描述符状态发生了变化
+		- 发生变化之后去处理:
+			accept();   -&gt; 绝对不阻塞
+			read();		-&gt; 绝对不会
+			write();    -&gt; 绝对不会
+*/</span>
+</code></pre></div><div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 函数原型</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/time.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+
+<span class="token comment">// 表示一个时间段: sec+usec</span>
+<span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token punctuation">{</span>
+	time_t      tv_sec<span class="token punctuation">;</span>         <span class="token comment">/* seconds */</span>
+	suseconds_t tv_usec<span class="token punctuation">;</span>        <span class="token comment">/* microseconds */</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// fd_set 数据类型, sizeof(fd_set) = 128 byte == 1024 bit</span>
+<span class="token comment">// 参数 读, 写, 异常 都是传入传出参数</span>
+<span class="token keyword">int</span> <span class="token function">select</span><span class="token punctuation">(</span><span class="token keyword">int</span> nfds<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>readfds<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>writefds<span class="token punctuation">,</span>
+                  fd_set <span class="token operator">*</span>exceptfds<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token operator">*</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> nfds<span class="token operator">:</span> 内核区检测文件描述符遍历的范围<span class="token punctuation">,</span> 指定结束位置
+			<span class="token operator">-</span> 内核是以线性的方式遍历的<span class="token punctuation">,</span> 从开始 <span class="token operator">-&gt;</span> 结束
+			<span class="token operator">-</span> 结束位置 <span class="token operator">==</span> 检测的最大的文件描述符<span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> nfds<span class="token punctuation">)</span> <span class="token punctuation">(</span>nfds<span class="token operator">=</span>maxfd<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token operator">-</span> readfds<span class="token operator">:</span> 委托内核检测读缓冲区的所有文件描述符的集合
+			<span class="token operator">-</span> 使用的最多
+			<span class="token operator">-</span> 检测读缓冲区中有数据<span class="token punctuation">,</span> 内核给通知
+		<span class="token operator">-</span> writefds<span class="token operator">:</span> 委托内核检测写缓冲区的所有文件描述符的集合
+			<span class="token operator">-</span> 检测的是写缓冲区是不是可以写<span class="token punctuation">,</span> 不满就可以写
+				<span class="token operator">-</span> 缓冲区有空间就是满足条件<span class="token punctuation">,</span> 内核给通知
+		<span class="token operator">-</span> exceptfds<span class="token operator">:</span> 异常集合
+		<span class="token operator">-</span> timeout<span class="token operator">:</span> 函数阻塞的时长
+				<span class="token operator">-</span> <span class="token constant">NULL</span><span class="token operator">:</span> 表示一直阻塞<span class="token punctuation">,</span> 直到检测的三个集合中的文件描述符有状态变化的时候<span class="token punctuation">,</span> 解除阻塞
+	返回值<span class="token operator">:</span>
+       调用没有问题<span class="token operator">:</span> 发生状态变化的文件描述符的总个数
+       失败<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span>
+                                     
+<span class="token comment">// 将对应文件描述符初始到fd_set集合中</span>
+<span class="token comment">// 将参数fd对应的文件描述符从检测的集合中删除, 标志位1-&gt;0    </span>
+<span class="token keyword">void</span> <span class="token function">FD_CLR</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>set<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 判断文件描述符fd, 是不是在检测的集合 set中</span>
+<span class="token comment">// 如果在集合中, 返回1, 不在集合中返回0</span>
+<span class="token keyword">int</span>  <span class="token function">FD_ISSET</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>set<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 将参数fd对应的文件描述符设置到检测的集合中, 标志位0-&gt;1</span>
+<span class="token keyword">void</span> <span class="token function">FD_SET</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>set<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 将检测的集合中所有的标志位初始化为 0</span>
+<span class="token keyword">void</span> <span class="token function">FD_ZERO</span><span class="token punctuation">(</span>fd_set <span class="token operator">*</span>set<span class="token punctuation">)</span><span class="token punctuation">;</span>                                     
+</code></pre></div><center><img src="/assets/img/1558346304301.3cfd9dcb.png" alt="1558346304301" style="zoom:100%;"></center> <center><img src="/assets/img/1558346328481.f8aca4ef.png" alt="1558346328481" style="zoom:100%;"></center> <p><code>示例</code></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 1. 创建监听的fd</span>
+    <span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 2. 绑定</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> addr<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> INADDR_ANY<span class="token punctuation">;</span>
+    <span class="token function">bind</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 3. 设置监听</span>
+    <span class="token function">listen</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 将监听的fd的状态检测委托给内核检测</span>
+    <span class="token keyword">int</span> maxfd <span class="token operator">=</span> lfd<span class="token punctuation">;</span>
+    <span class="token comment">// 初始化检测的读集合</span>
+    fd_set rdset<span class="token punctuation">;</span>
+    fd_set rdtemp<span class="token punctuation">;</span>
+    <span class="token comment">// 清零</span>
+    <span class="token function">FD_ZERO</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>rdset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将监听的lfd设置到检测的读集合中</span>
+    <span class="token function">FD_SET</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 通过select委托内核检测读集合中的文件描述符状态, 检测read缓冲区有没有数据</span>
+    <span class="token comment">// 如果有数据, select解除阻塞返回</span>
+    <span class="token comment">// 应该持续检测</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 默认阻塞</span>
+        <span class="token comment">// rdset 中是委托内核检测的所有的文件描述符</span>
+        rdtemp <span class="token operator">=</span> rdset<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">select</span><span class="token punctuation">(</span>maxfd<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdtemp<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// rdset中的数据被内核改写了, 只保留了发生变化的文件描述的标志位上的1, 没变化的改为0</span>
+        <span class="token comment">// 只要rdset中的fd对应的标志位为1 -&gt; 缓冲区有数据了</span>
+        <span class="token comment">// 判断</span>
+        <span class="token comment">// 有没有新连接</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">FD_ISSET</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdtemp<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 接受连接请求, 这个调用不阻塞</span>
+            <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> cliaddr<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> cliLen <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>cliaddr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>cliaddr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cliLen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 得到了有效的文件描述符</span>
+            <span class="token comment">// 通信的文件描述符添加到读集合</span>
+            <span class="token comment">// 在下一轮select检测的时候, 就能得到缓冲区的状态</span>
+            <span class="token function">FD_SET</span><span class="token punctuation">(</span>cfd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 重置最大的文件描述符</span>
+            maxfd <span class="token operator">=</span> cfd <span class="token operator">&gt;</span> maxfd <span class="token operator">?</span> cfd <span class="token operator">:</span> maxfd<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 没有新连接, 通信</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>lfd<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>maxfd<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+
+            <span class="token comment">// 和客户端通信</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdtemp<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment">// 接收数据</span>
+                <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;客户端关闭了连接...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">// 将检测的文件描述符从读集合中删除</span>
+                    <span class="token function">FD_CLR</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rdset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">close</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token comment">// 收到了数据</span>
+                    <span class="token comment">// 发送数据</span>
+                    <span class="token function">write</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span>
+                <span class="token punctuation">{</span>
+                    <span class="token comment">// 异常</span>
+                    <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;read&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_3-2-poll"><a href="#_3-2-poll" class="header-anchor">#</a> 3.2 poll</h3> <ul><li><p>函数</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;poll.h&gt;</span></span>
+<span class="token comment">// 每个委托poll检测的fd都对应这样一个结构体</span>
+<span class="token keyword">struct</span> <span class="token class-name">pollfd</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span>   fd<span class="token punctuation">;</span>         <span class="token comment">/* 委托内核检测的文件描述符 */</span>
+	<span class="token keyword">short</span> events<span class="token punctuation">;</span>     <span class="token comment">/* 委托内核检测文件描述符的什么事件 */</span>
+	<span class="token keyword">short</span> revents<span class="token punctuation">;</span>    <span class="token comment">/* 文件描述符实际发生的事件 -&gt; 传出 */</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// events事件</span>
+	<span class="token operator">-</span> POLLIN 	<span class="token operator">-&gt;</span> 检测读
+	<span class="token operator">-</span> POLLOUT	<span class="token operator">-&gt;</span> 检测写
+
+<span class="token keyword">struct</span> <span class="token class-name">pollfd</span> myfd<span class="token punctuation">;</span>
+myfd<span class="token punctuation">.</span>fd <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+myfd<span class="token punctuation">.</span>events <span class="token operator">=</span> POLLIN <span class="token operator">|</span> POLLOUT<span class="token punctuation">;</span>	<span class="token comment">// 检测读写</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">pollfd</span> myfd<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">poll</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">pollfd</span> <span class="token operator">*</span>fds<span class="token punctuation">,</span> nfds_t nfds<span class="token punctuation">,</span> <span class="token keyword">int</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> fds<span class="token operator">:</span> 这是一个<span class="token keyword">struct</span> <span class="token class-name">pollfd</span>数组<span class="token punctuation">,</span> 这是一个要检测的文件描述符的集合
+		<span class="token operator">-</span> nfds<span class="token operator">:</span> 这是第一个参数数组中最后一个有效元素的下标 <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token operator">-</span> timeout<span class="token operator">:</span> 阻塞时长
+            <span class="token number">0</span><span class="token operator">:</span> 不阻塞
+                <span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span> 阻塞<span class="token punctuation">,</span> 检测的fd有变化解除阻塞
+            <span class="token operator">&gt;</span><span class="token number">0</span><span class="token operator">:</span> 阻塞时长<span class="token punctuation">,</span> 单位毫秒
+    返回值<span class="token operator">:</span>
+		<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span> 失败
+        <span class="token operator">&gt;</span><span class="token function">0</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">:</span> 检测的集合中有n个文件描述符发生状态变化
+</code></pre></div><center><img src="/assets/img/1558308141721.6f705a4e.png" alt="1558308141721" style="zoom:80%;"></center></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.37bf62ab.js" defer></script><script src="/assets/js/2.c467d517.js" defer></script><script src="/assets/js/30.3c772968.js" defer></script>
+  </body>
+</html>

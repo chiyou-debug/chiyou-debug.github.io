@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySQL | 蚩尤的秘密</title>
+    <meta name="description" content="蚩尤的秘密">
+    <link rel="icon" href="/img/timg.jpg">
+    
+    <link rel="preload" href="/assets/css/0.styles.6e3b32c4.css" as="style"><link rel="preload" href="/assets/js/app.37bf62ab.js" as="script"><link rel="preload" href="/assets/js/2.c467d517.js" as="script"><link rel="preload" href="/assets/js/38.e8b9ccee.js" as="script"><link rel="prefetch" href="/assets/js/10.b74e8693.js"><link rel="prefetch" href="/assets/js/11.9b1c315f.js"><link rel="prefetch" href="/assets/js/12.37377020.js"><link rel="prefetch" href="/assets/js/13.88919054.js"><link rel="prefetch" href="/assets/js/14.faf99f7a.js"><link rel="prefetch" href="/assets/js/15.72f587e0.js"><link rel="prefetch" href="/assets/js/16.7c046042.js"><link rel="prefetch" href="/assets/js/17.2b1bf4f9.js"><link rel="prefetch" href="/assets/js/18.2c53cbe5.js"><link rel="prefetch" href="/assets/js/19.18f5b8d3.js"><link rel="prefetch" href="/assets/js/20.def44f94.js"><link rel="prefetch" href="/assets/js/21.e460780c.js"><link rel="prefetch" href="/assets/js/22.1ac3e320.js"><link rel="prefetch" href="/assets/js/23.32b72d29.js"><link rel="prefetch" href="/assets/js/24.9ea65887.js"><link rel="prefetch" href="/assets/js/25.b236199a.js"><link rel="prefetch" href="/assets/js/26.19297566.js"><link rel="prefetch" href="/assets/js/27.63288b0d.js"><link rel="prefetch" href="/assets/js/28.9a686763.js"><link rel="prefetch" href="/assets/js/29.65e0b407.js"><link rel="prefetch" href="/assets/js/3.463ebeda.js"><link rel="prefetch" href="/assets/js/30.3c772968.js"><link rel="prefetch" href="/assets/js/31.b4b20bd6.js"><link rel="prefetch" href="/assets/js/32.94f27a89.js"><link rel="prefetch" href="/assets/js/33.8dc48efe.js"><link rel="prefetch" href="/assets/js/34.cbe369fa.js"><link rel="prefetch" href="/assets/js/35.30e2308f.js"><link rel="prefetch" href="/assets/js/36.950f9c58.js"><link rel="prefetch" href="/assets/js/37.f04e533c.js"><link rel="prefetch" href="/assets/js/39.055b4b00.js"><link rel="prefetch" href="/assets/js/4.dd472362.js"><link rel="prefetch" href="/assets/js/40.ca7edf6f.js"><link rel="prefetch" href="/assets/js/41.664e5b23.js"><link rel="prefetch" href="/assets/js/42.654878a2.js"><link rel="prefetch" href="/assets/js/43.9903edc6.js"><link rel="prefetch" href="/assets/js/44.fef042f6.js"><link rel="prefetch" href="/assets/js/45.f5e54dd5.js"><link rel="prefetch" href="/assets/js/46.39c53fbd.js"><link rel="prefetch" href="/assets/js/47.da2a4b4e.js"><link rel="prefetch" href="/assets/js/48.146c9c50.js"><link rel="prefetch" href="/assets/js/49.3ed30ae8.js"><link rel="prefetch" href="/assets/js/5.e9c9e5ea.js"><link rel="prefetch" href="/assets/js/50.625d6708.js"><link rel="prefetch" href="/assets/js/51.b9c85a13.js"><link rel="prefetch" href="/assets/js/52.a33b6442.js"><link rel="prefetch" href="/assets/js/53.3548d1f6.js"><link rel="prefetch" href="/assets/js/54.10ffb9ff.js"><link rel="prefetch" href="/assets/js/55.70b4492e.js"><link rel="prefetch" href="/assets/js/56.c93f8df2.js"><link rel="prefetch" href="/assets/js/57.ea4cdf31.js"><link rel="prefetch" href="/assets/js/58.07f04bb5.js"><link rel="prefetch" href="/assets/js/59.f18e22ae.js"><link rel="prefetch" href="/assets/js/6.9c7511e9.js"><link rel="prefetch" href="/assets/js/60.5f638311.js"><link rel="prefetch" href="/assets/js/61.f0f3f49b.js"><link rel="prefetch" href="/assets/js/62.81606653.js"><link rel="prefetch" href="/assets/js/63.2e306ee4.js"><link rel="prefetch" href="/assets/js/64.82ffab5d.js"><link rel="prefetch" href="/assets/js/65.1615cb2a.js"><link rel="prefetch" href="/assets/js/7.827ede19.js"><link rel="prefetch" href="/assets/js/8.5ba8b06f.js"><link rel="prefetch" href="/assets/js/9.79654ee8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6e3b32c4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/hacker.png" alt="蚩尤的秘密" class="logo"> <span class="site-name can-hide">蚩尤的秘密</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>MySQL</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Databases/4-%20mysql.html#_1-mysql函数的使用" class="sidebar-link">1.  mysql函数的使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_1-1-日期函数" class="sidebar-link">1.1 日期函数</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_1-2-字符串函数" class="sidebar-link">1.2 字符串函数</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_1-3-数学函数" class="sidebar-link">1.3 数学函数</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_1-4-日期转换" class="sidebar-link">1.4 日期转换</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_2-1-内连接-inner-join" class="sidebar-link">2.1 内连接 -- inner join</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_2-2-外连接-outer-join" class="sidebar-link">2.2 外连接 -- outer join</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_2-3-自连接" class="sidebar-link">2.3 自连接</a></li></ul></li><li><a href="/Databases/4-%20mysql.html#_3-表的约束" class="sidebar-link">3. 表的约束</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_3-1-约束种类" class="sidebar-link">3.1 约束种类</a></li><li class="sidebar-sub-header"><a href="/Databases/4-%20mysql.html#_3-2-约束的使用" class="sidebar-link">3.2 约束的使用</a></li></ul></li><li><a href="/Databases/4-%20mysql.html#_4-事务" class="sidebar-link">4. 事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Databases/4-%20mysql.html#_5-mysql-api" class="sidebar-link">5. mysql API</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mysql"><a href="#mysql" class="header-anchor">#</a> MySQL</h1> <h2 id="_1-mysql函数的使用"><a href="#_1-mysql函数的使用" class="header-anchor">#</a> 1.  mysql函数的使用</h2> <h3 id="_1-1-日期函数"><a href="#_1-1-日期函数" class="header-anchor">#</a> 1.1 日期函数</h3> <blockquote><p>MySQL里面时间分为三类：时间、日期、时间戳(含有时分秒的sysdate)。</p></blockquote> <p><img src="/assets/img/image-20191130180806388.6c6ef2b4.png" alt="image-20191130180806388"></p> <div class="language-mysql extra-class"><pre class="language-text"><code>-- 当前时间: now() == sysdate()
+mysql&gt; select sysdate() from dual;
++---------------------+
+| sysdate()           |
++---------------------+
+| 2019-12-02 09:03:42 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select now() from dual;
++---------------------+
+| now()               |
++---------------------+
+| 2019-12-02 09:04:35 |
++---------------------+
+1 row in set (0.00 sec)
+</code></pre></div><div class="language-mysql extra-class"><pre class="language-text"><code>-- addtime(time, s) 给当前时间, 添加对应的秒数
+select addtime('09:04:35',20) from dual; 
++------------------------+
+| addtime('09:04:35',20) |
++------------------------+
+| 09:04:55               |
++------------------------+
+
+-- 当前日期: 年, 月, 日
+mysql&gt; select current_date() from dual;
++----------------+
+| current_date() |
++----------------+
+| 2019-12-02     |
++----------------+
+1 row in set (0.00 sec)
+
+-- 当前时间: 时, 分, 秒
+mysql&gt; select current_time() from dual;    
++----------------+
+| current_time() |
++----------------+
+| 09:08:10       |
++----------------+
+1 row in set (0.00 sec)
+
+-- 时间戳
+mysql&gt; select current_timestamp() from dual;    
++---------------------+
+| current_timestamp() |
++---------------------+
+| 2019-12-02 09:09:47 |
++---------------------+
+1 row in set (0.00 sec)
+
+-- 将给定时间的日期取出
+select date(now()) from dual;                 
++-------------+
+| date(now()) |
++-------------+
+| 2019-12-02  |
++-------------+
+1 row in set (0.00 sec)
+
+-- date_add(), 第二个参数的type: 天: day, 月:month, 年: year
+mysql&gt; select date_add(now(), interval 1 day) from dual;               
++---------------------------------+
+| date_add(now(), interval 1 day) |
++---------------------------------+
+| 2019-12-03 09:14:57             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select date_add(now(), interval 1 month) from dual;   
++-----------------------------------+
+| date_add(now(), interval 1 month) |
++-----------------------------------+
+| 2020-01-02 09:15:27               |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select date_add(now(), interval 1 year) from dual;     
++----------------------------------+
+| date_add(now(), interval 1 year) |
++----------------------------------+
+| 2020-12-02 09:15:37              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+-- 计算两个日期的差值
+mysql&gt; select datediff('2019-12-01 09:18:06', '2019-1-02 09:18:06'); 
++-------------------------------------------------------+
+| datediff('2019-12-01 09:18:06', '2019-1-02 09:18:06') |
++-------------------------------------------------------+
+|                                                   333 |
++-------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select datediff('2018-12-01 09:18:06', '2019-1-02 09:18:06'); 
++-------------------------------------------------------+
+| datediff('2018-12-01 09:18:06', '2019-1-02 09:18:06') |
++-------------------------------------------------------+
+|                                                   -32 |
++-------------------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre></div><div class="language-mysql extra-class"><pre class="language-text"><code>-- 单独显示当前年, 月, 日
+select year(now()) &quot;年&quot;, month(now()) &quot;月&quot;, day(now()) &quot;日&quot; from dual;
+-- 单独显示当前日期, 时间, 时间戳
+-- 显示昨天, 今天, 明天
+select  date_sub(now(), interval 1 day), now(), date_add(now(), interval 1 day) from dual;
+</code></pre></div><h3 id="_1-2-字符串函数"><a href="#_1-2-字符串函数" class="header-anchor">#</a> 1.2 字符串函数</h3> <p><img src="/assets/img/image-20191130182700039.5c99be04.png" alt="image-20191130182700039"></p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 字符串连接</span>
+<span class="token comment">-- mydql中可以连接多个字符串, oracle中只能连接两个字符串</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> concat<span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot; world&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot; 你好,&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;世界&quot;</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------+</span>
+<span class="token operator">|</span> concat<span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot; world&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot; 你好,&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;世界&quot;</span><span class="token punctuation">)</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------+</span>
+<span class="token operator">|</span> hello world 你好<span class="token punctuation">,</span>世界                           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------+</span>
+
+<span class="token comment">-- 大小写转换</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token function">ucase</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">lcase</span><span class="token punctuation">(</span><span class="token string">&quot;WORLD&quot;</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token operator">|</span> <span class="token function">ucase</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">lcase</span><span class="token punctuation">(</span><span class="token string">&quot;WORLD&quot;</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token operator">|</span> HELLO          <span class="token operator">|</span> world          <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 字符串截取, 从左侧开始</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token keyword">left</span><span class="token punctuation">(</span><span class="token string">&quot;hello,world&quot;</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>                      
+<span class="token operator">+</span><span class="token comment">------------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">left</span><span class="token punctuation">(</span><span class="token string">&quot;hello,world&quot;</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------------+</span>
+<span class="token operator">|</span> hello                  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+
+<span class="token comment">-- 字符串比较</span>
+<span class="token comment">-- </span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;abc&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;bca&quot;</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token operator">|</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;abc&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;bca&quot;</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token operator">|</span>                   <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">|</span>  <span class="token comment">-- 小于</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;aaa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;aa&quot;</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>     
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;aaa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;aa&quot;</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token operator">|</span>                   <span class="token number">1</span> <span class="token operator">|</span>  <span class="token comment">-- 大于</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;aaa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;aaa&quot;</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token operator">|</span> strcmp<span class="token punctuation">(</span><span class="token string">&quot;aaa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;aaa&quot;</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token operator">|</span>                    <span class="token number">0</span> <span class="token operator">|</span>  <span class="token comment">-- 等于</span>
+<span class="token operator">+</span><span class="token comment">----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre></div><h3 id="_1-3-数学函数"><a href="#_1-3-数学函数" class="header-anchor">#</a> 1.3 数学函数</h3> <p><img src="/assets/img/image-20191130183602147.ba601575.png" alt="image-20191130183602147"></p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 向上取整</span>
+<span class="token comment">-- mysql</span>
+ceiling<span class="token punctuation">(</span>小数<span class="token punctuation">)</span>
+<span class="token comment">-- oracle</span>
+ceil<span class="token punctuation">(</span>小数<span class="token punctuation">)</span>
+
+<span class="token comment">-- 进制转换</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> conv<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span> 
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> conv<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> <span class="token number">64</span>                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+
+<span class="token comment">-- 保留指定的小数位数, 可以四舍五入</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token number">12.345</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token number">12.345</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token operator">|</span> <span class="token number">12.35</span>             <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 取集合中的最小值</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> least<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span> least<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span>                     <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 生成随机数</span>
+<span class="token comment">-- 生成的随机数范围: 0-1</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> rand<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> rand<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token number">0.8633374812671333</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre></div><h3 id="_1-4-日期转换"><a href="#_1-4-日期转换" class="header-anchor">#</a> 1.4 日期转换</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- oracle 日期格式: yyyy-mm-dd hh24:mi:ss 不区分大小写</span>
+to_char<span class="token punctuation">(</span><span class="token punctuation">)</span>  日期转字符串
+to_date<span class="token punctuation">(</span><span class="token punctuation">)</span>  字符串转日期
+
+<span class="token comment">-- mysql 日期格式: %Y-%m-%d %H:%i:%s    区分大小写</span>
+date_format<span class="token punctuation">(</span><span class="token punctuation">)</span> 日期转字符串
+str_to_date<span class="token punctuation">(</span><span class="token punctuation">)</span> 字符串转日期
+</code></pre></div><table><thead><tr><th></th> <th><strong>值</strong></th> <th><strong>含义</strong></th></tr></thead> <tbody><tr><td>秒</td> <td>%S、<code>%s</code></td> <td>两位数字形式的秒（ 00,01, ..., 59）</td></tr> <tr><td>分</td> <td><code>%i</code></td> <td>两位数字形式的分（ 00,01, ..., 59）</td></tr> <tr><td>小时</td> <td><code>%H</code></td> <td>24小时制，两位数形式小时（00,01, ...,23）</td></tr> <tr><td></td> <td>%h</td> <td>12小时制，两位数形式小时（00,01, ...,12）</td></tr> <tr><td></td> <td>%k</td> <td>24小时制，数形式小时（0,1, ...,23）</td></tr> <tr><td></td> <td>%l</td> <td>12小时制，数形式小时（0,1, ...,12）</td></tr> <tr><td></td> <td>%T</td> <td>24小时制，时间形式（HH:mm:ss）</td></tr> <tr><td></td> <td>%r</td> <td>12小时制，时间形式（hh:mm:ss AM 或 PM）</td></tr> <tr><td></td> <td>%p</td> <td>AM上午或PM下午</td></tr> <tr><td>周</td> <td>%W</td> <td>一周中每一天的名称（Sunday,Monday, ...,Saturday）</td></tr> <tr><td></td> <td>%a</td> <td>一周中每一天名称的缩写（Sun,Mon, ...,Sat）</td></tr> <tr><td></td> <td>%w</td> <td>以数字形式标识周（0=Sunday,1=Monday, ...,6=Saturday）</td></tr> <tr><td></td> <td>%U</td> <td>数字表示周数，星期天为周中第一天</td></tr> <tr><td></td> <td>%u</td> <td>数字表示周数，星期一为周中第一天</td></tr> <tr><td>天</td> <td><code>%d</code></td> <td>两位数字表示月中天数（01,02, ...,31）</td></tr> <tr><td></td> <td>%e</td> <td>数字表示月中天数（1,2, ...,31）</td></tr> <tr><td></td> <td>%D</td> <td>英文后缀表示月中天数（1st,2nd,3rd ...）</td></tr> <tr><td></td> <td>%j</td> <td>以三位数字表示年中天数（001,002, ...,366）</td></tr> <tr><td>月</td> <td>%M</td> <td>英文月名（January,February, ...,December）</td></tr> <tr><td></td> <td>%b</td> <td>英文缩写月名（Jan,Feb, ...,Dec）</td></tr> <tr><td></td> <td><code>%m</code></td> <td>两位数字表示月份（01,02, ...,12）</td></tr> <tr><td></td> <td>%c</td> <td>数字表示月份（1,2, ...,12）</td></tr> <tr><td>年</td> <td><code>%Y</code></td> <td>四位数字表示的年份（2015,2016...）</td></tr> <tr><td></td> <td>%y</td> <td>两位数字表示的年份（15,16...）</td></tr> <tr><td>文字输出</td> <td>%文字</td> <td>直接输出文字内容</td></tr></tbody></table> <ul><li><p>date类型装换为varchar类型</p> <div class="language-mysql extra-class"><pre class="language-text"><code>-- date_format(日期, fmt)
+
+mysql&gt; select date_format(now(), '%Y/%m/%d %H:%i:%s') from dual;   
++-----------------------------------------+
+| date_format(now(), '%Y/%m/%d %H:%i:%s') |
++-----------------------------------------+
+| 2019/12/02 10:07:37                     |
++-----------------------------------------+
+</code></pre></div></li> <li><p>varchar类型转换为date类型</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 参数fmt的个数应该和日期字符串的形式一致</span>
+<span class="token comment">-- str_to_date(日期字符串, fmt)</span>
+</code></pre></div></li></ul> <p>mysql&gt; select str_to_date(&quot;2019/12/02 10:07:37&quot;, &quot;%Y/%m/%d %H:%i:%s&quot;) from dual;<br>
++---------------------------------------------------------+
+| str_to_date(&quot;2019/12/02 10:07:37&quot;, &quot;%Y/%m/%d %H:%i:%s&quot;) |
++---------------------------------------------------------+
+| 2019-12-02 10:07:37                                     |
++---------------------------------------------------------+
+1 row in set (0.00 sec)</p> <div class="language- extra-class"><pre class="language-text"><code>
+
+
+## 2. 多表查询
+
+```sql
+-- 分组函数
+count(); 	-- 求总数
+avg();		-- 求平均值
+sum(); 	  	-- 求和
+min(); 	  	-- 最小值
+max();     	-- 最大值
+
+-- having 必须出现在group by 后边, 不能写where
+-- where 写在 from 的后边
+-- order by: 默认升序 asc, 降序 desc
+select 列名|表达式 as &quot;别名&quot; from 表名 &quot;表的别名&quot; where 表达式 group by 列名 having 条件 order by asc | desc
+</code></pre></div><div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 求两个表的笛卡尔积 cross join</span>
+<span class="token comment">-- 最简单的两个表查询</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> dept<span class="token punctuation">,</span> emp<span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> dept <span class="token keyword">cross</span> <span class="token keyword">join</span> emp<span class="token punctuation">;</span>
+</code></pre></div><h3 id="_2-1-内连接-inner-join"><a href="#_2-1-内连接-inner-join" class="header-anchor">#</a> 2.1 内连接 -- inner join</h3> <blockquote><p>显示部门名称, 部门编号, 员工编号,和员工姓名</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- mysql+oracle</span>
+<span class="token keyword">select</span> d<span class="token punctuation">.</span>deptno<span class="token punctuation">,</span> d<span class="token punctuation">.</span>dname<span class="token punctuation">,</span> e<span class="token punctuation">.</span>empno<span class="token punctuation">,</span> e<span class="token punctuation">.</span>ename <span class="token keyword">from</span> dept d<span class="token punctuation">,</span> emp e <span class="token keyword">where</span> d<span class="token punctuation">.</span>deptno<span class="token operator">=</span>e<span class="token punctuation">.</span>deptno<span class="token punctuation">;</span>
+
+<span class="token comment">-- mysql+oracle</span>
+<span class="token comment">-- 将表之间的逗号替换为 inner join --&gt; 简写为 join</span>
+<span class="token comment">-- 将 where 替换为 on</span>
+<span class="token keyword">select</span> d<span class="token punctuation">.</span>deptno<span class="token punctuation">,</span> d<span class="token punctuation">.</span>dname<span class="token punctuation">,</span> e<span class="token punctuation">.</span>empno<span class="token punctuation">,</span> e<span class="token punctuation">.</span>ename <span class="token keyword">from</span> dept d  <span class="token keyword">join</span> emp e <span class="token keyword">on</span> d<span class="token punctuation">.</span>deptno<span class="token operator">=</span>e<span class="token punctuation">.</span>deptno<span class="token punctuation">;</span>
+</code></pre></div><h3 id="_2-2-外连接-outer-join"><a href="#_2-2-外连接-outer-join" class="header-anchor">#</a> 2.2 外连接 -- outer join</h3> <blockquote><p>外连接: 在多表查询的时候, 要通过where进行过滤, 有些表中的字段值不满足条件, 被过滤掉了, 不会显示在最终的结果集中, 必须使用外连接的方式, 才能够使其显示在结果集中.</p></blockquote> <blockquote><p>按部门统计员工人数，显示如下信息：部门号，部门名称，人数(所有部门的人数都统计)</p></blockquote> <ul><li><p>左外连接 -- left outer join</p> <div class="language-mysql extra-class"><pre class="language-text"><code>-- oracle
+select d.deptno, d.dname, count(e.empno) from dept d, emp e where d.deptno=e.deptno(+) group by d.deptno, d.dname;
+
+-- mysql + oracle
+-- 表之间的逗号替换为:   left outer join -&gt; outer 可以省略 -&gt; left join
+-- where -&gt; on
+select d.deptno, d.dname, count(e.empno) from dept d left outer join emp e on d.deptno=e.deptno group by d.deptno, d.dname;
+</code></pre></div></li> <li><p>右外连接 -- right outer join</p> <div class="language-mysql extra-class"><pre class="language-text"><code>-- oracle
+select d.deptno, d.dname, count(e.empno) from dept d, emp e where e.deptno(+)=d.deptno group by d.deptno, d.dname;
+
+-- mysql + oracle
+-- 表之间的逗号替换为:   right outer join -&gt; outer 可以省略 -&gt; right join
+-- where -&gt; on
+select d.deptno, d.dname, count(e.empno) from emp e right join dept d on e.deptno=d.deptno group by d.deptno, d.dname;
+</code></pre></div></li> <li><p>全外连接 -- full outer join</p> <blockquote><p>在多表查询的时候, 要通过where进行过滤, 有些表中的字段值不满足条件, 被过滤掉了, 不会显示在最终的结果集中,  不知道哪个表的字段不满足条件或者是左侧不满足条件或右侧表不满足条件, 需要将这些不满足条件的数据全部显示到结果集中, 可以使用全外连接.</p> <ul><li>两个表互相补充</li></ul></blockquote> <div class="language-mysql extra-class"><pre class="language-text"><code>-- 在mysql中不支持全外连接, oracle中是支持的
+
+-- full outer join -&gt; 简写: full join
+-- 有可能emp表给dept提供补充, 也有可能dept给emp提供补充
+select d.deptno, d.dname, count(e.empno) from emp e full join dept d on e.deptno=d.deptno group by d.deptno, d.dname;
+</code></pre></div></li></ul> <h3 id="_2-3-自连接"><a href="#_2-3-自连接" class="header-anchor">#</a> 2.3 自连接</h3> <blockquote><p>查询员工、老板信息，显示: xxx的老板是xxx</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- oracle</span>
+<span class="token keyword">select</span> e<span class="token punctuation">.</span>ename <span class="token string">&quot;员工&quot;</span><span class="token punctuation">,</span> nvl<span class="token punctuation">(</span>b<span class="token punctuation">.</span>ename<span class="token punctuation">,</span> <span class="token string">'jump'</span><span class="token punctuation">)</span> <span class="token string">&quot;领导&quot;</span>  <span class="token keyword">from</span> emp e<span class="token punctuation">,</span> emp b <span class="token keyword">where</span> e<span class="token punctuation">.</span>mgr<span class="token operator">=</span>b<span class="token punctuation">.</span>empno<span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">-- mysql</span>
+<span class="token comment">-- mysql 中的ifnull 等价于 oracle 中的 nvl</span>
+<span class="token keyword">select</span> e<span class="token punctuation">.</span>ename <span class="token string">&quot;员工&quot;</span><span class="token punctuation">,</span> ifnull<span class="token punctuation">(</span>b<span class="token punctuation">.</span>ename<span class="token punctuation">,</span> <span class="token string">'jump'</span><span class="token punctuation">)</span> <span class="token string">&quot;领导&quot;</span>  <span class="token keyword">from</span> emp e <span class="token keyword">left</span> <span class="token keyword">join</span> emp b <span class="token keyword">on</span> e<span class="token punctuation">.</span>mgr<span class="token operator">=</span>b<span class="token punctuation">.</span>empno<span class="token punctuation">;</span> 
+</code></pre></div><h2 id="_3-表的约束"><a href="#_3-表的约束" class="header-anchor">#</a> 3. 表的约束</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">(</span>
+    列名 列的类型 <span class="token keyword">default</span> 默认值<span class="token punctuation">,</span>
+    列名 列的类型<span class="token punctuation">,</span>
+    列名 列的类型
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_3-1-约束种类"><a href="#_3-1-约束种类" class="header-anchor">#</a> 3.1 约束种类</h3> <p>mysql中常用的约束有五种:</p> <ul><li>主键约束　		 <strong>primary key</strong> <ul><li>非空 + 唯一</li></ul></li> <li>主键自动增长　<strong>auto_increment</strong> <ul><li>给主键用的, 只有列是主键才能加这个约束</li> <li>主键是数字的时候使用</li></ul></li> <li>唯一约束　        <strong>unique</strong></li> <li>非空约束　        <strong>not null</strong></li> <li>外键约束　        <strong>foreign key</strong></li> <li><font color="gray">检查约束 check  (在MySQL中语法保留，但没有效果)</font></li></ul> <h3 id="_3-2-约束的使用"><a href="#_3-2-约束的使用" class="header-anchor">#</a> 3.2 约束的使用</h3> <div class="language-mysql extra-class"><pre class="language-text"><code>create table persion(
+    id int,			-- 主键, 自动增长
+    age int,			-- 非空
+    name varchar(20),	-- 唯一
+    deptno int		-- 外键
+);
+</code></pre></div><ul><li><p>表级别的约束</p> <div class="language-mysql extra-class"><pre class="language-text"><code>-- auto_increment只能放到列的位置
+-- not null 非空只能在列上添加约束
+create table persion(
+    id int auto_increment,			-- 主键, 自动增长
+    age int not null,				-- 非空
+    name varchar(20),				-- 唯一
+    deptno int,						-- 外键
+    constraint pk_id_xxx primary key(id) ,
+    constraint un_name_xxx unique(name),
+    constraint fk_deptno_xx foreign key(deptno) references dept(deptno)
+);
+</code></pre></div></li> <li><p>列级别的约束</p> <div class="language-mysql extra-class"><pre class="language-text"><code>create table persion1(
+    id int primary key auto_increment,			-- 主键, 自动增长
+    age int not null,			-- 非空
+    name varchar(20) unique,	-- 唯一
+    deptno int references dept(deptno)	-- 外键
+);
+</code></pre></div></li></ul> <h2 id="_4-事务"><a href="#_4-事务" class="header-anchor">#</a> 4. 事务</h2> <blockquote><p>在mysql中事务默认是自动提交的，oracle中默认是手动提交的。</p> <ul><li>原子性</li> <li>一致性</li> <li>隔离性</li> <li>永久性</li></ul></blockquote> <div class="language-mysql extra-class"><pre class="language-text"><code>-- 修改事务提交方式
+
+-- 手动提交
+mysql&gt; set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 提交数据
+mysql&gt; commit;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 数据回滚
+mysql&gt; rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+-- 自动提交
+mysql&gt; set autocommit=1;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre></div><h2 id="_5-mysql-api"><a href="#_5-mysql-api" class="header-anchor">#</a> 5. mysql API</h2> <blockquote><ol><li>初始化连接环境</li> <li>连接mysql的服务器</li> <li>执行sql语句
+<ul><li>查询</li> <li>插入</li> <li>更新</li> <li>删除</li> <li>创建/删除/修改数据库表</li></ul></li> <li>如果是插入/删除/修改数据等操作只能看到状态
+<ul><li>成功</li> <li>失败</li></ul></li> <li>如果sql语句是查询, 得到结果集</li> <li>遍历结果集</li> <li>释放资源</li></ol></blockquote> <ul><li><p>初始化连接环境</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 参数: NULL</span>
+<span class="token comment">// 返回值: 返回函数申请的内存的地址</span>
+MYSQL <span class="token operator">*</span><span class="token function">mysql_init</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span> 
+</code></pre></div></li> <li><p>连接mysql服务器</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 返回值: 失败-&gt; NULL, 成功了-&gt; 返回值和第一个参数的地址相同</span>
+MYSQL <span class="token operator">*</span><span class="token function">mysql_real_connect</span><span class="token punctuation">(</span>
+         MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">,</span> 				<span class="token comment">// mysql_init函数的返回值</span>
+		 <span class="token comment">// 本地: localhost, 远程连接:192.168.xx.xx;</span>
+         <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>host<span class="token punctuation">,</span>     		<span class="token comment">// mysql服务器地址, IP/主机名      </span>
+         <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>user<span class="token punctuation">,</span>     		<span class="token comment">// mysql数据用户名, root       </span>
+         <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>passwd<span class="token punctuation">,</span>   		<span class="token comment">// root用户的密码</span>
+         <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>db<span class="token punctuation">,</span>       		<span class="token comment">// 数据库的名字       </span>
+		 <span class="token comment">// 如果port==0, 使用默认端口, !=0是使用指定的端口</span>
+         <span class="token keyword">unsigned</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span>    		<span class="token comment">// 数据库的端口, 默认3306    </span>
+         <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>unix_socket<span class="token punctuation">,</span>   <span class="token comment">// NULL  </span>
+         <span class="token keyword">unsigned</span> <span class="token keyword">long</span> client_flag  <span class="token comment">// 0</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>执行sql语句</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 添删查改的sql语句都是可以执行的</span>
+<span class="token comment">// 参数:</span>
+<span class="token comment">// 		mysql: mysql_real_connect()函数的返回值</span>
+<span class="token comment">//      query: sql语句, 语句的结尾不要加 ;</span>
+<span class="token comment">// 返回值: 成功-&gt; 0, 失败-&gt;非0</span>
+<span class="token keyword">int</span> <span class="token function">mysql_query</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>获取结果集</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 将结果集保存到本地内存中</span>
+<span class="token comment">// 返回值: 错误-&gt;null, 成功-&gt;非空</span>
+<span class="token comment">// 参数 mysql: mysql_real_connect() 返回值</span>
+<span class="token comment">// 结果集中保存了多条记录, 每条记录中有若干个字段</span>
+MYSQL_RES <span class="token operator">*</span><span class="token function">mysql_store_result</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>得到结果集的列数</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">mysql_num_fields</span><span class="token punctuation">(</span>MYSQL_RES <span class="token operator">*</span>result<span class="token punctuation">)</span>
+</code></pre></div></li> <li><p>获取表头 -&gt; 列名(字段名)</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// mysql.h</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">st_mysql_field</span> <span class="token punctuation">{</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span>                 <span class="token comment">/* Name of column */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>org_name<span class="token punctuation">;</span>             <span class="token comment">/* Original column name, if an alias */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>table<span class="token punctuation">;</span>                <span class="token comment">/* Table of column if column was a field */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>org_table<span class="token punctuation">;</span>            <span class="token comment">/* Org table name, if table was an alias */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>db<span class="token punctuation">;</span>                   <span class="token comment">/* Database for table */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>catalog<span class="token punctuation">;</span>          	  <span class="token comment">/* Catalog for table */</span>
+  <span class="token keyword">char</span> <span class="token operator">*</span>def<span class="token punctuation">;</span>                  <span class="token comment">/* Default value (set by mysql_list_fields) */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">long</span> length<span class="token punctuation">;</span>       <span class="token comment">/* Width of column (create length) */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">long</span> max_length<span class="token punctuation">;</span>   <span class="token comment">/* Max width for selected set */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> name_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> org_name_length<span class="token punctuation">;</span>                                                                                        
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> table_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> org_table_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> db_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> catalog_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> def_length<span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> flags<span class="token punctuation">;</span>         <span class="token comment">/* Div flags */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> decimals<span class="token punctuation">;</span>      <span class="token comment">/* Number of decimals in field */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> charsetnr<span class="token punctuation">;</span>     <span class="token comment">/* Character set */</span>
+  <span class="token keyword">enum</span> <span class="token class-name">enum_field_types</span> type<span class="token punctuation">;</span> <span class="token comment">/* Type of field. See mysql_com.h for types */</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>extension<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> MYSQL_FIELD<span class="token punctuation">;</span>
+
+<span class="token comment">// 返回值 中保存了所有的字段名, 返回值是一个数组</span>
+MYSQL_FIELD <span class="token operator">*</span><span class="token function">mysql_fetch_fields</span><span class="token punctuation">(</span>MYSQL_RES <span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+MYSQL_FIELD <span class="token operator">*</span>fieds <span class="token operator">=</span> <span class="token function">mysql_fetch_fields</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    fieds<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name
+<span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>遍历结果集</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> MYSQL_ROW<span class="token punctuation">;</span>
+<span class="token comment">// 函数每调用一次, 从结果集中取出一条记录(行)</span>
+<span class="token comment">// 参数: 结果集, mysql_store_result()返回值</span>
+<span class="token comment">// 返回值: char* row[], char**执向一个指针数组, 数组中的每一个元素都是一个字符串, 字符串就是字段值</span>
+<span class="token comment">//        不管字段原来是什么类型, 结果集中都是以字符串形式保存的</span>
+<span class="token comment">// 如果还有下一行返回非空, 没有下一行, 或者失败了返回NULL</span>
+MYSQL_ROW <span class="token function">mysql_fetch_row</span><span class="token punctuation">(</span>MYSQL_RES <span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>资源回收</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 参数是 mysql_store_result() 函数的返回值</span>
+<span class="token keyword">void</span> <span class="token function">mysql_free_result</span><span class="token punctuation">(</span>MYSQL_RES <span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数是: mysql_init() 函数的返回值</span>
+<span class="token keyword">void</span> <span class="token function">mysql_close</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>字符编码</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 获取字节编码</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">mysql_character_set_name</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 设置字节编码</span>
+<span class="token comment">// csname: 编码的名字, utf8</span>
+<span class="token keyword">int</span> <span class="token function">mysql_set_character_set</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>csname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>事务操作</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// mode==0 -&gt; 手动提交, mode1 -&gt; 自动提交事务</span>
+my_bool <span class="token function">mysql_autocommit</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">,</span> my_bool mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+my_bool <span class="token function">mysql_commit</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+my_bool <span class="token function">mysql_rollback</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>打印错误信息</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 返回错误的描述</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">mysql_error</span><span class="token punctuation">(</span>MYSQL <span class="token operator">*</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 返回错误的编号</span>
+</code></pre></div></li></ul> <p>unsigned int mysql_errno(MYSQL *mysql);</p> <div class="language- extra-class"><pre class="language-text"><code>
+
+
+
+
+- 需要的头文件
+
+```c
+#include &lt;mysql.h&gt;
+
+// 动态库名: libmysqlclient.so
+// 静态库名: libmysqlclient.a
+</code></pre></div><ul><li><p>搜索文件</p> <div class="language-shell extra-class"><pre class="language-text"><code>$ find 路径 -name 文件名
+$ locate 文件名
+
+
+## centos
+## 切换到root下安装
+$ yum install mlocate
+$ updatedb    ## 只需要做一次, 安装完成之后做
+</code></pre></div><p><code>test_mysql.c</code></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;mysql.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 1. 初始化环境</span>
+    MYSQL<span class="token operator">*</span> mysql <span class="token operator">=</span> <span class="token function">mysql_init</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>mysql <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;mysql_init() faild\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 2. 连接服务器</span>
+    mysql <span class="token operator">=</span> <span class="token function">mysql_real_connect</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;192.168.237.99&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;root&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;root&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;scott&quot;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>mysql <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;mysql_real_connect() faild\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;服务器连接成功...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;字符编码: %s\n&quot;</span><span class="token punctuation">,</span> <span class="token function">mysql_character_set_name</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置编码为utf8</span>
+    <span class="token function">mysql_set_character_set</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;utf8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;字符编码: %s\n&quot;</span><span class="token punctuation">,</span> <span class="token function">mysql_character_set_name</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 3. 执行sql语句 -&gt; select</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">mysql_query</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;select * from emp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;mysql_query(slect) faild: %s\n&quot;</span><span class="token punctuation">,</span> <span class="token function">mysql_error</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 4. 将结果集保存到本地</span>
+    MYSQL_RES<span class="token operator">*</span> res <span class="token operator">=</span> <span class="token function">mysql_store_result</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 5. 或取列数</span>
+    <span class="token keyword">int</span> colNum <span class="token operator">=</span> <span class="token function">mysql_num_fields</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 6. 根据列数打印列的名字</span>
+    MYSQL_FIELD <span class="token operator">*</span> fields <span class="token operator">=</span> <span class="token function">mysql_fetch_fields</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>colNum<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\t&quot;</span><span class="token punctuation">,</span> fields<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 7. 遍历结果集中的每一行</span>
+    MYSQL_ROW row<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span> <span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token function">mysql_fetch_row</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 将当前行的字段(列)值取出</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>colNum<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\t&quot;</span><span class="token punctuation">,</span> row<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 释放结果集</span>
+    <span class="token function">mysql_free_result</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 设置事务为手动提交</span>
+    <span class="token function">mysql_autocommit</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 插入数据</span>
+    <span class="token keyword">int</span> fl1 <span class="token operator">=</span> <span class="token function">mysql_query</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;insert into dept values(13, '张三', 'china')&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> fl3 <span class="token operator">=</span> <span class="token function">mysql_query</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;insert into dept values(14, '张三feng', 'china')&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 更新数据</span>
+    <span class="token keyword">int</span> fl2 <span class="token operator">=</span> <span class="token function">mysql_query</span><span class="token punctuation">(</span>mysql<span class="token punctuation">,</span> <span class="token string">&quot;update dept set dname='韩梅梅' where loc='china'&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>fl1 <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>fl2 <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>fl3<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 提交事务</span>
+        <span class="token function">mysql_commit</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 事务回滚</span>
+        <span class="token function">mysql_rollback</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 最后: 释放资源</span>
+    <span class="token function">mysql_close</span><span class="token punctuation">(</span>mysql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>mysql和oracle区别</p> <ul><li><p>结构不同</p> <ul><li>msyql 基于数据库
+<ul><li>表存储在数据库中</li></ul></li> <li>oracle 基于用户的
+<ul><li>表属于用户</li></ul></li></ul></li> <li><p>mysql没有表空间, oracle有表空间</p></li> <li><p>管理员</p> <ul><li>mysql
+<ul><li>root</li></ul></li> <li>oralce
+<ul><li>sys -&gt; 管理员, 身份 sysdba</li> <li>system -&gt; 管理员, 登录的时候需要使用normal身份登录</li> <li>其他的普通用户</li></ul></li></ul></li> <li><p>事务</p> <ul><li><p>oracle默认手动提交</p> <ul><li>occi接口 (C++接口), 这个接口中是自动提交事务的</li></ul></li> <li><p>mysql中默认是自动提交</p></li></ul></li> <li><p>sql语句</p> <ul><li>外连接</li> <li>oralce中可以使用 (+)
+<ul><li>mysql中必须使用 , 不支持(+)
+<ul><li>right outer join   -&gt; oracle也支持这种写法</li> <li>left outer join</li></ul></li> <li>mysql不支持全外连接, oracle支持的
+<ul><li>full outer join</li></ul></li></ul></li></ul></li> <li><p>函数:</p> <ul><li>nvl -&gt; oralce</li></ul></li> <li><p>ifnull -&gt; mysql</p> <ul><li>日期</li> <li>字符串</li> <li>数学函数</li></ul></li> <li><p>建表的时候的约束指定</p> <ul><li>都有:</li> <li>主键 -&gt; primary key
+<ul><li>非空: not null</li> <li>唯一性: unique</li> <li>外键约束: foreign key</li></ul></li> <li>不同:
+<ul><li>oralce:
+<ul><li>check, 在mysql中也有, 但是不起作用</li></ul></li> <li>mysql
+<ul><li>主键自动增长:  auto_increment
+<ul><li>需要和主键约束一起使用</li></ul></li></ul></li></ul></li></ul></li> <li><p>删除表</p> <ul><li>oracle</li> <li>drop talbe 表名 purge;</li> <li>msyql
+<ul><li>drop talbe 表名; --&gt; 不能使用 purge</li></ul></li></ul></li> <li><p>字段的修改</p> <ul><li><p>oralce</p> <ul><li><p>列的添加</p> <div class="language-sql extra-class"><pre class="language-sql"><code></code></pre></div></li></ul> <p>alter table 表名 add 列名 列的属性;
+alter table 表名 modify 列名 列的属性;</p> <div class="language- extra-class"><pre class="language-text"><code>
+</code></pre></div></li> <li><p>mysql</p> <ul><li><p>列的添加修改</p> <div class="language-sql extra-class"><pre class="language-sql"><code></code></pre></div></li></ul> <p>alter table 表名 add column 列名 列的属性;
+alter table 表名 modify column 列名 列的属性;</p> <div class="language- extra-class"><pre class="language-text"><code>
+</code></pre></div></li></ul></li></ul></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.37bf62ab.js" defer></script><script src="/assets/js/2.c467d517.js" defer></script><script src="/assets/js/38.e8b9ccee.js" defer></script>
+  </body>
+</html>

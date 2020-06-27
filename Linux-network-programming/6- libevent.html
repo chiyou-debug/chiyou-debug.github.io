@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>libevent | 蚩尤的秘密</title>
+    <meta name="description" content="蚩尤的秘密">
+    <link rel="icon" href="/img/timg.jpg">
+    
+    <link rel="preload" href="/assets/css/0.styles.6e3b32c4.css" as="style"><link rel="preload" href="/assets/js/app.37bf62ab.js" as="script"><link rel="preload" href="/assets/js/2.c467d517.js" as="script"><link rel="preload" href="/assets/js/40.ca7edf6f.js" as="script"><link rel="prefetch" href="/assets/js/10.b74e8693.js"><link rel="prefetch" href="/assets/js/11.9b1c315f.js"><link rel="prefetch" href="/assets/js/12.37377020.js"><link rel="prefetch" href="/assets/js/13.88919054.js"><link rel="prefetch" href="/assets/js/14.faf99f7a.js"><link rel="prefetch" href="/assets/js/15.72f587e0.js"><link rel="prefetch" href="/assets/js/16.7c046042.js"><link rel="prefetch" href="/assets/js/17.2b1bf4f9.js"><link rel="prefetch" href="/assets/js/18.2c53cbe5.js"><link rel="prefetch" href="/assets/js/19.18f5b8d3.js"><link rel="prefetch" href="/assets/js/20.def44f94.js"><link rel="prefetch" href="/assets/js/21.e460780c.js"><link rel="prefetch" href="/assets/js/22.1ac3e320.js"><link rel="prefetch" href="/assets/js/23.32b72d29.js"><link rel="prefetch" href="/assets/js/24.9ea65887.js"><link rel="prefetch" href="/assets/js/25.b236199a.js"><link rel="prefetch" href="/assets/js/26.19297566.js"><link rel="prefetch" href="/assets/js/27.63288b0d.js"><link rel="prefetch" href="/assets/js/28.9a686763.js"><link rel="prefetch" href="/assets/js/29.65e0b407.js"><link rel="prefetch" href="/assets/js/3.463ebeda.js"><link rel="prefetch" href="/assets/js/30.3c772968.js"><link rel="prefetch" href="/assets/js/31.b4b20bd6.js"><link rel="prefetch" href="/assets/js/32.94f27a89.js"><link rel="prefetch" href="/assets/js/33.8dc48efe.js"><link rel="prefetch" href="/assets/js/34.cbe369fa.js"><link rel="prefetch" href="/assets/js/35.30e2308f.js"><link rel="prefetch" href="/assets/js/36.950f9c58.js"><link rel="prefetch" href="/assets/js/37.f04e533c.js"><link rel="prefetch" href="/assets/js/38.e8b9ccee.js"><link rel="prefetch" href="/assets/js/39.055b4b00.js"><link rel="prefetch" href="/assets/js/4.dd472362.js"><link rel="prefetch" href="/assets/js/41.664e5b23.js"><link rel="prefetch" href="/assets/js/42.654878a2.js"><link rel="prefetch" href="/assets/js/43.9903edc6.js"><link rel="prefetch" href="/assets/js/44.fef042f6.js"><link rel="prefetch" href="/assets/js/45.f5e54dd5.js"><link rel="prefetch" href="/assets/js/46.39c53fbd.js"><link rel="prefetch" href="/assets/js/47.da2a4b4e.js"><link rel="prefetch" href="/assets/js/48.146c9c50.js"><link rel="prefetch" href="/assets/js/49.3ed30ae8.js"><link rel="prefetch" href="/assets/js/5.e9c9e5ea.js"><link rel="prefetch" href="/assets/js/50.625d6708.js"><link rel="prefetch" href="/assets/js/51.b9c85a13.js"><link rel="prefetch" href="/assets/js/52.a33b6442.js"><link rel="prefetch" href="/assets/js/53.3548d1f6.js"><link rel="prefetch" href="/assets/js/54.10ffb9ff.js"><link rel="prefetch" href="/assets/js/55.70b4492e.js"><link rel="prefetch" href="/assets/js/56.c93f8df2.js"><link rel="prefetch" href="/assets/js/57.ea4cdf31.js"><link rel="prefetch" href="/assets/js/58.07f04bb5.js"><link rel="prefetch" href="/assets/js/59.f18e22ae.js"><link rel="prefetch" href="/assets/js/6.9c7511e9.js"><link rel="prefetch" href="/assets/js/60.5f638311.js"><link rel="prefetch" href="/assets/js/61.f0f3f49b.js"><link rel="prefetch" href="/assets/js/62.81606653.js"><link rel="prefetch" href="/assets/js/63.2e306ee4.js"><link rel="prefetch" href="/assets/js/64.82ffab5d.js"><link rel="prefetch" href="/assets/js/65.1615cb2a.js"><link rel="prefetch" href="/assets/js/7.827ede19.js"><link rel="prefetch" href="/assets/js/8.5ba8b06f.js"><link rel="prefetch" href="/assets/js/9.79654ee8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6e3b32c4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/hacker.png" alt="蚩尤的秘密" class="logo"> <span class="site-name can-hide">蚩尤的秘密</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="/c_basics/C基础.html" class="nav-link">C基础</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C提高" class="dropdown-title"><span class="title">C提高</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c_enhance/1- C标准与内存分区.html" class="nav-link">1- C标准与内存分区</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/2- 函数调用模型&amp;&amp;指针强化.html" class="nav-link">2- 函数调用模型&amp;&amp;指针强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/3- 位运算&amp;&amp;数组&amp;&amp;结构体强化.html" class="nav-link">3- 位运算&amp;&amp;数组&amp;&amp;结构体强化</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/4- 文件操作.html" class="nav-link">4- 文件操作</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/5- 链表&amp;&amp;函数指针.html" class="nav-link">5- 链表&amp;&amp;函数指针</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/6- 预处理&amp;&amp;库的封装和使用.html" class="nav-link">6- 预处理&amp;&amp;库的封装和使用</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/7- 递归函数&amp;&amp;面向接口编程.html" class="nav-link">7- 递归函数&amp;&amp;面向接口编程</a></li><li class="dropdown-item"><!----> <a href="/c_enhance/8- 数据结构.html" class="nav-link">8- 数据结构</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="C++" class="dropdown-title"><span class="title">C++</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/c++/c++.html" class="nav-link">1- c++核心编程</a></li><li class="dropdown-item"><!----> <a href="/STL/STL基础教程.html" class="nav-link">2- STL基础</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Qt" class="dropdown-title"><span class="title">Qt</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/qt/1- Qt信号槽.html" class="nav-link">1- Qt信号槽</a></li><li class="dropdown-item"><!----> <a href="/qt/2- Qt窗口和控件.html" class="nav-link">2- Qt窗口和控件</a></li><li class="dropdown-item"><!----> <a href="/qt/3- Qt中的事件.html" class="nav-link">3- Qt中的事件</a></li><li class="dropdown-item"><!----> <a href="/qt/4- 翻金币.html" class="nav-link">4- 翻金币</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux系统编程" class="dropdown-title"><span class="title">Linux系统编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-system-programming/1- linux命令.html" class="nav-link">1- linux命令</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/2- vim和Linux中的库.html" class="nav-link">2- vim和Linux中的库</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/3- makefile和gdb.html" class="nav-link">3- makefile和gdb</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/4- 文件IO和Linux系统函数.html" class="nav-link">4- 文件IO和Linux系统函数</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/5- 进程控制.html" class="nav-link">5- 进程控制</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/6- 进程间通信.html" class="nav-link">6- 进程间通信</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/7- 信号.html" class="nav-link">7- 信号</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/8- 守护进程-线程.html" class="nav-link">8- 守护进程-线程</a></li><li class="dropdown-item"><!----> <a href="/Linux-system-programming/9- 线程同步.html" class="nav-link">9- 线程同步</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux网络编程" class="dropdown-title"><span class="title">Linux网络编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Linux-network-programming/1- 套接字.html" class="nav-link">1- 套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/2- tcp三次握手-并发.html" class="nav-link">2- tcp三次握手-并发</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/3- tcp状态转换-select.html" class="nav-link">3- tcp状态转换-select</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/4- epoll-udp.html" class="nav-link">4- epoll-udp</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/5- 广播-组播-本地套接字.html" class="nav-link">5- 广播-组播-本地套接字</a></li><li class="dropdown-item"><!----> <a href="/Linux-network-programming/6- libevent.html" class="nav-link">6- libevent</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><span class="title">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Databases/1-Oracle.html" class="nav-link">1-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/2-Oracle.html" class="nav-link">2-Oracle</a></li><li class="dropdown-item"><!----> <a href="/Databases/3- oracle &amp;&amp; mysql.html" class="nav-link">3- oracle &amp;&amp; mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/4- mysql.html" class="nav-link">4- mysql</a></li><li class="dropdown-item"><!----> <a href="/Databases/5- redis.html" class="nav-link">5- redis</a></li><li class="dropdown-item"><!----> <a href="/Databases/6- fastdfs.html" class="nav-link">6- fastdfs</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Go" class="dropdown-title"><span class="title">Go</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Go/00-goland安装教程.html" class="nav-link">0-goland安装教程</a></li><li class="dropdown-item"><!----> <a href="/Go/01-基础语法.html" class="nav-link">1-基础语法</a></li><li class="dropdown-item"><!----> <a href="/Go/02-高级语法.html" class="nav-link">2-高级语法</a></li><li class="dropdown-item"><!----> <a href="/Go/03-socket-http.html" class="nav-link">3-socket-http</a></li><li class="dropdown-item"><!----> <a href="/Go/04-聊天室.html" class="nav-link">4-聊天室</a></li></ul></div></div><div class="nav-item"><a href="/micro-services/微服务技术.html" class="nav-link">微服务</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Docker" class="dropdown-title"><span class="title">Docker</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docker/docker-day01.html" class="nav-link">Docker基础</a></li><li class="dropdown-item"><!----> <a href="/docker/docker-day02.html" class="nav-link">Docker高级</a></li><li class="dropdown-item"><!----> <a href="/docker/dockerfile-dockercompose-day03 .html" class="nav-link">dockerfile-dockercompose</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机网络" class="dropdown-title"><span class="title">计算机网络</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/computer-network/1- 计算机网络概述.html" class="nav-link">1- 计算机网络概述</a></li><li class="dropdown-item"><!----> <a href="/computer-network/2- 物理层.html" class="nav-link">2- 物理层</a></li><li class="dropdown-item"><!----> <a href="/computer-network/3- 数据链路层.html" class="nav-link">3- 数据链路层</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="第三方库与框架" class="dropdown-title"><span class="title">第三方库与框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/other/openssl.html" class="nav-link">openssl</a></li><li class="dropdown-item"><!----> <a href="/other/protobuf.html" class="nav-link">protobuf</a></li><li class="dropdown-item"><!----> <a href="/other/nginx.html" class="nav-link">nginx</a></li><li class="dropdown-item"><!----> <a href="/other/fastCGI.html" class="nav-link">fastCGI</a></li><li class="dropdown-item"><!----> <a href="/other/Nginx+fastDFS整合.html" class="nav-link">Nginx+fastDFS整合</a></li></ul></div></div><div class="nav-item"><a href="/web-hacking/web渗透基础.html" class="nav-link">web渗透基础</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>libevent</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Linux-network-programming/6-%20libevent.html#_1-libevent介绍" class="sidebar-link">1. Libevent介绍</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#_2-事件处理框架-event-base" class="sidebar-link">2. 事件处理框架 - event_base</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#_3-事件循环" class="sidebar-link">3. 事件循环</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#_4-事件" class="sidebar-link">4. 事件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#_5-带缓冲区的事件" class="sidebar-link">5. 带缓冲区的事件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#_6-链接监听器" class="sidebar-link">6. 链接监听器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/Linux-network-programming/6-%20libevent.html#udp" class="sidebar-link">udp</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="libevent"><a href="#libevent" class="header-anchor">#</a> libevent</h1> <h2 id="_1-libevent介绍"><a href="#_1-libevent介绍" class="header-anchor">#</a> 1. Libevent介绍</h2> <p><img src="/assets/img/libevent.c4d7895e.png" alt=""></p> <ul><li><p>特点</p> <blockquote><p>Libevent 是一个用C语言编写的、轻量级的开源高性能事件的框架，主要有以下几个亮点：</p> <ul><li>事件驱动（ event-driven），高性能;
+<ul><li>libevent会通过IO转接函数对事件进行检测</li> <li>会通过回调函数进行处理</li></ul></li> <li>轻量级，专注于网络；</li> <li>源代码相当精炼、易读；
+<ul><li>现阶段我不建议</li></ul></li> <li>跨平台，支持 Windows、 Linux、 BSD（是Unix的衍生系统） 和 Mac OS；</li> <li>支持多种 I/O 多路复用技术， epoll、 poll、 select 和 kqueue 等；</li> <li>支持 I/O，定时器和信号等事件；
+<ul><li>处理读事件</li> <li>处理写事件</li> <li>异常事件</li> <li>超时处理</li> <li>支持linux中的信号
+<ul><li>当进程中产生某个信号的时候, 这个也称之为事件</li></ul></li></ul></li> <li>支持注册事件优先级。
+<ul><li>默认创建的出的事件优先级相同</li> <li>可以通过操作函数设置事件不同的优先级</li></ul></li></ul></blockquote></li> <li><p>安装</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">## 下载地址: http://libevent.org/</span>
+<span class="token comment">## 源码的方式进行安装</span>
+<span class="token comment">## 找 readme / readme.md / INSTALL -&gt; 从里边找安装步骤</span>
+<span class="token comment">## 标准的源码安装:</span>
+	- 从源码目录中找一个可执行程序: <span class="token variable"><span class="token variable">`</span>configure<span class="token variable">`</span></span>
+		- 执行这个可执行程序: 
+			<span class="token variable"><span class="token variable">`</span>./configure<span class="token variable">`</span></span>
+			- <span class="token number">1</span>. 检测安装环境
+			- <span class="token number">2</span>. 生成一个makefile文件
+	- 因为生成了makefile, 根据里边的构建规则构建项目
+		- 有可能生成了可执行程序
+		- 有可能生成了库: 动态库 / 静态库
+		<span class="token variable"><span class="token variable">`</span><span class="token function">make</span><span class="token variable">`</span></span>
+	- 安装
+		- 将库/框架提供的头文件拷贝到系统目录
+		- 将可执行程序拷贝到系统目录
+		- 将生成的库拷贝到系统目录
+		<span class="token variable"><span class="token variable">`</span><span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span><span class="token variable">`</span></span>
+<span class="token comment">## 测试环境是否可用:</span>
+<span class="token comment">## 编译实例程序</span>
+$ gcc hello-world.c -levent  <span class="token comment">## 生成了a.out</span>
+<span class="token comment">## 测试动态库能不能被动态加载到内存</span>
+$ ldd a.out 
+        linux-vdso.so.1 <span class="token operator">=</span><span class="token operator">&gt;</span>  <span class="token punctuation">(</span>0x00007ffcca7ee000<span class="token punctuation">)</span>
+        `libevent-2.1.so.6 <span class="token operator">=</span><span class="token operator">&gt;</span> not found    <span class="token comment">## 动态库找不到</span>
+        libc.so.6 <span class="token operator">=</span><span class="token operator">&gt;</span> /lib/x86_64-linux-gnu/libc.so.6 <span class="token punctuation">(</span>0x00007fd8bf227000<span class="token punctuation">)</span>
+        libpthread.so.0 <span class="token operator">=</span><span class="token operator">&gt;</span> /lib/x86_64-linux-gnu/libpthread.so.0 <span class="token punctuation">(</span>0x00007fd8bf00a000<span class="token punctuation">)</span>
+        /lib64/ld-linux-x86-64.so.2 <span class="token punctuation">(</span>0x00007fd8bf847000<span class="token punctuation">)</span>
+        
+<span class="token comment">## 解决动态库找不到的问题</span>
+<span class="token number">1</span>. 找libevent的动态库被拷贝到了系统的哪个目录
+	<span class="token function">sudo</span> <span class="token function">find</span> / -name <span class="token string">&quot;libevent.so&quot;</span>
+	<span class="token comment">## 得到了系统目录: /usr/local/lib</span>
+<span class="token number">2</span>. 将/usr/local/lib路径添加到 /etc/ld.so.conf 文件中
+	- 这个路径在文件中自己占一行
+<span class="token number">3</span>. 执行一个更新命令: <span class="token function">sudo</span> ldconfig
+</code></pre></div></li></ul> <h2 id="_2-事件处理框架-event-base"><a href="#_2-事件处理框架-event-base" class="header-anchor">#</a> 2. 事件处理框架 - event_base</h2> <blockquote><p>使用 libevent函数之前需要分配一个或者多个 event_base 结构体。每个event_base 结构体持有一个事件集合，可以检测以确定哪个事件是激活的。每个 event_base 都有一种用于检测哪种事件已经就绪的 “方法”，或者说后端。</p></blockquote> <ul><li><p>API函数</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 头文件</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/event.h&gt;</span></span>
+<span class="token comment">// 操作函数</span>
+<span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> event_base_new（<span class="token keyword">void</span>）<span class="token punctuation">;</span>	<span class="token comment">// 要掌握的函数</span>
+<span class="token keyword">void</span> event_base_free（<span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base）<span class="token punctuation">;</span>
+
+<span class="token comment">// 检查event_base的后端方法 -&gt; 封装的IO转接函数</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token function">event_get_supported_methods</span><span class="token punctuation">(</span><span class="token keyword">void</span>）<span class="token punctuation">;</span>
+<span class="token comment">// 查看当前操作系统使用的什么IO转接函数</span>
+<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">event_base_get_method</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span>base<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li></ul> <h2 id="_3-事件循环"><a href="#_3-事件循环" class="header-anchor">#</a> 3. 事件循环</h2> <blockquote><p>event_base不停的检测委托的检测是实际是不是发生了, 如果发生了, event_base会调用对应的回调函数, 这个回调函数的用户委托检测事件的时候给的.</p></blockquote> <ul><li><p>设置事件循环</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 头文件</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/event.h&gt;</span></span>
+
+<span class="token comment">// 只要这个函数被调用, 就可以对event_base中的事件进行检测</span>
+<span class="token comment">// 如果检测了一遍: 发现event_base中没有注册任何事件 -&gt; 循环退出</span>
+<span class="token comment">// 发现event_base中有注册事件, 但是事件并没有被触发 -&gt; 继续检测</span>
+<span class="token comment">// 发现event_base中有注册事件, 但是事件被触发 -&gt; 事件被处理, 默认这个事件只处理一次</span>
+<span class="token comment">// 			- 如果想持续检测这个事件, 需要额外设置</span>
+<span class="token keyword">int</span> <span class="token function">event_base_dispatch</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span><span class="token operator">*</span> base<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 一般使用这个函数</span>
+</code></pre></div></li> <li><p>终止事件循环</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 头文件</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/event.h&gt;</span></span>
+
+<span class="token comment">// 表示一个时间段, tv_sec + tv_usec</span>
+<span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token punctuation">{</span>
+	<span class="token keyword">long</span>    tv_sec<span class="token punctuation">;</span>                    
+	<span class="token keyword">long</span>    tv_usec<span class="token punctuation">;</span>    <span class="token comment">// 微秒        </span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 等当前这一轮循环完成之后再结束</span>
+<span class="token comment">// 如果当前没有要处理的事件, 直接终止了</span>
+<span class="token keyword">int</span> <span class="token function">event_base_loopexit</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token operator">*</span> tv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> base<span class="token operator">:</span> 通过event_base_new（<span class="token keyword">void</span>）得到的事件处理框架
+		<span class="token operator">-</span> tv<span class="token operator">:</span> 在这个时间段之后退出循环
+<span class="token comment">// 事件循环马上结束</span>
+<span class="token keyword">int</span> <span class="token function">event_base_loopbreak</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li></ul> <h2 id="_4-事件"><a href="#_4-事件" class="header-anchor">#</a> 4. 事件</h2> <ul><li><p>事件的创建、添加、删除</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 头文件</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/event.h&gt;</span></span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_TIMEOUT 	0x01	</span><span class="token comment">// 超时</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_READ 	0x02	</span><span class="token comment">// 读事件</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_WRITE 	0x04	</span><span class="token comment">// 写事件</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_SIGNAL 	0x08	</span><span class="token comment">// 信号事件</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_PERSIST 	0x10	</span><span class="token comment">// 设置事件被持续检测</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> EV_ET 		0x20	</span><span class="token comment">// 设置边沿模式</span>
+
+<span class="token comment">// 事件处理函数的函数原型</span>
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>event_callback_fn<span class="token punctuation">)</span><span class="token punctuation">(</span>evutil_socket_t fd<span class="token punctuation">,</span> <span class="token keyword">short</span> what<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> fd<span class="token operator">:</span> 文件描述符<span class="token punctuation">,</span> 是event_new函的第二个参数被传递进来了
+		<span class="token operator">-</span> what<span class="token operator">:</span> 存储了实际被触发的事件
+		<span class="token operator">-</span> arg<span class="token operator">:</span> event_new函数的第五个参数
+		
+<span class="token comment">// 创建一个事件</span>
+<span class="token comment">// evutil_socket_t == int</span>
+<span class="token keyword">struct</span> <span class="token class-name">event</span><span class="token operator">*</span> <span class="token function">event_new</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base，evutil_socket_t fd，
+     					 <span class="token keyword">short</span> what，event_callback_fn cb，<span class="token keyword">void</span> <span class="token operator">*</span> arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> base<span class="token operator">:</span> 事件的处理框架
+		<span class="token operator">-</span> fd<span class="token operator">:</span> 一个文件描述符
+			<span class="token operator">-</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token operator">-</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token operator">-</span> <span class="token function">pipe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token operator">-</span> what<span class="token operator">:</span> 要检测第二个参数fd的什么事件<span class="token punctuation">,</span> 参考上边的宏定义
+			EV_TIMEOUT <span class="token operator">|</span> EV_READ <span class="token operator">|</span> EV_WRITE
+		<span class="token operator">-</span> cb<span class="token operator">:</span> 事件产生之后的处理动作
+		<span class="token operator">-</span> arg<span class="token operator">:</span> 作为参数传递给回调函数cb
+
+<span class="token comment">// 释放事件资源, 参数是event_new的返回值</span>
+<span class="token keyword">void</span> <span class="token function">event_free</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event</span> <span class="token operator">*</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 添加事件</span>
+<span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token punctuation">{</span>
+	<span class="token keyword">long</span>    tv_sec<span class="token punctuation">;</span>                    
+	<span class="token keyword">long</span>    tv_usec<span class="token punctuation">;</span>    <span class="token comment">// 微秒        </span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 将创建出的新的事件添加到event_base事件处理框架上</span>
+<span class="token comment">// 这样在事件循环的时候才能检测到这个事件</span>
+<span class="token keyword">int</span>  <span class="token function">event_add</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event</span> <span class="token operator">*</span> ev，<span class="token keyword">const</span>  <span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token operator">*</span> tv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> ev<span class="token operator">:</span> 创建的新事件
+		<span class="token operator">-</span> tv<span class="token operator">:</span> 超时时长<span class="token punctuation">,</span> 假设在设置的时间段之内检测的事件没有触发
+			<span class="token operator">-</span> 如果超时了<span class="token punctuation">,</span> 强迫事件的处理函数被调用
+
+<span class="token comment">// 将事件从event_base事件处理框架上删除, 这个事件就不会被检测了</span>
+<span class="token keyword">int</span>  <span class="token function">event_del</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event</span> <span class="token operator">*</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><img src="/assets/img/1565409357573.b076838b.png" alt="1565409357573"></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	1. 创建事件处理框架 event_base
+	2. 创建新的事件 event, 这时候还不能被 event_base 处理
+	3. 将事件添加到 event_base 上
+	4. event_base开始事件循环 event_base_dispatch
+		- 事件触发, 事件被处理 -&gt; 这个事件从 event_base 移除了
+			- 如果想要被持续处理
+				- 方式1: 在添加一次 event_add()
+				- 方式2: event_new, 参数what指定 EV_PERSIST   -&gt; 推荐
+*/</span>
+</code></pre></div><ul><li><p>练习:</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">## 通过struct event 事件 处理管道通信</span>
+<span class="token comment">## 使用有名管道 -&gt; 没有血缘关系的进程间通信</span>
+</code></pre></div></li></ul></li> <li><p>事件的优先级设置</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 头文件</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/event.h&gt;</span></span>
+<span class="token comment">// EVENT_MAX_PRIORITIES == 256</span>
+<span class="token comment">// 初始化事件优先级有多少级</span>
+<span class="token keyword">int</span> <span class="token function">event_base_priority_init</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base，<span class="token keyword">int</span> n_priorities<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> base<span class="token operator">:</span> <span class="token function">event_base_new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>得到的
+		<span class="token operator">-</span> n_priorities<span class="token operator">:</span> 指定有多少个级别<span class="token punctuation">,</span> 假设指定值为<span class="token number">5</span>
+			<span class="token operator">-</span> 级别<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> 其中<span class="token number">0</span>的级别最高<span class="token punctuation">,</span> <span class="token number">4</span>级别最低
+
+
+<span class="token comment">// 获取当前可用的等级的个数</span>
+<span class="token keyword">int</span> <span class="token function">event_base_get_npriorities</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span> base<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 给事件设置等级</span>
+<span class="token keyword">int</span> <span class="token function">event_priority_set</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">event</span> <span class="token operator">*</span>event<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+  	<span class="token operator">-</span> event<span class="token operator">:</span> 初始化得到的某一事件实例
+		<span class="token operator">-</span> priority<span class="token operator">:</span> 按照 <span class="token function">event_base_priority_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 指定的等级范围指定就行
+
+</code></pre></div></li></ul> <h2 id="_5-带缓冲区的事件"><a href="#_5-带缓冲区的事件" class="header-anchor">#</a> 5. 带缓冲区的事件</h2> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 网络通信的时候要使用文件描述符</span>
+<span class="token comment">// 文件描述符在内核中对应两块内存</span>
+	<span class="token operator">-</span> 读
+	<span class="token operator">-</span> 写
+<span class="token comment">// 带缓冲区的事件 -&gt; 叫做: bufferevent</span>
+<span class="token comment">// 	- libevent又额外提供了一块内存, 是对内核提供的缓冲区的封装</span>
+<span class="token comment">// 		- 我们操作的libevent提供的缓冲区</span>
+			<span class="token operator">-</span> 读缓冲区 <span class="token operator">-&gt;</span> 数据来自于内核的读缓冲区
+			<span class="token operator">-</span> 写缓冲区 <span class="token operator">-&gt;</span> 数据流向内核的写缓冲区
+</code></pre></div><p><img src="/assets/img/1569742293643.de354d1d.png" alt="1569742293643"></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// bufferevent提供了两块缓冲区</span>
+	<span class="token operator">-</span> 当读缓冲区中有数据<span class="token punctuation">,</span> 读事件被触发<span class="token punctuation">,</span> 读缓冲区对应的回调会被调用
+	<span class="token operator">-</span> 写缓冲区也对应一个回调函数
+		<span class="token operator">-</span> 这个函数没什么用<span class="token punctuation">,</span> 为什么没有用<span class="token operator">?</span>
+        	<span class="token operator">-</span> 使用者将数据写入写缓冲区<span class="token punctuation">,</span> 这时候回调函数会被调用
+        		通知使用者<span class="token punctuation">,</span> 数据成功被写入到了内核中
+</code></pre></div><ul><li><p>概念理解</p> <blockquote><ol><li>bufferevent 理解:
+<ul><li>是libevent为IO缓冲区操作提供的一种通用机制</li> <li>bufferevent 由一个底层的传输端口(如套接字 ),  一个读取缓冲区和一个写入缓冲区组成。</li> <li>与通常的事件在底层传输端口已经就绪, 可以读取或者写入的时候执行回调不同的是, bufferevent在读取或者写入了足够量的数据之后调用用户提供的回调。</li></ul></li> <li>回调 - 缓冲区对应的操作</li> <li>每个 bufferevent 有两个数据相关的回调</li></ol> <ul><li>读取回调: 从底层传输端口读取了任意量的数据之后会调用读取回调(默认)
+<ul><li>当libevent维护的读缓冲区有数据的时候(从内核缓冲区中读过来), 调用缓冲区的读回调</li> <li>数据量到达多少多少读回调被调用, 这是可以设置的</li></ul></li> <li>写入回调: 输出缓冲区中足够量的数据被清空到底层传输端口后写入回调会被调用(默认)
+<ul><li>当数据被写入到写缓冲区中之后, 该函数被调用</li> <li>这个回调函没什么用</li></ul></li></ul></blockquote></li> <li><p>创建/释放基于套接字的bufferevent</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 创建带缓冲区的事件</span>
+<span class="token comment">// 可以将一个现有的文件描述符进行包装</span>
+<span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span><span class="token function">bufferevent_socket_new</span><span class="token punctuation">(</span>
+	<span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span>base<span class="token punctuation">,</span>
+	evutil_socket_t fd<span class="token punctuation">,</span>
+	<span class="token keyword">enum</span> <span class="token class-name">bufferevent_options</span> options
+<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+参数<span class="token operator">:</span>
+	<span class="token operator">-</span> base<span class="token operator">:</span> 事件处理框架
+	<span class="token operator">-</span> fd<span class="token operator">:</span> 要包装的文件描述符
+		<span class="token operator">-</span> 情况<span class="token number">1</span><span class="token operator">:</span> 指定一个有效的文件描述符
+		<span class="token operator">-</span> 情况<span class="token number">2</span><span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> 没有文件描述符<span class="token punctuation">,</span> 让当前函数在内部创建一个有效的文件描述符
+	<span class="token operator">-</span> options<span class="token operator">:</span> 选项
+		<span class="token operator">-</span> BEV_OPT_CLOSE_ON_FREE<span class="token operator">:</span> 当前事件释放<span class="token punctuation">,</span> 并且关闭封装的文件描述符
+
+<span class="token comment">// 释放资源</span>
+<span class="token keyword">void</span> <span class="token function">bufferevent_free</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>在bufferevent上启动链接</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 连接服务器函数</span>
+<span class="token keyword">int</span> <span class="token function">bufferevent_socket_connect</span><span class="token punctuation">(</span>
+	<span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bev<span class="token punctuation">,</span>
+	<span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>address<span class="token punctuation">,</span>
+	<span class="token keyword">int</span> addrlen
+<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+参数<span class="token operator">:</span>
+	<span class="token operator">-</span> bev<span class="token operator">:</span> 带缓冲区的事件<span class="token punctuation">,</span> 里边封装了用于通信的文件描述符
+	<span class="token operator">-</span> address<span class="token operator">:</span> 里边要初始化服务器端的地址信息
+	<span class="token operator">-</span> addrlen<span class="token operator">:</span> 参数address占用的内存大小
+</code></pre></div></li> <li><p>bufferevent读写缓冲区回调操作</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>bufferevent_data_cb<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bev<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> bev<span class="token operator">:</span> <span class="token function">bufferevent_setcb</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数的第一个参数被作为实参传递给了形参bev
+		<span class="token operator">-</span> ctx<span class="token operator">:</span> <span class="token function">bufferevent_setcb</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数的最后一个参数作为实参传递给了形参ctx
+		
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>bufferevent_event_cb<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bev<span class="token punctuation">,</span> <span class="token keyword">short</span> events<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> bev<span class="token operator">:</span> <span class="token function">bufferevent_setcb</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数的第一个参数被作为实参传递给了形参bev
+		<span class="token operator">-</span> events<span class="token operator">:</span> 可以检测到的事件<span class="token punctuation">,</span> 检测方式<span class="token operator">:</span> events <span class="token operator">&amp;</span> BEV_EVENT_CONNECTED
+			EV_EVENT_READING：读取操作时发生某事件，具体是哪种事件请看其他标志。
+				<span class="token operator">-</span> 读操作产生了异常<span class="token punctuation">,</span> 举例<span class="token operator">:</span> 读缓冲区没数据并且做了读操作<span class="token punctuation">(</span>读不阻塞<span class="token punctuation">)</span>
+			BEV_EVENT_WRITING：写入操作时发生某事件，具体是哪种事件请看其他标志。
+				<span class="token operator">-</span> 写操作产生了异常<span class="token punctuation">,</span> 举例<span class="token operator">:</span> 写缓冲区满了并且做了写操作<span class="token punctuation">(</span>写不阻塞的情况下<span class="token punctuation">)</span>
+			BEV_EVENT_ERROR：操作时发生错误。关于错误的更多信息
+				<span class="token operator">-</span> 请调用 <span class="token function">EVUTIL_SOCKET_ERROR</span><span class="token punctuation">(</span><span class="token punctuation">)</span>。
+			BEV_EVENT_TIMEOUT：发生超时。
+			BEV_EVENT_EOF：遇到文件结束指示。
+				<span class="token operator">-</span> 通信的另外一端已经关闭了连接
+			BEV_EVENT_CONNECTED：请求的连接过程已经完成 
+				<span class="token operator">-</span> 这个判定是在客户端做的
+		<span class="token operator">-</span> ctx<span class="token operator">:</span> <span class="token function">bufferevent_setcb</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 函数中的最后一个参数 cbarg<span class="token punctuation">,</span> 被传递到该函数中	
+
+<span class="token comment">// 给读写缓冲区设置回调函数</span>
+<span class="token keyword">void</span> <span class="token function">bufferevent_setcb</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">,</span> 
+       					bufferevent_data_cb readcb<span class="token punctuation">,</span> 		
+       					bufferevent_data_cb writecb<span class="token punctuation">,</span> 
+                       	bufferevent_event_cb eventcb<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>cbarg
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> bufev<span class="token operator">:</span> 带缓冲区的事件<span class="token punctuation">,</span> 里边封装了用于通信的文件描述符
+		<span class="token operator">-</span> readcb<span class="token operator">:</span> 读缓冲区对应的回调函数
+			<span class="token operator">-</span> 调用的时机<span class="token operator">:</span> 当读缓冲区中有数据的时候<span class="token punctuation">,</span> 这个函数被自动调用
+		<span class="token operator">-</span> writecb<span class="token operator">:</span> 写缓冲区对应的回调函数
+			<span class="token operator">-</span> 调用的时机<span class="token operator">:</span> 当数据被写入到写缓冲区之后<span class="token punctuation">,</span> 这个函数被自动调用 <span class="token operator">-&gt;</span> 鸡肋
+		<span class="token operator">-</span> eventcb<span class="token operator">:</span> 事件对应的回调 <span class="token punctuation">(</span>读写不算<span class="token punctuation">)</span>
+            <span class="token operator">-</span> 异常
+            <span class="token operator">-</span> 连接成功
+            <span class="token operator">-</span> 断开连接
+            <span class="token operator">-</span> 信号事件
+         <span class="token operator">-</span> cbarg<span class="token operator">:</span> 会被传递到回调函数中
+</code></pre></div></li> <li><p>禁用、启用缓冲区</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">/*
+	可以启用或者禁用 bufferevent 上的 EV_READ、EV_WRITE 或者 EV_READ | EV_WRITE 事件。
+	没有启用读取或者写入事件时, bufferevent 将不会试图进行数据读取或者写入。
+*/</span>
+<span class="token comment">// 写缓冲区默认是可用的, 读缓冲区默认不可用</span>
+<span class="token comment">// 写缓冲区默认是可用的 -&gt; 写回调在适当的时机就会被调用</span>
+<span class="token comment">// 读缓冲区默认不可用 -&gt; 读回调函数不会被调用</span>
+<span class="token keyword">void</span> <span class="token function">bufferevent_enable</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">,</span> <span class="token keyword">short</span> events<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	<span class="token operator">-</span> bufev<span class="token operator">:</span> 带缓冲区的事件<span class="token punctuation">,</span> 里边封装了用于通信的文件描述符
+	<span class="token operator">-</span> events<span class="token operator">:</span> 缓冲区的事件
+		<span class="token operator">-</span> EV_READ
+		<span class="token operator">-</span> EV_WRITE
+
+<span class="token comment">// 设置某个事件无效</span>
+<span class="token keyword">void</span> <span class="token function">bufferevent_disable</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">,</span> <span class="token keyword">short</span> events<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 获取缓冲区对应的有效事件</span>
+<span class="token keyword">short</span> <span class="token function">bufferevent_get_enabled</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+返回值<span class="token operator">:</span> 得到的缓冲区的状态<span class="token punctuation">,</span> 比如返回值为 flag
+	<span class="token operator">-</span> 检测是不是可读<span class="token operator">:</span> flag <span class="token operator">&amp;</span> EV_READ <span class="token operator">&gt;</span> <span class="token function">0</span><span class="token punctuation">(</span>EV_READ<span class="token punctuation">)</span>
+    <span class="token operator">-</span> 检测是不是可写<span class="token operator">:</span> flag <span class="token operator">&amp;</span> EV_WRITE <span class="token operator">&gt;</span> <span class="token function">0</span><span class="token punctuation">(</span>EV_WRITE<span class="token punctuation">)</span>
+</code></pre></div></li> <li><p>操作bufferevent中的数据</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 向bufferevent的输出缓冲区添加数据</span>
+<span class="token keyword">int</span> <span class="token function">bufferevent_write</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> bufev<span class="token operator">:</span> 带缓冲区的事件<span class="token punctuation">,</span> 里边封装了用于通信的文件描述符
+		<span class="token operator">-</span> data<span class="token operator">:</span> 要发送的数据
+  		<span class="token operator">-</span> size<span class="token operator">:</span> 要发送的数据的长度
+		
+<span class="token comment">// 将数据从读缓冲区读出</span>
+size_t <span class="token function">bufferevent_read</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">bufferevent</span> <span class="token operator">*</span>bufev<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> bufev<span class="token operator">:</span> 带缓冲区的事件<span class="token punctuation">,</span> 里边封装了用于通信的文件描述符
+		<span class="token operator">-</span> data<span class="token operator">:</span> 指向的内存用来存储读缓冲区中的数据
+		<span class="token operator">-</span> size<span class="token operator">:</span> data对应的内存大小
+</code></pre></div></li> <li><p>使用bufferevent实现套接字通信客户端</p> <div class="language-c extra-class"><pre class="language-c"><code>
+</code></pre></div></li></ul> <h2 id="_6-链接监听器"><a href="#_6-链接监听器" class="header-anchor">#</a> 6. 链接监听器</h2> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">// 服务器tcp通信流程</span>
+	<span class="token operator">-</span> <span class="token number">1.</span> 创建监听的套接字
+	<span class="token operator">-</span> <span class="token number">2.</span> 绑定
+	<span class="token operator">-</span> <span class="token number">3.</span> 设置监听
+	<span class="token operator">-</span> <span class="token number">4.</span> 等待并接受连接请求
+	<span class="token operator">-</span> <span class="token number">5.</span> 通信
+	<span class="token operator">-</span> <span class="token number">6.</span> 端口连接<span class="token punctuation">,</span> 关闭套接字
+</code></pre></div><ul><li><p>创建和释放evconnlistener</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/listener.h&gt;</span> </span>
+<span class="token comment">// 服务器端成功和客户端建立连接之后的回调函数</span>
+<span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>evconnlistener_cb<span class="token punctuation">)</span><span class="token punctuation">(</span>
+			<span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span>listener<span class="token punctuation">,</span>   
+			evutil_socket_t sock<span class="token punctuation">,</span>   
+			<span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> 
+			<span class="token keyword">int</span> len<span class="token punctuation">,</span> 
+			<span class="token keyword">void</span> <span class="token operator">*</span>ptr
+<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	参数<span class="token operator">:</span>
+		<span class="token operator">-</span> listener<span class="token operator">:</span> 链接监听器<span class="token punctuation">,</span> <span class="token function">evconnlistener_new_bind</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的返回值
+		<span class="token operator">-</span> sock<span class="token operator">:</span> 通信的文件描述符<span class="token punctuation">,</span> 成功建立连接之后得到的
+		<span class="token operator">-</span> addr<span class="token operator">:</span> 存储的客户端的地址
+		<span class="token operator">-</span> len<span class="token operator">:</span> 参数addr对应的内存大小
+		<span class="token operator">-</span> ptr<span class="token operator">:</span> 指向传进来的数据<span class="token punctuation">,</span> <span class="token function">evconnlistener_new_bind</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的第三个参数
+
+<span class="token comment">// - 3. 设置监听</span>
+<span class="token comment">// - 4. 等待并接受连接请求</span>
+<span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span><span class="token operator">*</span> <span class="token function">evconnlistener_new</span><span class="token punctuation">(</span>
+			<span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span>base<span class="token punctuation">,</span>
+			evconnlistener_cb cb<span class="token punctuation">,</span> 	
+			<span class="token keyword">void</span> <span class="token operator">*</span>ptr<span class="token punctuation">,</span> 			
+			<span class="token keyword">unsigned</span> flags<span class="token punctuation">,</span> 
+			<span class="token keyword">int</span> backlog<span class="token punctuation">,</span>		
+			evutil_socket_t fd	
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+参数<span class="token operator">:</span>
+	<span class="token operator">-</span> base<span class="token operator">:</span> 事件处理框架
+	<span class="token operator">-</span> cb<span class="token operator">:</span> 回调函数<span class="token punctuation">,</span> 里边写建立连接之后的处理动作 <span class="token operator">-&gt;</span> 通信步骤
+	<span class="token operator">-</span> ptr<span class="token operator">:</span> 作为参数传递给cb回调函数
+	<span class="token operator">-</span> flags<span class="token operator">:</span> 属性信息
+	<span class="token operator">-</span> backlog<span class="token operator">:</span> 相当于<span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数的第二个参数
+		<span class="token operator">-</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span> 自动指定一个合适的值
+		<span class="token operator">-</span> <span class="token operator">&gt;</span><span class="token number">0</span><span class="token operator">:</span> 和指定<span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的第二个参数是一样的
+	<span class="token operator">-</span> fd<span class="token operator">:</span> 有效的文件描述符
+		<span class="token operator">-</span> 需要自己绑定
+
+<span class="token comment">/*
+	- 1. 创建监听的套接字
+	- 2. 绑定
+	- 3. 设置监听
+	- 4. 等待并接受连接请求
+*/</span>
+<span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span><span class="token function">evconnlistener_new_bind</span><span class="token punctuation">(</span>
+			<span class="token keyword">struct</span> <span class="token class-name">event_base</span> <span class="token operator">*</span>base<span class="token punctuation">,</span>
+			evconnlistener_cb cb<span class="token punctuation">,</span>	
+			<span class="token keyword">void</span> <span class="token operator">*</span>ptr<span class="token punctuation">,</span> 
+			<span class="token keyword">unsigned</span> flags<span class="token punctuation">,</span> 
+			<span class="token keyword">int</span> backlog<span class="token punctuation">,</span>
+			<span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>sa<span class="token punctuation">,</span> 
+			<span class="token keyword">int</span> socklen				   
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+参数<span class="token operator">:</span>
+	<span class="token operator">-</span> base<span class="token operator">:</span> 事件处理框架
+	<span class="token operator">-</span> cb<span class="token operator">:</span> 回调函数<span class="token punctuation">,</span> 里边写建立连接之后的处理动作 <span class="token operator">-&gt;</span> 通信步骤
+	<span class="token operator">-</span> ptr<span class="token operator">:</span> 作为参数传递给cb回调函数
+	<span class="token operator">-</span> flags<span class="token operator">:</span> 属性信息
+		<span class="token operator">-</span> LEV_OPT_CLOSE_ON_FREE<span class="token operator">:</span> 链接监听器释放的时候<span class="token punctuation">,</span> 关闭封装的套接字
+		<span class="token operator">-</span> LEV_OPT_REUSEABLE<span class="token operator">:</span> 设置端口复用
+	<span class="token operator">-</span> backlog<span class="token operator">:</span> 相当于<span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数的第二个参数
+		<span class="token operator">-</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span> 自动指定一个合适的值
+		<span class="token operator">-</span> <span class="token operator">&gt;</span><span class="token number">0</span><span class="token operator">:</span> 和指定<span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的第二个参数是一样的
+	<span class="token operator">-</span> sa<span class="token operator">:</span> 服务器的地址信息初始化到该结构体中
+	<span class="token operator">-</span> socklen<span class="token operator">:</span> sa参数占用的内存大小<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>sa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 释放链接监听器</span>
+<span class="token keyword">void</span> <span class="token function">evconnlistener_free</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div></li> <li><p>启用和禁用 evconnlistener</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/listener.h&gt;</span> </span>
+<span class="token comment">// 设置无效之后, 就不监听连接请求了</span>
+<span class="token comment">// 设置无法监听</span>
+<span class="token keyword">int</span> <span class="token function">evconnlistener_disable</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 设置可以监听</span>
+<span class="token keyword">int</span> <span class="token function">evconnlistener_enable</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div></li> <li><p>调整 evconnlistener 的回调函数</p> <div class="language-c extra-class"><pre class="language-c"><code> <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;event2/listener.h&gt;</span> </span>
+<span class="token comment">// 默认是不需要设置的</span>
+<span class="token comment">// 当某些条件下, 处理逻辑有变化的时候, 就可以替换原来的回调函数</span>
+<span class="token keyword">void</span> <span class="token function">evconnlistener_set_cb</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">evconnlistener</span> <span class="token operator">*</span>lev<span class="token punctuation">,</span> evconnlistener_cb cb<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div></li> <li><p>套接字通信服务器端代码</p> <div class="language-c extra-class"><pre class="language-c"><code>
+</code></pre></div></li></ul> <h2 id="udp"><a href="#udp" class="header-anchor">#</a> udp</h2> <ol><li>udp 的通信流程
+<ul><li>创建通信的套接字
+<ul><li>sock_dgram</li></ul></li> <li>如果这进程已启动之后就需要接收数据
+<ul><li>绑定本地的IP和端口</li></ul></li> <li>通信
+<ul><li>recvfrom</li> <li>sendto</li></ul></li> <li>关闭套接字
+<ul><li>close();</li></ul></li></ul></li> <li>两种模式
+<ul><li>广播
+<ul><li>局域网</li> <li>需要广播地址 -&gt; <code>xxx.xxx.xxx.255</code></li> <li>如何发送广播?
+<ul><li>创建通信的udp套接字</li> <li>设置广播属性
+<ul><li>setsockopt();</li></ul></li> <li>开始广播, 发送数据, 需要使用一个地址(接收数据端地址)
+<ul><li>接收数据端地址
+<ul><li>IP: 广播地址</li> <li>port: 随便找一个没有被使用的端口进行广播</li></ul></li> <li>sendto();</li> <li>关闭套接字</li></ul></li></ul></li> <li>如何接收广播?
+<ul><li>创建通信的udp套接字</li> <li>绑定端口, 这个端口和发送广播使用的端口相同</li> <li>接收数据</li> <li>关闭套接字</li></ul></li></ul></li> <li>组播
+<ul><li>局域网, 广域网都可以使用</li> <li>需要组播地址, 需要将数据发送到某个端口</li> <li>如何发送组播消息?
+<ul><li>创建通信的udp套接字</li> <li>设置组播属性
+<ul><li>setsockopt();</li></ul></li> <li>发送数据, 需要使用一个地址(接收数据端地址)
+<ul><li>接收数据端地址
+<ul><li>IP: 组播地址</li> <li>端口: 随便找一个没有被使用的端口进行组播</li></ul></li></ul></li> <li>关闭套接字</li></ul></li> <li>如何接收数据?
+<ul><li>创建通信的udp套接字</li> <li>绑定端口, 这个端口就是组播的一端使用的端口对应</li> <li>加入到多播组
+<ul><li>setsockopt();</li></ul></li> <li>接收数据</li> <li>关闭套接字</li></ul></li></ul></li> <li>本地套接字
+<ul><li>使用的通信流程和tcp通信一样</li></ul></li></ul></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.37bf62ab.js" defer></script><script src="/assets/js/2.c467d517.js" defer></script><script src="/assets/js/40.ca7edf6f.js" defer></script>
+  </body>
+</html>
