@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>第一章 计算机图形学与图形流水线 | Alan&#39;s Blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://chiyou-debug.github.io/favicon.ico?v=1707308323332">
+<link rel="stylesheet" href="https://chiyou-debug.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="第一章 计算机图形学与图形流水线
+1.1 计算机图形学的概念及主要研究内容
+计算机图形学(Computer Graphics，简称CG)
+
+计算机图形学是一门研究如何利用计算机进行图形的计算、处理和显示的学科。
+简单地说：是一种使用数学算法..." />
+    <meta name="keywords" content="计算机图形学" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://chiyou-debug.github.io">
+        <img src="https://chiyou-debug.github.io/images/avatar.png?v=1707308323332" class="site-logo">
+        <h1 class="site-title">Alan&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/chiyou-debug" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by Alan | <a class="rss" href="https://chiyou-debug.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">第一章 计算机图形学与图形流水线</h2>
+            <div class="post-date">2024-02-05</div>
+            
+              <div class="feature-container" style="background-image: url('https://chiyou-debug.github.io/post-images/CG.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="第一章-计算机图形学与图形流水线">第一章 计算机图形学与图形流水线</h1>
+<h2 id="11-计算机图形学的概念及主要研究内容">1.1 计算机图形学的概念及主要研究内容</h2>
+<p><strong>计算机图形学(Computer Graphics，简称CG)</strong></p>
+<ul>
+<li>计算机图形学是一门研究如何利用计算机进行图形的计算、处理和显示的学科。</li>
+<li>简单地说：是一种使用数学算法将二维或三维<strong>图形</strong>转化为计算机显示器所能显示的<strong>二维栅格</strong>形式的科学。</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=NGVjNjA5YTJmYWVjNmYyYTE4OWU1ODYxNTJkY2UxMzFfMnV2R0ZZNFhDMDFCOUVaalFpZHhZSUJkZUR2SVlqRWZfVG9rZW46RkZwTmJ5bTFSbzNNVmt4UnVxNmNWMnZHblpiXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<p><strong>计算机图形学的三大研究内容</strong></p>
+<ul>
+<li>建模(Modeling)：构造场景的三维模型</li>
+<li>绘制/渲染(Rendering)：将三维场景画在屏幕上</li>
+<li>动画(Animation)：采用连续播放静止图像的方法产生物体运动的效果</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2EzOWYxOGI0NjYyM2IxMTQ2YmViYTFlZjAwZTEzM2RfV2NWQ2JZcHZTVlQ3ZnNVRGsyVUdKN3c2OVZReWFXcUlfVG9rZW46VzNFT2J4ZHFqb3lleDN4T1AxeWNFRDdJbkIxXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li>拓展：<a href="http://staff.ustc.edu.cn/~lgliu/Resources/CG/What_is_CG.htm">什么是计算机图形学</a></li>
+</ul>
+<h3 id="111-modeling">1.1.1 Modeling</h3>
+<p>要在计算机中表示一个三维物体，首先要有它的几何模型表达。因此，三维模型的建模是计算机图形学的基础，是其他内容的前提。表达一个几何物体可以是用数学上的样条函数或隐式函数来表达；也可以是用光滑曲面上的采样点及其连接关系所表达的<strong>三角网格</strong>/<strong>三角面片</strong>来表达（即连续曲面的分片线性逼近），如下图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQwY2MzZmNmNTQyODQ5Nzk0ZjgwYzEzYTAwMTdiMzhfSG5GNjhha3FkazNjY0ZWekVKSXNkOGhNVXRoR3hBQnBfVG9rZW46Rzg0NGJka3Bpb3N3RFZ4dnB6T2NMSmxZbndZXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="112-rendering绘制渲染">1.1.2 Rendering（绘制/渲染）</h3>
+<p>有了三维模型或场景，怎么把这些三维几何模型画出来，产生令人赏心悦目的真实感图像？这就是传统的计算机图形学的核心任务-----<strong>渲染</strong>。其本质就是根据三维模型，<strong>计算屏幕窗口中每个</strong>像素<strong>点的颜色</strong>。而像素点颜色又与光照、环境以及物体材质等因素有关。</p>
+<figure data-type="image" tabindex="4"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YjdhNzAwNzUwZDliNTcxZjY0Njg5OTkyNThhNGFhYjRfQWlhVldtT3hoaXJ2cXpmNXRKTjN4QUdzRjZIZm1wOXRfVG9rZW46U1hRS2JPRzBrb3g5N2x4aVdMemNyclFUbnpkXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YjIxYjBlYTc2YWQ3OGZmOGMxYmYyNmQ3MDQ4YjFlZWZfbjNFenZncjQzM3dDVFBrWURxbEg0YXcxUGN4dDZVRUtfVG9rZW46V0x2WWJYM2dzbzRrUkF4N0R3U2NZcjVtbmpwXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YTMzZTFhMmQyZGI4YWI1OTkwZDc4MzgwY2VhYzYxMDNfTDE5VWE3U24yQzk5TGZMdklVbGVpY3lwTG9oYkpVT0hfVG9rZW46WFpWdWJtYzdqb2lLT1R4WEZOeGNoQjJmbkljXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li>
+<p>常见的绘制/渲染方式</p>
+<ul>
+<li>
+<ul>
+<li>逐像素绘制
+<ul>
+<li>从视点出发，连接像素，引出一条射线，射入场景之中，与场景中物体相交，引出一个交点，然后计算交点的颜色，把颜色填到像素。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<figure data-type="image" tabindex="7"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=NGQ1YzljYTNhNDFiNDc2ZjI3ZmRmNzY4YzRjMWZmYmNfTGFhWkRmZEFYQ2ZFVlBOR2FKbkhISnlyWkl4ZFVPSXZfVG9rZW46SHMyVWI2Tk5Sb3UzQzB4MkFFM2NGTkZEbmxlXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+</li>
+<li>
+<ul>
+<li>逐面片绘制（更常见）
+<ul>
+<li>
+<p>它<strong>以物体的面片为处理对象</strong>，所有物体都以多边形面片组成，一个面片一个面片的处理，把面片<strong>投影</strong>到二维平面上，然后对二维的三角形执行一个<strong>光栅化</strong>的操作，求出二维三角形所覆盖的所有像素，然后计算每一个像素的颜色。</p>
+</li>
+<li>
+<p>模型由许多面片(polygon)组成</p>
+</li>
+<li>
+<p>逐面片地进行<strong>投影</strong>、<strong>光栅化</strong>(Rasterization)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=MWRiNmE2ZWIzM2I2ZTEyNDBlMWRjYTIzMTUxOTZiZGFfeDRTOW5YcG8yc1paV3pXUExyTUJ6R0FwdjlHZ2J5cHZfVG9rZW46UjFYNGJsVzNSb00zRWN4b09zRmN0aHRPbjJiXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="113-animation">1.1.3 Animation</h3>
+<p>动画是采用连续播放静止图像的方法产生物体运动的效果。计算机动画借助于编程或动画制作软件生成一系列的景物画面，是计算机图形学的研究热点之一。</p>
+<p>计算机动画的应用领域广泛，比如动画片制作，广告、 电影特技，训练模拟，游戏等。</p>
+<figure data-type="image" tabindex="9"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=NjVkODAyYzQxNGU1NzFkNTgxMmI2YWFjODYxZDU5NDZfeUx6UEhTN1o5MXU4Q1J2Y0dxNGozbEpienZtTFRXNkRfVG9rZW46QnAwcGI2WUJrb2VMQ3Z4YzdlSmMzRWU2bmRnXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li>拓展：网上的一些3D动画的视频
+<ul>
+<li>The Killer Bean: http://v.youku.com/v_show/id_XMjI5ODE2MTEy.html</li>
+<li>爱与孝: http://v.youku.com/v_show/id_XNTU0OTUxNjUy.html</li>
+<li>房地产动画广告宣传片: http://v.youku.com/v_show/id_XNTc1OTE4MDMy.html</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-图形与图像的差别">1.2 图形与图像的差别</h2>
+<h3 id="121-图形graph-与-图像image">1.2.1 图形(Graph) 与 图像(Image)</h3>
+<p>图形（Graph）和图像（Image）都是多媒体系统中的可视元素，虽然它们很难区分，但确实不是一回事。</p>
+<p>图形是矢量图（Vector Drawn），它是根据几何特性来绘制的。图形的元素是一些点、直线、弧线等。矢量图常用于框架结构的图形处理，应用非常广泛，如计算机辅助设计（CAD）系统中常用矢量图来描述十分复杂的几何图形，适用于直线以及其它可以用角度、坐标和距离来表示的图。图形任意放大或者缩小后，清晰依旧。</p>
+<p>图像是位图（Bitmap），它所包含的信息是用像素来度量的。就像细胞是组成人体的最小单元一样，像素是组成一幅图像的最小单元。对图像的描述与分辨率和色彩的颜色种数有关，分辨率与色彩位数越高，占用存储空间就越大，图像越清晰。</p>
+<p>图形是人们根据客观事物制作生成的，它不是客观存在的；图像是可以直接通过照相、扫描、摄像得到，也可以通过绘制得到。</p>
+<p>【总结而言】</p>
+<ul>
+<li>图像：一堆像素组成的二维栅格</li>
+<li>图形：含有表示“形”的几何信息</li>
+<li>图形之中也会有图像的成分
+<ul>
+<li>图形的显示最终要转化为图像</li>
+<li>图形中的纹理就是图像</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="10"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YzFkMmZkYTdjZDQyMzhhN2RjMTUxMGYyYzhlY2IzYjNfNE02ZVFHZXR0cDg5R0YxQnFqVWtTRmNiZG5seEhTNFVfVG9rZW46TzgzVmJLV0pVb3RXUFB4eUZNS2N3WU5MbjFjXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="122-几个学科的区别">1.2.2 几个学科的区别</h3>
+<ol>
+<li>计算机图形学（Computer Graphics）</li>
+<li>数字图像处理（Digital Image Processing）</li>
+<li>计算机视觉（Computer Vision）</li>
+</ol>
+<p>CG: 三维模型 → 绘制 → 二维图像</p>
+<p>IP: 二维图像 → 分析处理 → 得到其他信息或生成某种特效...</p>
+<p>CV: 二维图像 → 分析处理 → 三维信息</p>
+<h2 id="13-图形流水线总览">1.3 图形流水线总览</h2>
+<p>本质就是逐面片绘制的一个固定步骤而已</p>
+<h3 id="131-graphics-pipeline-引出">1.3.1 Graphics Pipeline 引出</h3>
+<ul>
+<li><strong>简单理解：在计算机中将3D模型转化为屏幕上的图像需要经过一系列的处理步骤，这个处理步骤就是图形流水线，也被称作渲染管线。</strong></li>
+<li>1992年，SGI 发布OpenGL1.0，图形流水线逐渐形成业界标准。</li>
+<li>1994年出现PC显卡，1999年出现GPU，<strong>图形流水线逐渐硬化到了PC机专用的图形硬件上来实现</strong>。</li>
+</ul>
+<p>【拓展：SGL 与 OpenGL】</p>
+<blockquote>
+<p>在上世纪80年代早期，Silicon Graphics（SGI）为了在自己的工作站上进行2D和3D图形处理而引入了一种专有API, 命名为 IRIS GL(综合光栅成像系统图形语言)。1922年，SGI 对这个实现进行了修订，并将它作为一种开放的行业标准发布，这就是<strong>OpenGL</strong>。1993年，Brian Paul 开始进行一项工程，创建一个纯软件的 OpenGL 实现，名为 <strong>Mesa3D</strong>, 由此开启了不受特定硬件供应商约束而广泛支持3D渲染的大门。</p>
+</blockquote>
+<h3 id="132-图形流水线">1.3.2 图形流水线</h3>
+<p>OpenGL和Direct3D都定义了图形流水线（graphics pipeline）概念，包括一系列计算机图形显示过程中必须执行或可选的图形操作。目前，所有GPU的操作都是围绕图形流水线设计的。**因此，学习OpenGL绝不能只是学习一堆离散的函数，而必须很好地理解图形流水线的整体流程及各个环节，否则学习OpenGL函数如同盲人摸象。**下图1中是OpenGL蓝宝书中的图形流水线(基于OpenGL1.0)。但当前的图形流水线已非常复杂，因此单独给出下图2(只包含基本操作的简化图形流水线)来说明。</p>
+<figure data-type="image" tabindex="11"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2Q0Y2Y1NmVhNDdmZjVkOGJhYzBiOGM2MWQxMjU2ZWZfYUFQanRua05zWGpVRHNTNXgxZU9uQWNxVE5NUU5ER1pfVG9rZW46UkltTGI4a3Vub05CQTN4NExPamM2alJRbmplXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YmVkYmFmYTQzMTA5ZWQyNDA3MDU0ZWE4MmVkNmUwNTVfaVNtS21XWEJUSVVnMUVnd2dBWUpOQmluMXVHVlFyMTRfVG9rZW46SDFNd2JCS1o4b1lVaHR4WFVwSGN1c3pEbmdlXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li>主要阶段如下：
+<ul>
+<li>模型由面片组成，面片又由顶点组成。<code>CPU</code>负责组织顶点数据，数据处理完成之后，就交给<code>GPU</code>去处理后面的任务。</li>
+<li><code>Vertex operations</code>: 顶点处理阶段，会对顶点数据进行一些列的变换，是由三维模型到二维图形的转换
+<ul>
+<li>几何变换</li>
+<li><strong>投影</strong> (3D-&gt;2D)</li>
+<li>裁剪</li>
+<li>视口变换</li>
+</ul>
+</li>
+<li><code>Rasterization</code>：光栅化，此过程大概就是计算二维图形所覆盖的所有片元(fragment)。</li>
+<li><code>Fragment operation</code>：此阶段是对光栅化后的片元进行处理的阶段，进行颜色的很多处理，然后把片元的颜色填入帧缓冲区中，随后就显示到了屏幕之上。</li>
+</ul>
+</li>
+<li>相关拓展：
+<ul>
+<li><a href="https://docplayer.net/44733130-The-graphics-pipeline.html">The Graphics Pipeline</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="14-图形开发库">1.4 图形开发库</h2>
+<p>在进行三维图形开发过程中，有很多现成的开发库，总结如下：</p>
+<figure data-type="image" tabindex="13"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=NDdjN2I0OWYwMmI5M2M1ZThjZGY1NThjZWIwOWRjYjVfdzdvQ3dFMjY0TUdzNjdpNk83TTdCTVFQT29KdjY2blFfVG9rZW46U3RpZWJ4UnQ1b3RTdUJ4RE91bmNKbmM3bm9mXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<p>实际开发中，一般会使用<strong>OpenGL</strong>作为基础图形库，然后用<strong>freeglut</strong>作为它的辅助的工具库，再用<strong>glew</strong>来调用它的扩展功能。</p>
+<h3 id="141-opengl">1.4.1 OpenGL</h3>
+<p>OpenGL(Open Graphics Library)是一种应用程序编程接口，是图形编程的业界标准之一(除了OpenGL, 还有Direct3D)，它是一种可以对图形硬件设备特性进行访问的软件库。OpenGL库的4.5版本包含了超过500个不同的命令(函数)，用户可以调用来完成各种绘图任务。</p>
+<p>需要说明的是，不要仅仅把OpenGL当做是一堆函数的松散集合，其实在OpenGL里面它要严密的围绕图形流水线来组织(早在OpenGL 1.0发布时就已确定了当今图形流水线的雏形)。因此学习OpenGL绝不能只是学习一堆离散的函数，而必须很好地理解图形流水线的整体流程及各个环节，否则学习OpenGL函数如同盲人摸象。</p>
+<figure data-type="image" tabindex="14"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YWQ3ZDA1YzcyYzBhMGU5YWM4Yzc1Zjk5YjcyYzMzOTZfVTlYQnd1aE4xRkhMbm1ZdndsM3U5OEJYR09ndkpDZkdfVG9rZW46U1NFY2JtZUtmb0lCc3F4c2pwQmN0cFNjbnFjXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="142-辅助opengl开发的工具库">1.4.2 <strong>辅助OpenGL开发的工具库</strong></h3>
+<ul>
+<li><strong>aux, glut, freeglut, glfw</strong>
+<ul>
+<li>提供了管理窗口的功能</li>
+<li>加入了键盘、鼠标等的交互接口</li>
+<li>可能还提供了右键菜单等交互功能</li>
+<li>提供了一些“高级”建模函数（如<code>glutSolidTeapot()</code>）</li>
+<li>Aux，微软从大约2007年开始已不更新</li>
+<li>glut →freeglut</li>
+<li>glfw</li>
+</ul>
+</li>
+<li>拓展：<a href="https://blog.csdn.net/u010087338/article/details/119292157">《OpenGL 下面的 glut、freeglut、glfw 都是个啥》</a></li>
+</ul>
+<h3 id="143-opengl-与-direct3d">1.4.3 OpenGL 与 Direct3D</h3>
+<ul>
+<li><strong>Direct3D在游戏界占优</strong></li>
+<li><strong>OpenGL跨平台!!!</strong></li>
+<li><strong>两者背后是同样的图形流水线</strong></li>
+<li><strong>其他的三维</strong>图形库<strong>都构建在OpenGL或Direc3D基础之上：OSG, OGRE, Unity3D…</strong></li>
+</ul>
+<h2 id="15-何为gpu">1.5 何为GPU</h2>
+<ul>
+<li><strong>GPU</strong>😗* <strong>Graphics Processing Unit</strong></li>
+<li><strong>CPU</strong>😗* <strong>Central Processing Unit</strong></li>
+<li><strong>GPU</strong>是<strong>显卡</strong>中的核心芯片**</li>
+<li><strong>GPU</strong>用来处理屏幕显示相关的计算；并实现图形流水线**</li>
+<li>现在，GPU已成为计算机中发展最快的硬件</li>
+</ul>
+<figure data-type="image" tabindex="15"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDg5OTAxZjViZjk2ZDNhNjFhYjFlMjgyNGM1YWZkZjhfSE41ZFhEblVsOVBaWjlPcnlDZElzUU5HMnE4ajdzSEtfVG9rZW46TWtLWmJLWnhUb2RCcWJ4b3dKTWNSMVZ5bk5jXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="151-gpu与cpu的发展曲线对比">1.5.1 <strong>GPU</strong>与<strong>CPU</strong>的发展曲线对比**</h3>
+<figure data-type="image" tabindex="16"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=MDA1NDdiZDJhYTY4ZDk3ZmQ1OTBhMTA3OGI0OGE1NzlfbVBkZVhZaHF4eGN5MzFRZ2RoSVd0QXBEZjF3MEpYb21fVG9rZW46R1Q3SWJxbFVDb0F3a0d4cXZ6bGNSMHRSblJkXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="152-gpu的计算能力">1.5.2 GPU的计算能力</h3>
+<ul>
+<li><strong>GPU</strong> <strong>比</strong> <strong>CPU</strong> <strong>快！？</strong>
+<ul>
+<li><strong>原因：<strong>GPU</strong>是</strong>并行<strong>的</strong></li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="17"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjAyMTQ3NmMzZWJjNGQyNTc0MTdmN2ZiNTkwZDNmODFfZWlYS1JOYUlTaGFhUkFMbDZydU1aZm53VTlEeVJiTDVfVG9rZW46R2N5bmJON1V6b1pDbUh4RmN3MGN3V2MxbjFnXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li>例如：Geforce 7800有24条像素渲染管线；</li>
+</ul>
+<pre><code class="language-Plaintext">    Geforce 8800有128条流计算单元
+</code></pre>
+<ul>
+<li>CPU是为了通用计算，而GPU 则只需执行相对固定的任务</li>
+<li>因此，GPU更快，但不如CPU灵活、通用。</li>
+</ul>
+<p><strong>但是，现代</strong>GPU<strong>正变得越来越灵活，因其具有了可编程功能和统一渲染框架</strong></p>
+<h2 id="16-gpu中图形流水线的发展及shader编程">1.6 GPU中图形流水线的发展及Shader编程</h2>
+<h3 id="161-固定图形流水线">1.6.1 固定图形流水线</h3>
+<p>最早的图形流水线称之为固定管线，上面的每一个步骤（比如光照、贴图等）里面都会有一些参数（比如光照模式，纹理模式等等），整个渲染的过程就好像是在流水线上的每一道工序上面都有几个可选的开关，然后你要想实现不同的渲染效果，那就去花式扳开关就好了。</p>
+<figure data-type="image" tabindex="18"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2ViMTcxMTU4MzU5MmE3NGY4ODcyM2RhMmUzYzM1NzRfRFVubHFtemdBeHdWdHd4UUZDZGk5ak5UQjExNFJZSXJfVG9rZW46SDZKVGJCQUU5b2w5MFd4clN4dmN0WVM4bjZjXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="162-可编程流水线">1.6.2 可编程流水线</h3>
+<p>但是大家的欲望是无限的，这么有限的扳开关的模式，渲染的效果实在是不理想，后来大家就把模式换成了流水线上坐着几个工人（Shader），然后给工人下命令（可编程）的方式了，这样的话只要工人忙得过来，那我就可以自己定义各种光照模型，贴图方式了，程序员的可发挥空间就大得多了。</p>
+<h4 id="1621-vertex-fragment-operations">1.6.2.1 Vertex &amp;&amp; Fragment Operations</h4>
+<blockquote>
+<p>2002年开始，GPU在Vertex Operations和Fragment Operations这两个模块中具有了可编程功能。</p>
+</blockquote>
+<figure data-type="image" tabindex="19"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=M2Q2ZWM5Y2RhN2JlMTVmYWUzMzk1ZWU1NjI2ZjdkZGJfVjZPemZBa0dWemlOWjRtQXV6TXlQRHZzdFJ4aXh2aWJfVG9rZW46THVGN2JKWEhLbzZqSjB4VkxHQmMxT2czbkI3XzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li><strong>Vertex Shader of</strong> <strong>GPU</strong>
+<ul>
+<li>
+<p>可直接在Vertex Shader中编程控制顶点的各种属性</p>
+</li>
+<li>
+<figure data-type="image" tabindex="20"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDUyZGVkYzAyYjEyZmJkM2Q1MDM5ODIwYTdkZWM5MzhfTVNQaWNIdnJwVkljRmJxMXRJRm1WZ0xyODFoc3NrSGdfVG9rZW46QU00U2IyYkpSb0FoQ294NEZ0QWNRNmFibkVjXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+</li>
+<li></li>
+</ul>
+</li>
+<li><strong>Fragment Shader of GPU</strong>
+<ul>
+<li>可直接在Fragment shader中编程控制片元、像素的各种属性</li>
+<li><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YzgzYTFiMTkwOWVlZGUzNzY0MTc0OTc3MGU4MDc1MjhfMk5mbk1TN1hCTEVVOGRoZ1Z1N0FQMU96bWpjQm4xd0dfVG9rZW46QnE0VWJxNzNCb3FNWHB4RVU0YWNaR1ZsblBiXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></li>
+</ul>
+</li>
+</ul>
+<h4 id="1622-geometry-shader">1.6.2.2 Geometry Shader</h4>
+<blockquote>
+<p>2006年，GPU流水线中增加了一个新的模块：Geometry Shader</p>
+</blockquote>
+<figure data-type="image" tabindex="22"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ODBhYzc5Y2UzMjM2MGZmOTNkODI0Y2JjMTBjMjk5N2NfcnpJdmVOVnVIRTEybnoxajdYWDlGZGIxYWxZdzhFYTVfVG9rZW46WmxQZGJ5eklrb1VHZmR4QXFYZmNQTzh4bkNkXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<ul>
+<li><strong>Geometry Shader of GPU</strong></li>
+</ul>
+<figure data-type="image" tabindex="23"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YmY4ODljOWM0ZjMzM2VmMmJjMDc0MjYwNjdmY2Y2OTZfeWZwbkJZRlBsRGh6bEFUNkhibXdnSWJ5bUMwZ3JkRkNfVG9rZW46Q3BqaWJGYzU3b2RYbTR4c1ZJY2NnS05qbkFlXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=N2U1ZTFlNGRlZGYxZGMzYTUxZWYyZWU2ODYxMTY0MGVfUGVqdnY5QWozVlNIR2sxT244UkRPNjYzcGNJUElwSkZfVG9rZW46V0Y4cGJEcjJQbzQySFF4Z0MzTmNOYTU0bkpkXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<p>历代显卡精彩演示DEMO赏析点评之NV篇</p>
+<ul>
+<li>http://www.pcpop.com/doc/0/128/128790_all.shtml</li>
+</ul>
+<p>历代显卡精彩演示DEMO赏析点评 ATI篇</p>
+<ul>
+<li>http://www.pcpop.com/doc/0/125/125661.shtml</li>
+</ul>
+<p>Nvidia官网</p>
+<ul>
+<li>https://www.nvidia.cn/coolstuff/demos</li>
+</ul>
+<p>热心网友</p>
+<ul>
+<li>https://space.bilibili.com/6681109?spm_id_from=333.788.b_765f7570696e666f.2</li>
+</ul>
+<h3 id="163-统一渲染构架">1.6.3 统一渲染构架</h3>
+<blockquote>
+<p>2006年，微软的DirectX 10提出了GPU的统一渲染构架</p>
+</blockquote>
+<figure data-type="image" tabindex="25"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=NTQ3N2NmMzg1ZDZkMzRjYmI1NGU5YjJiNzNkY2E2NzZfSldwVnRwVnFsRmZZbVRKTkxLWU4xRmxJWlYxNXhEb2JfVG9rZW46QVByNGJWbEg3bzlnWE94SkM4RWNOWjRIblRCXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="164-directx-11-pipeline">1.6.4 DirectX 11 Pipeline</h3>
+<blockquote>
+<p>2009.10 DirectX 11对图形流水线的进一步升级</p>
+</blockquote>
+<figure data-type="image" tabindex="26"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=MjZkOTI2MzUyYjk3MTBiNDVjZjYwODgyOGU1MWU2MjRfb2dMeFBUcHIyYWpob1pneENwdTVSaVVHWGxqZVdvSzZfVG9rZW46WkNsd2JpdGhab1dRWUF4Y1Q0WmM4RTQybmNjXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="165-gpu中进行全局光照global-illumination-gi">1.6.5 GPU中进行全局光照（Global Illumination, GI）</h3>
+<blockquote>
+<p>2015年GTX 970/980发布时的Demo: 阿波罗11号</p>
+</blockquote>
+<figure data-type="image" tabindex="27"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=YWVhYzdlNDMyOTU5ZjZmZTc0NmUxOTg5ZGQwYWQwMTJfd2kzQkFVS3ZBck8zdDByZm54MkVTWTVLTXM1TmJUR0xfVG9rZW46QXlZM2JLN2Vobzd4Y294VzdhQ2NkRk5CbmRlXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="166-gpu编程">1.6.6 GPU编程</h3>
+<ul>
+<li><strong>Assembly</strong></li>
+</ul>
+<pre><code class="language-Plaintext">// 早期采用汇编代码编程很痛苦
+…
+FRC R2.y, C11.w; 
+ADD R3.x, C11.w, -R2.y; 
+MOV H4.y, R2.y; 
+ADD H4.x, -H4.y, C4.w; 
+MUL R3.xy, R3.xyww, C11.xyww; 
+ADD R3.xy, R3.xyww, C11.z; 
+TEX H5, R3, TEX2, 2D; 
+ADD R3.x, R3.x, C11.x; 
+TEX H6, R3, TEX2, 2D;
+…
+</code></pre>
+<ul>
+<li>Cg: <strong>(C for Graphics)</strong></li>
+</ul>
+<pre><code class="language-C">// 易读易写易改
+// 跨平台
+…
+L2weight = timeval – floor(timeval);
+L1weight = 1.0 – L2weight;
+ocoord1  = floor(timeval)/64.0 + 1.0/128.0;
+ocoord2  = ocoord1 + 1.0/64.0;
+L1offset = f2tex2D(tex2, float2(ocoord1, 1.0/128.0));
+L2offset = f2tex2D(tex2, float2(ocoord2, 1.0/128.0));
+…
+</code></pre>
+<ul>
+<li>Cg --- C for Graphics</li>
+<li>HLSL --- High Level Shading Language, for D3D</li>
+<li>GLSL --- GL Shading Language, for OpenGL</li>
+<li>这就是所谓的shader编程</li>
+</ul>
+<h2 id="17-gpu的应用及未来">1.7 GPU的应用及未来</h2>
+<p>**GPU因其强大的计算能力，被用在各个领域 **</p>
+<ul>
+<li><strong>高性能计算</strong>领域**</li>
+<li><strong>各领域中的大计算量任务</strong>
+<ul>
+<li>医学、化学、生物、金融、科学计算、图像处理</li>
+</ul>
+</li>
+<li><strong>人工智能</strong></li>
+<li><strong>区块链</strong></li>
+</ul>
+<h3 id="171-流体模拟">1.7.1 流体模拟</h3>
+<figure data-type="image" tabindex="28"><img src="https://mingwang.feishu.cn/space/api/box/stream/download/asynccode/?code=ODBmZTdiMWI3NjYyY2IxNzNiMmQwYTIwYjU3M2Y5NmRfNTFOQm5NYTVTbzg1bFVReVR2YXFuYkd4elYzSmtwT2FfVG9rZW46Vmh5WmJ1c1ZSb1FKbGZ4Q3ZLNmNSVExFbnJoXzE3MDczMDc4MDY6MTcwNzMxMTQwNl9WNA" alt="img" loading="lazy"></figure>
+<h3 id="172-通用并行计算平台">1.7.2 通用并行计算平台</h3>
+<ul>
+<li>2007，Nvidia公司发布了CUDA (Compute Unified Device Architecture) ---- 一个执行 GPGPU的计算平台</li>
+<li>2008，Khronos Group提出了OpenCL (Open Computing Language) 1.0规范</li>
+<li><strong>CUDA</strong>和OpenCL的出现，使得不具备计算机图形基础的人也可以利用<strong>GPU</strong>进行通用计算**</li>
+</ul>
+<h3 id="173-gpgpu">1.7.3 GPGPU</h3>
+<blockquote>
+<p>General-Purpose GPU——用GPU来完成通用计算！</p>
+</blockquote>
+<ul>
+<li>GPU已成为最重要的加速手段之一</li>
+<li>CPU与GPU的结合成为未来趋势</li>
+<li>美国著名计算机科学家Jack Dongarra：“将来的计算架构会是CPU和GPU的结合”。</li>
+</ul>
+<h3 id="174-gpu在智能时代的机遇">1.7.4 <strong>GPU</strong>在智能时代的机遇**</h3>
+<ul>
+<li><strong>大数据、云计算、人工智能对计算提出了巨大的要求</strong></li>
+<li><strong>深度学习</strong>与<strong>GPU</strong>一拍即合**</li>
+<li><strong>Nvidia</strong>显卡<strong>的三个系列：</strong>
+<ul>
+<li><strong>Geforce是家用，娱乐用的</strong></li>
+<li><strong>Quadra是专业级</strong>显卡**</li>
+<li><strong>Tesla是专用于计算的</strong>显卡**</li>
+</ul>
+</li>
+<li><strong>NVIDIA公司推出的基于“<strong>CPU</strong>+<strong>GPU</strong>”混合架构的Tesla</strong>高性能计算<strong>系统（2015）</strong></li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://chiyou-debug.github.io/tag/CG/" class="tag">
+                    计算机图形学
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://chiyou-debug.github.io/post/C++提高编程/">
+                  <h3 class="post-title">
+                    C++提高编程
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
